@@ -1,0 +1,18 @@
+{
+  "name": "server-side",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Bethelem Melese",
+  "license": "ISC",
+  "description": "To make the Dynamic Portfolio using Node.js, Express.js and MongoDB",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0"
+  }
+}
