@@ -1,19 +1,18 @@
 For this Dynamic Portfolio Founcation Process, I use MERN Stuck
- So, to make it, First need to install Node.js, Mongodb, Express.js, TypeScript because we will use for React Ts for Frontend page and use Visual Studio text editor (I recommanded),
+ So, to make it first need to install Node.js, Mongodb, Express.js for backend and, React TypeScript for Frontend, plus use Visual Studio text editor (I recommanded),
 
 The Steps I followed,
 - first installing the package.json, using this command "npm init",
 - then install the express.js and other based on the commands:
     1, Create two folder one for react part which is frontend and call it client or client-side and the other folder for Express, Node and Mongodb which is backend
-the make the below in the server-side foleder by using cd server-side
+=> then make the below in the server-side foleder by using cd server-side
    1, npm install express
-   2, npm install -D @types/express @types/node typescript ts-node
-   3. Create tsconfig.json file in the main diroctory for ensures TypeScript compiles your code according to these settings, 
+   2. Create tsconfig.json file in the main diroctory for ensures TypeScript compiles your code according to these settings, 
        facilitating seamless integration with your project’s requirements.
-   4. Create .eslintrc.json also in the main dirctory for specifies ESLint settings for TypeScript files
-   5. npm i dotenv mongoose, to installing and setting up MongoDB and other necessary packages
-then make the below to create the client-side or client-side 
-   6. Add react to this project for frontend npx create-client-side client-side --template typescript
-   7. add the typescript with react in this project
-   8. then setup the project folder structure because, a project folder structure is an essential part of any project
-   9 . after all done push to the remore repository and create new branch for the next development proress, this helps to manage you intially development process
+   3. Create .eslintrc.json also in the main dirctory for specifies ESLint settings for TypeScript files
+   4. npm i dotenv mongoose, to installing and setting up MongoDB and other necessary packages
+=> then make the below to create the client-side or client-side 
+   5. Add react to this project for frontend npx create-client-side client-side --template typescript
+   6. add the typescript with react in this project
+   7. then setup the project folder structure because, a project folder structure is an essential part of any project.
+   8. after all done push to the remore repository and create new branch for the next development proress, this helps to manage the all development process
