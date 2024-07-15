@@ -24,8 +24,8 @@
   },
   "eslintConfig": {
     "extends": [
-      "client-side",
-      "client-side/jest"
+      "react-app",
+      "react-app/jest"
     ]
   },
   "browserslist": {
