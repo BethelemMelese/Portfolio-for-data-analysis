@@ -1,0 +1,275 @@
+* {
+  /* box-sizing: border-box; */
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary-color: #d6efd8;
+  --secondary-color: #80af81;
+  --third-color: #508d4e;
+  --text-color: #fff;
+  --text-second-color: #000;
+  --resume-btn-color: linear-gradient(to right, #508d4e, #0000);
+  --project-btn-color: linear-gradient(to left, #508d4e, #0000);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-color);
+}
+
+/* for the nav bar menu */
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 15vh;
+  background-color: transparent;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+}
+
+.nav-log {
+  padding-right: 30%;
+  margin-top: 10px;
+}
+
+.nav-log h2 {
+  font-size: 16px;
+}
+
+.nav-item-menu {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+  margin-top: 20px;
+}
+
+.nav-item-menu li {
+  list-style: none;
+}
+
+.nav-item-menu li a {
+  text-decoration: none;
+  color: var(--text-second-color);
+  transition: var(--third-color) 0.3s ease-in-out;
+  letter-spacing: 3px;
+  font-weight: bolder;
+  font-size: 13px;
+  border-bottom: 1px solid var(--text-second-color);
+  padding: 10px;
+}
+
+.nav-item-menu li a:hover {
+  color: var(--third-color);
+  border-bottom: 1px solid var(--third-color);
+  border-radius: 5px;
+  padding: auto;
+}
+
+.nav-item-menu li a:active {
+  border-bottom: 1px solid var(--text-second-color);
+}
+
+/* for about me style */
+:where(.css-dev-only-do-not-override-p8b6i).ant-card .ant-card-body {
+  /* padding: 24px; */
+  /* border-radius: 0 0 8px 8px; */
+  border: none;
+}
+
+.about-me-container {
+  width: 80%;
+  /* margin-top: 1px; */
+}
+
+.pic-card {
+  background-color: var(--secondary-color);
+  border: none;
+  width: 155%;
+  height: 100%;
+}
+
+.pic-item-card {
+  background-color: var(--third-color);
+  border: none;
+  margin-left: 64%;
+  width: 50%;
+  height: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.19),
+    10px 10px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.pic-photo {
+  margin: 0px auto;
+}
+
+.personal-name h3,
+.personal-name p {
+  color: var(--text-color);
+}
+
+.personal-name h3 {
+  margin-top: -10px;
+}
+
+.personal-name p {
+  margin-top: 20px;
+}
+
+.divider-fir {
+  border: 2px solid var(--text-color);
+  width: 100%;
+  margin-right: 100%;
+  margin-top: 20px;
+}
+
+.divider-sec {
+  border: 1px solid var(--text-color);
+  width: 20%;
+  margin: 0px auto;
+}
+
+.sm-link {
+  background-color: var(--text-color);
+  width: 113%;
+  height: 70%;
+  display: flex;
+  justify-content: space-around;
+  padding: 22px 10px 0px 10px;
+  margin-right: 30px;
+  margin-left: -24px;
+}
+
+.sm-item {
+  height: 25px;
+}
+.sm-item a {
+  text-decoration: none;
+  color: var(--text-second-color);
+  margin: 0px auto;
+}
+
+.sm-item a:hover {
+  color: var(--secondary-color);
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.bio-card {
+  background-color: transparent;
+  border: none;
+  margin-left: 35%;
+}
+
+.bio-detail {
+  margin-left: 5%;
+  font-weight: bold;
+  display: block;
+}
+
+.bio-detail h1 {
+  margin-right: 60%;
+  font-size: 8vh;
+  margin-bottom: 0;
+  margin-top: -5px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.bio-detail p {
+  margin-right: 40%;
+  margin-top: -10px;
+  font-size: 2.6vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bio-buttons {
+  display: flex;
+  width: 100px;
+  margin: 20px;
+}
+
+.bio-btn {
+  margin-right: 40px;
+  border: none;
+  padding: 8px;
+  border-radius: 100px;
+  width: 100%;
+  font-size: 10px;
+}
+
+.bio-btn1 {
+  background: linear-gradient(to right, #508d4e, #000);
+}
+
+.bio-btn2 {
+  background: linear-gradient(to left, #508d4e, #000);
+}
+
+.bio-btn a {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: -5px;
+  padding-bottom: -5px;
+  color: #fff;
+}
+
+.bio-description p {
+  text-align: justify;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.aboutme-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.created-by {
+  margin-left: 70px;
+  padding-right: 20%;
+  margin-bottom: 10px;
+}
+
+.address {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  padding-left: 20px;
+  margin-top: -30px;
+  margin-right: -20%;
+}
+
+.address-item {
+  margin-left: 20px;
+}
+
+.address-item p {
+  margin-top: -10px;
+}
+
+.footer-sm-link {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -10px;
+}
+
+.footer-sm-item {
+  margin-left: 20px;
+  height: 25px;
+}
+
+.footer-sm-item a {
+  color: #000;
+}
+
+.footer-sm-item a:hover {
+  color: var(--third-color);
+  border-bottom: 1px solid var(--third-color);
+}
