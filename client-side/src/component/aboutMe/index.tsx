@@ -33,7 +33,7 @@ const AboutMe = () => {
                 <Grid item xs={12} className="personal-name">
                   <h3>Ablene Melese</h3>
                   <div className="divider-sec"></div>
-                  <p>Data Analysis</p>
+                  <h5>Data Analysis</h5>
                 </Grid>
                 <Grid item xs={12}>
                   <div className="sm-link">

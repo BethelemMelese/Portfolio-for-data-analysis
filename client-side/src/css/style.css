@@ -1,16 +1,8 @@
+@import url("/src/css/var.css");
+
 * {
   /* box-sizing: border-box; */
   scroll-behavior: smooth;
-}
-
-:root {
-  --primary-color: #d6efd8;
-  --secondary-color: #80af81;
-  --third-color: #508d4e;
-  --text-color: #fff;
-  --text-second-color: #000;
-  --resume-btn-color: linear-gradient(to right, #508d4e, #0000);
-  --project-btn-color: linear-gradient(to left, #508d4e, #0000);
 }
 
 body {
@@ -39,6 +31,7 @@ nav {
 
 .nav-log h2 {
   font-size: 16px;
+  color: var(--text-second-color);
 }
 
 .nav-item-menu {
@@ -64,26 +57,30 @@ nav {
 }
 
 .nav-item-menu li a:hover {
-  color: var(--third-color);
-  border-bottom: 1px solid var(--third-color);
+  color: var(--secondary-color);
+  /* border-bottom: 2px solid var(a--third-color); */
   border-radius: 5px;
   padding: auto;
+  background: var(--text-second-color);
 }
 
 .nav-item-menu li a:active {
   border-bottom: 1px solid var(--text-second-color);
 }
 
+.container-switch {
+  margin-top: 20px 0 0 0;
+  position: sticky;
+  float: right;
+}
+
 /* for about me style */
 :where(.css-dev-only-do-not-override-p8b6i).ant-card .ant-card-body {
-  /* padding: 24px; */
-  /* border-radius: 0 0 8px 8px; */
   border: none;
 }
 
 .about-me-container {
   width: 80%;
-  /* margin-top: 1px; */
 }
 
 .pic-card {
@@ -109,13 +106,12 @@ nav {
   margin: 0px auto;
 }
 
-.personal-name h3,
-.personal-name p {
-  color: var(--text-color);
+.personal-name h5 {
+  color: #000;
 }
-
 .personal-name h3 {
   margin-top: -10px;
+  color: #000;
 }
 
 .personal-name p {
@@ -123,31 +119,31 @@ nav {
 }
 
 .divider-fir {
-  border: 2px solid var(--text-color);
+  border: 2px solid #000;
   width: 100%;
   margin-right: 100%;
   margin-top: 20px;
 }
 
 .divider-sec {
-  border: 1px solid var(--text-color);
+  border: 1px solid #000;
   width: 20%;
   margin: 0px auto;
 }
 
 .sm-link {
-  background-color: var(--text-color);
+  background-color: var(--sm-background-color);
   width: 113%;
-  height: 70%;
+  height: 80%;
   display: flex;
   justify-content: space-around;
-  padding: 22px 10px 0px 10px;
+  padding: 15px 10px 5px 10px;
   margin-right: 30px;
   margin-left: -24px;
 }
 
 .sm-item {
-  height: 25px;
+  height: 20px;
 }
 .sm-item a {
   text-decoration: none;
@@ -170,6 +166,7 @@ nav {
   margin-left: 5%;
   font-weight: bold;
   display: block;
+  color: var(--text-second-color);
 }
 
 .bio-detail h1 {
@@ -179,6 +176,7 @@ nav {
   margin-top: -5px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+  color: var(--text-second-color);
 }
 
 .bio-detail p {
@@ -186,6 +184,11 @@ nav {
   margin-top: -10px;
   font-size: 2.6vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-second-color);
+}
+
+.bio-description p {
+  color: var(--text-second-color);
 }
 
 .bio-buttons {
@@ -196,19 +199,23 @@ nav {
 
 .bio-btn {
   margin-right: 40px;
-  border: none;
+  border: 1px solid var(--third-color);
   padding: 8px;
   border-radius: 100px;
   width: 100%;
   font-size: 10px;
+  box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.19),
+    10px 0px 10px 0 rgba(0, 0, 0, 0.088);
 }
 
 .bio-btn1 {
-  background: linear-gradient(to right, #508d4e, #000);
+  background-color: var(--resume-btn-color);
+  color: #000;
 }
 
 .bio-btn2 {
-  background: linear-gradient(to left, #508d4e, #000);
+  background-color: var(--project-btn-color);
+  color: #000;
 }
 
 .bio-btn a {
@@ -216,12 +223,22 @@ nav {
   padding-right: 20px;
   padding-top: -5px;
   padding-bottom: -5px;
-  color: #fff;
+  color: #000;
+}
+
+.bio-btn a:hover {
+  background: var(--primary-color);
+  color: var(--text-second-color);
+}
+.bio-btn:hover {
+  background: var(--primary-color);
+  color: var(--text-second-color);
+  border: 1px solid var(--secondary-color);
 }
 
 .bio-description p {
   text-align: justify;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .aboutme-footer {
@@ -235,6 +252,12 @@ nav {
   margin-left: 70px;
   padding-right: 20%;
   margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.created-by p {
+  font-family: "Times New Roman", Times, serif;
+  color: var(--text-second-color);
 }
 
 .address {
@@ -242,12 +265,17 @@ nav {
   justify-content: space-between;
   margin-left: 10px;
   padding-left: 20px;
-  margin-top: -30px;
+  margin-top: -20px;
   margin-right: -20%;
 }
 
 .address-item {
   margin-left: 20px;
+}
+
+.address-item h4,
+p {
+  color: var(--text-second-color);
 }
 
 .address-item p {
@@ -266,10 +294,71 @@ nav {
 }
 
 .footer-sm-item a {
-  color: #000;
+  color: var(--text-second-color);
 }
 
 .footer-sm-item a:hover {
   color: var(--third-color);
   border-bottom: 1px solid var(--third-color);
+}
+
+/* for project style part is here */
+.project-container {
+  /* border-top: 1px solid var(--third-color); */
+  margin-left: 400px;
+  margin-top: -40px;
+}
+
+.project-desc p {
+  text-align: justify;
+  background-color: var(--text-color);
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.project-card {
+  background-color: var(--secondary-color);
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-carousel .slick-next {
+  position: absolute;
+  margin-left: 10px;
+  top: 50%;
+  width: 45px;
+  height: 14px;
+  transform: translateY(-50%);
+  color: var(--text-color);
+  opacity: 1.4;
+  background: transparent;
+  padding: 14px;
+  line-height: 0;
+  border: 12px;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+  transition: opacity 0.3s;
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-carousel .slick-prev {
+  position: absolute;
+  margin-left: 10px;
+  top: 50%;
+  width: 45px;
+  height: 14px;
+  transform: translateY(-50%);
+  color: var(--text-color);
+  opacity: 1.4;
+  background: transparent;
+  padding: 14px;
+  margin: 0px auto;
+  line-height: 0;
+  border: 12px;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+  transition: opacity 0.3s;
+}
+
+.project-names {
+  margin: 0;
 }

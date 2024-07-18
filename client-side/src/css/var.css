@@ -1,0 +1,39 @@
+:root {
+  --primary-color: #f0eee3;
+  --secondary-color: #f0e674;
+  --third-color: #f2de1f;
+  --text-color: #fff;
+  --text-second-color: #000;
+  --resume-btn-color: #f2de1f;
+  --project-btn-color: #f2de1f;
+  --sm-background-color:#fff;
+}
+
+[data-theme="dark"] {
+  --primary-color: #1d1d1f;
+  --secondary-color: #bcb671;
+  --third-color: #d3c11b;
+  --text-color: #000;
+  --text-second-color: #fff;
+  --resume-btn-color: #f2de1f;
+  --project-btn-color: #f2de1f;
+  --sm-background-color:#1d1d1f;
+}
+
+/* 
+  --primary-color: #d6e0ef;
+  --secondary-color: #8090af;
+  --third-color: #1d296f;
+    --third-color: #6f1d2567;
+   */
+
+/* For Dark mode color purpose 
+     --primary-color: #d8d8d8b5;
+  --secondary-color: #7577765a;
+  --third-color: #000000;*/
+
+
+
+/*   --resume-btn-color: linear-gradient(to right, #d3c11b, #000);
+  --project-btn-color: linear-gradient(to left, #d3c11b, #000); */
+  
