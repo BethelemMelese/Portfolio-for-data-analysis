@@ -40,25 +40,29 @@ const NavMenu = () => {
       </div>
       <ul className="nav-item-menu">
         <li>
-          <NavLink to="/" className="nav-item">ABOUT ME</NavLink>
+          <NavLink to="/" className="nav-item">
+            ABOUT ME
+          </NavLink>
         </li>
         <li>
-          <NavLink to="blog" className="nav-item">BLOG</NavLink>
+          <NavLink to="blog" className="nav-item">
+            BLOG
+          </NavLink>
         </li>
         <li>
-          <NavLink to="project" className="nav-item">PROJECT</NavLink>
+          <NavLink to="project" className="nav-item">
+            PROJECT
+          </NavLink>
         </li>
         <li>
-          <NavLink to="contactMe" className="nav-item">CONTACT</NavLink>
+          <NavLink to="contactMe" className="nav-item">
+            CONTACT
+          </NavLink>
         </li>
       </ul>
       <div className="checkbtn">
         <IconButton id="check" onClick={handleClick}>
-          {/* {click ? ( */}
           <MenuIcon type="checked" className="menubtn" />
-          {/* // ) : (
-          //   <CloseIcon type="checked" className="menubtn" />
-          // )} */}
         </IconButton>
       </div>
       <div>

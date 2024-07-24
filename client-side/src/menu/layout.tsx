@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const Layout = ({ ...props }) => {
   return (
-    <div>
+    <div className="sec-container">
       <NavMenu />
       <Outlet />
       {props.children}

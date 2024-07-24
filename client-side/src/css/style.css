@@ -8,6 +8,9 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+.sec-container {
   background-color: var(--primary-color);
 }
 
