@@ -1,7 +1,7 @@
 @import url("/src/css/var.css");
 
 * {
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   scroll-behavior: smooth;
 }
 
@@ -45,7 +45,7 @@ nav {
   list-style: none;
 }
 
-.nav-item-menu li a {
+.nav-item-menu .nav-item {
   text-decoration: none;
   color: var(--text-second-color);
   transition: var(--third-color) 0.3s ease-in-out;
@@ -56,22 +56,43 @@ nav {
   padding: 10px;
 }
 
-.nav-item-menu li a:hover {
-  color: var(--secondary-color);
-  /* border-bottom: 2px solid var(a--third-color); */
+.nav-item-menu .nav-item:hover {
+  color: #000;
   border-radius: 5px;
   padding: auto;
-  background: var(--text-second-color);
+  background: #fff;
+  border-bottom: 1px solid #000;
 }
 
-.nav-item-menu li a:active {
-  border-bottom: 1px solid var(--text-second-color);
+.nav-item-menu .active {
+  border-bottom: 1px solid var(--active-color);
+  color: var(--active-color);
+  border-radius: 5px;
+  padding: auto;
+  background: var(--active-background-color);
+}
+
+.checkbtn {
+  font-size: 30px;
+  background-color: var(--third-color);
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+  display: none;
+}
+
+.menubtn {
+  color: #000;
 }
 
 .container-switch {
   margin-top: 20px 0 0 0;
   position: sticky;
   float: right;
+}
+
+#check {
+  /* display: none; */
 }
 
 /* for about me style */
@@ -133,22 +154,24 @@ nav {
 
 .sm-link {
   background-color: var(--sm-background-color);
-  width: 113%;
-  height: 80%;
+  width: 121%;
+  height: 150%;
   display: flex;
   justify-content: space-around;
   padding: 15px 10px 5px 10px;
+  /* margin: 0px auto  ; */
   margin-right: 30px;
   margin-left: -24px;
 }
 
 .sm-item {
   height: 20px;
+  margin: 0px auto;
 }
+
 .sm-item a {
   text-decoration: none;
   color: var(--text-second-color);
-  margin: 0px auto;
 }
 
 .sm-item a:hover {

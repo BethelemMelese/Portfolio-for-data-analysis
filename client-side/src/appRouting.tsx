@@ -6,6 +6,7 @@ import Project from "./component/project";
 import NavMenu from "./menu/nav";
 import Layout from "./menu/layout";
 import "./css/style.css";
+import "./css/responsive.css"
 import "./App.css";
 
 function AppRoute() {

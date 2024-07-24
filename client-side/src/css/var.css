@@ -1,12 +1,14 @@
 :root {
-  --primary-color: #f0eee3;
+  --primary-color: #fffceb;
   --secondary-color: #f0e674;
   --third-color: #f2de1f;
   --text-color: #fff;
   --text-second-color: #000;
   --resume-btn-color: #f2de1f;
   --project-btn-color: #f2de1f;
-  --sm-background-color:#fff;
+  --sm-background-color: #fff;
+  --active-background-color: #1d1d1f;
+  --active-color: #f2de1f;
 }
 
 [data-theme="dark"] {
@@ -17,7 +19,9 @@
   --text-second-color: #fff;
   --resume-btn-color: #f2de1f;
   --project-btn-color: #f2de1f;
-  --sm-background-color:#1d1d1f;
+  --sm-background-color: #1d1d1f;
+  --active-background-color: #f2de1f;
+  --active-color: #1d1d1f;
 }
 
 /* 
@@ -32,8 +36,5 @@
   --secondary-color: #7577765a;
   --third-color: #000000;*/
 
-
-
 /*   --resume-btn-color: linear-gradient(to right, #d3c11b, #000);
   --project-btn-color: linear-gradient(to left, #d3c11b, #000); */
-  

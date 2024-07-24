@@ -1,0 +1,100 @@
+@media (max-width: 1309px) {
+  .checkbtn {
+    display: block;
+    margin-left: 50px;
+  }
+
+  .nav-log {
+    padding-left: 10%;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  .nav-log h2 {
+    font-size: 20px;
+    width: 200px;
+  }
+
+  .nav-item-menu {
+    position: fixed;
+    top: 100px;
+    right: -100%;
+    background-color: transparent;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+  }
+
+  .nav-item-menu li {
+    margin: 20px 0;
+  }
+
+  .nav-item-menu li a {
+    font-size: 20px;
+  }
+
+  .container-switch {
+    float: right;
+    margin-right: 20px;
+    margin-left: 40px;
+  }
+
+  #check:checked ~ .nav-item-menu {
+    right: 0;
+  }
+
+  /* for about me responsive style */
+
+  .about-me-container {
+    width: 100%;
+  }
+
+  .pic-card {
+    width: 400%;
+    height: 30%;
+  }
+
+  .pic-item-card {
+    border: none;
+    margin: 0px auto;
+    width: 40%;
+    height: 5%;
+    margin-top: 20px;
+  }
+
+  .sm-link {
+    width: 100%;
+    margin: 0px auto;
+  }
+
+  .bio-card {
+    width: 100%;
+    margin: 0px auto;
+    margin-top: 110%;
+  }
+
+  .bio {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1283px) {
+  .bio-card {
+    margin-top: 160%;
+  }
+
+  .bio-description p {
+    width: 100%;
+    margin-right: 100%;
+  }
+}
+
+/* @media (max-width: 657px) {
+  .bio-card {
+    margin-top: 70%;
+  }
+} */

@@ -2,18 +2,22 @@ import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 import { IconButton, Switch } from "@mui/material";
 import { Tooltip } from "antd";
 import { useEffect, useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import { Link, NavLink } from "react-router-dom";
 
 type Theme = "dark" | "light";
 
 const NavMenu = () => {
   const [theme, setTheme] = useState<Theme>("light");
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
 
-  // function to toggle the dark mode as true or false
   const toggleDarkTheme = () => {
     setToggleDarkMode(!toggleDarkMode);
-    setTheme(!toggleDarkMode ? "dark" : "light");
-    localStorage.setItem("theme-color", !toggleDarkMode ? "dark" : "light");
+    setTheme(toggleDarkMode ? "dark" : "light");
+    localStorage.setItem("theme-color", toggleDarkMode ? "dark" : "light");
   };
 
   useEffect(() => {
@@ -36,34 +40,43 @@ const NavMenu = () => {
       </div>
       <ul className="nav-item-menu">
         <li>
-          <a href="/">ABOUT ME</a>
+          <NavLink to="/" className="nav-item">ABOUT ME</NavLink>
         </li>
         <li>
-          <a href="blog">BLOG</a>
+          <NavLink to="blog" className="nav-item">BLOG</NavLink>
         </li>
         <li>
-          <a href="project">PROJECT</a>
+          <NavLink to="project" className="nav-item">PROJECT</NavLink>
         </li>
         <li>
-          <a href="contactMe">CONTACT</a>
+          <NavLink to="contactMe" className="nav-item">CONTACT</NavLink>
         </li>
       </ul>
+      <div className="checkbtn">
+        <IconButton id="check" onClick={handleClick}>
+          {/* {click ? ( */}
+          <MenuIcon type="checked" className="menubtn" />
+          {/* // ) : (
+          //   <CloseIcon type="checked" className="menubtn" />
+          // )} */}
+        </IconButton>
+      </div>
       <div>
         <div className="container-switch">
           <Tooltip
-            title={`Switch to ${!toggleDarkMode ? "Dark" : "Light"} Mode`}
+            title={`Switch to ${theme == "light" ? "Dark" : "Light"} Mode`}
             placement="bottom"
             color="light"
           >
             <IconButton
               onClick={toggleDarkTheme}
               style={
-                !toggleDarkMode
+                theme == "light"
                   ? { backgroundColor: "#1d1d1f" }
                   : { backgroundColor: "#f2de1f" }
               }
             >
-              {!toggleDarkMode ? (
+              {theme == "light" ? (
                 <DarkModeOutlined style={{ color: "#f2de1f" }} />
               ) : (
                 <LightModeOutlined style={{ color: "#1d1d1f" }} />
