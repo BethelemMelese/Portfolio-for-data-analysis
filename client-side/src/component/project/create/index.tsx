@@ -7,7 +7,6 @@ import { Form } from "../../../commonComponent/Form";
 import { appUrl, token } from "../../../appurl";
 import axios from "axios";
 import { Grid, Typography, Button } from "@mui/material";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Notification from "../../../commonComponent/notification";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -130,9 +129,7 @@ const AddProject = ({ ...props }) => {
     <div className="create-card">
       <Card
         title={
-          <h3
-            style={{ marginRight: "87%", marginTop: "2%", marginBottom: "1%" }}
-          >
+          <h3>
             {viewMode == "new" ? <b>Add Project</b> : <b>Modify Project</b>}
           </h3>
         }

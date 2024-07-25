@@ -1,4 +1,4 @@
-import { Button, Grid, IconButton, Paper } from "@mui/material";
+import { Button, Grid, IconButton, Paper, Tooltip } from "@mui/material";
 import { Card, Modal } from "antd";
 import { List } from "antd";
 import React, { useEffect, useState } from "react";
@@ -57,7 +57,7 @@ const ViewProject = () => {
       type: "success",
       message: response.message,
     });
-    onFetchItemCategory();
+    onFetchProject();
   };
 
   const onDeleteError = (response: any) => {
@@ -78,7 +78,7 @@ const ViewProject = () => {
   };
 
   //   for get all data
-  const onFetchItemCategory = () => {
+  const onFetchProject = () => {
     axios
       .create({
         headers: {
@@ -124,7 +124,7 @@ const ViewProject = () => {
   //   to fetch data using useEffect, when every time this page is loaded
   useEffect(() => {
     setLoading(true);
-    // onFetchItemCategory();
+    // onFetchProject();
   }, []);
 
   return (
@@ -164,21 +164,25 @@ const ViewProject = () => {
               <List.Item
                 key={item.title}
                 actions={[
-                  <IconButton
-                    onClick={() => {
-                      setViewMode("edit");
-                      setOpenDialog(true);
-                    }}
-                  >
-                    <ModeEditIcon color="warning" />
-                  </IconButton>,
-                  <IconButton
-                    onClick={() => {
-                      showConfirm(item.id);
-                    }}
-                  >
-                    <DeleteForeverIcon color="error" />
-                  </IconButton>,
+                  <Tooltip title="To edit the project">
+                    <IconButton
+                      onClick={() => {
+                        setViewMode("edit");
+                        setOpenDialog(true);
+                      }}
+                    >
+                      <ModeEditIcon color="warning" />
+                    </IconButton>
+                  </Tooltip>,
+                  <Tooltip title="To delete the project">
+                    <IconButton
+                      onClick={() => {
+                        showConfirm(item.id);
+                      }}
+                    >
+                      <DeleteForeverIcon color="error" />
+                    </IconButton>
+                  </Tooltip>,
                 ]}
                 extra={
                   <img
@@ -219,6 +223,7 @@ const ViewProject = () => {
           />
         </Card>
       </Paper>
+      <Notification notify={notify} setNotify={setNotify} />
     </div>
   );
 };

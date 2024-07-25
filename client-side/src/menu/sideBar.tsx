@@ -15,6 +15,8 @@ const SideBar = () => {
   return (
     <>
       <div className="sidebar-menu">
+        <h2>Menu</h2>
+        <Divider orientation="horizontal" sx={{ height: '100%', borderWidth: 1 }}/>
         <ul>
           <li>
             <NavLink to="/datawizdipsy/sidebar" className="sideBar-item">
@@ -38,7 +40,6 @@ const SideBar = () => {
           </li>
         </ul>
       </div>
-      <Divider orientation="vertical" sx={{ height: '100%', borderWidth: 2 }} />
     </>
   );
 };

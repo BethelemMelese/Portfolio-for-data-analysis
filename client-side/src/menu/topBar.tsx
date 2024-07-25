@@ -1,13 +1,9 @@
 import { IconButton, Tooltip } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import * as React from "react";
 import Badge from "@mui/material/Badge";
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import {
   Avatar,
   ListItemIcon,
@@ -77,7 +73,7 @@ const TopBar = () => {
               <b>Ablene Melese</b> / DATA SCIENTISTS
             </h2>
           </div>
-          <div className="theme-switch">
+          <div className="main-setting">
             <Tooltip
               title={`Switch to ${theme == "light" ? "Dark" : "Light"} Mode`}
               placement="bottom"
@@ -98,7 +94,7 @@ const TopBar = () => {
                 )}
               </IconButton>
             </Tooltip>
-          </div>
+          {/* </div> */}
           {/* <div className="notify">
             <IconButton id="check" onClick={handleClick}>
               <Badge badgeContent={4} color="error">
@@ -106,7 +102,7 @@ const TopBar = () => {
               </Badge>
             </IconButton>
           </div> */}
-          <div className="profile">
+          {/* <div className="profile"> */}
             <Box>
               <Tooltip title="Account settings">
                 <IconButton
