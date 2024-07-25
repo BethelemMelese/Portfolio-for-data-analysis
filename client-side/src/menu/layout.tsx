@@ -6,7 +6,9 @@ const Layout = ({ ...props }) => {
     <div className="sec-container">
       <NavMenu />
       <Outlet />
+      <div className="child-container">
       {props.children}
+      </div>
     </div>
   );
 };

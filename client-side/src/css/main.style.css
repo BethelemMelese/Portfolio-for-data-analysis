@@ -1,4 +1,4 @@
-@import url("/src/css/var.css");
+/* @import url("/src/css/var.css");
 
 /* for Side bar style */
 .sidebar-menu {
@@ -336,7 +336,7 @@
 /* for the main content or for props.child content */
 
 .main-content {
-  background-color: var(--text-second-color);
+  /* background-color: var(--text-second-color); */
 }
 
 .project-container {

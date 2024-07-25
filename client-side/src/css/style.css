@@ -14,12 +14,18 @@ body {
   background-color: var(--primary-color);
 }
 
+.child-container {
+  width: 0;
+  height: 0;
+  background-color: var(--primary-color);
+}
+
 /* for the nav bar menu */
 nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 15vh;
+  min-height: 10vh;
   background-color: transparent;
   font-family: "Arial Narrow", Arial, sans-serif;
   width: 100%;
@@ -105,6 +111,7 @@ nav {
 
 .about-me-container {
   width: 80%;
+  margin-top: 35px;
 }
 
 .pic-card {
@@ -387,4 +394,41 @@ p {
 
 .project-names {
   margin: 0;
+}
+
+/* for contact me style */
+
+.contactme-container {
+  width: 90%;
+  margin-top: 35px;
+  padding-bottom: 10%;
+  margin-left: 50px;
+  position: relative;
+}
+
+.contact-form-card {
+  border-radius: 5px;
+}
+
+.info-card {
+  /* background-color: var(--third-color); */
+}
+
+.contact-title {
+  text-align: center;
+}
+
+.input-forms {
+  padding-left: 20%;
+}
+.contactsubmit {
+  background-image: linear-gradient(
+    to right,
+    var(--text-second-color),
+    var(--text-second-color)
+  );
+  color: var(--third-color);
+  width: 100%;
+  margin-left: 30%;
+  padding-left: 100%;
 }

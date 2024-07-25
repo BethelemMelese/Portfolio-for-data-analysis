@@ -1,4 +1,4 @@
-import { Avatar, Divider, Grid } from "@mui/material";
+import { Avatar, Divider, Grid, Tooltip } from "@mui/material";
 import { Card } from "antd";
 import profilePhoto from "../../images/Pp.jpeg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -38,26 +38,34 @@ const AboutMe = () => {
                 <Grid item xs={12}>
                   <div className="sm-link">
                     <div className="sm-item">
-                      <a href="https://www.linkedin.com/in/ablene-melese-821b36223">
-                        {" "}
-                        <LinkedInIcon />
-                      </a>
+                      <Tooltip title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/ablene-melese-821b36223">
+                          {" "}
+                          <LinkedInIcon />
+                        </a>
+                      </Tooltip>
                     </div>
                     <div className="sm-item">
-                      <a href="#">
-                        <WhatsAppIcon />
-                      </a>
+                      <Tooltip title="WhatsApp">
+                        <a href="#">
+                          <WhatsAppIcon />
+                        </a>
+                      </Tooltip>
                     </div>
                     <div className="sm-item">
-                      <a href="#">
-                        <InstagramIcon />
-                      </a>
+                      <Tooltip title="Instagram">
+                        <a href="#">
+                          <InstagramIcon />
+                        </a>
+                      </Tooltip>
                     </div>
                     <div className="sm-item">
-                      <a href="#">
-                        {" "}
-                        <LanguageIcon />
-                      </a>
+                      <Tooltip title="WWW">
+                        <a href="#">
+                          {" "}
+                          <LanguageIcon />
+                        </a>
+                      </Tooltip>
                     </div>
                   </div>
                 </Grid>
@@ -124,26 +132,34 @@ const AboutMe = () => {
                 </h4>
                 <div className="footer-sm-link">
                   <div className="footer-sm-item">
-                    <a href="https://www.linkedin.com/in/ablene-melese-821b36223">
-                      {" "}
-                      <LinkedInIcon />
-                    </a>
+                    <Tooltip title="LinkedIn">
+                      <a href="https://www.linkedin.com/in/ablene-melese-821b36223">
+                        {" "}
+                        <LinkedInIcon />
+                      </a>
+                    </Tooltip>
                   </div>
                   <div className="footer-sm-item">
-                    <a href="#">
-                      <WhatsAppIcon />
-                    </a>
+                    <Tooltip title="WhatsApp">
+                      <a href="#">
+                        <WhatsAppIcon />
+                      </a>
+                    </Tooltip>
                   </div>
                   <div className="footer-sm-item">
-                    <a href="#">
-                      <InstagramIcon />
-                    </a>
+                    <Tooltip title="Instagram">
+                      <a href="#">
+                        <InstagramIcon />
+                      </a>
+                    </Tooltip>
                   </div>
                   <div className="footer-sm-item">
-                    <a href="#">
-                      {" "}
-                      <LanguageIcon />
-                    </a>
+                    <Tooltip title="WWW">
+                      <a href="#">
+                        {" "}
+                        <LanguageIcon />
+                      </a>
+                    </Tooltip>
                   </div>
                 </div>
               </div>
