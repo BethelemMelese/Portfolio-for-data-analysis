@@ -4,6 +4,7 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import ArticleIcon from "@mui/icons-material/Article";
 import SummarizeIcon from "@mui/icons-material/Summarize";
 import { useState } from "react";
+import { Divider } from "@mui/material";
 
 const SideBar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -12,30 +13,33 @@ const SideBar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
-    <div className="sidebar-menu">
-      <ul>
-        <li>
-          <NavLink to="/datawizdipsy/sidebar" className="sideBar-item">
-            <GridViewIcon className="menu-icon" /> Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/datawizdipsy/viewProject" className="sideBar-item">
-            <TaskAltIcon className="menu-icon" /> Project
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/datawizdipsy/viewBlog" className="sideBar-item">
-            <ArticleIcon className="menu-icon" /> Blog
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/datawizdipsy/viewResume" className="sideBar-item">
-            <SummarizeIcon className="menu-icon" /> Resume
-          </NavLink>
-        </li>
-      </ul>
-    </div>
+    <>
+      <div className="sidebar-menu">
+        <ul>
+          <li>
+            <NavLink to="/datawizdipsy/sidebar" className="sideBar-item">
+              <GridViewIcon className="menu-icon" /> Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/datawizdipsy/viewProject" className="sideBar-item">
+              <TaskAltIcon className="menu-icon" /> Project
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/datawizdipsy/viewBlog" className="sideBar-item">
+              <ArticleIcon className="menu-icon" /> Blog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/datawizdipsy/viewResume" className="sideBar-item">
+              <SummarizeIcon className="menu-icon" /> Resume
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+      <Divider orientation="vertical" sx={{ height: '100%', borderWidth: 2 }} />
+    </>
   );
 };
 

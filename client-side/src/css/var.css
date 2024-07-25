@@ -9,6 +9,8 @@
   --sm-background-color: #fff;
   --active-background-color: #1d1d1f;
   --active-color: #f2de1f;
+  --card-background-color: #fff;
+  --card-text-color: #000;
 }
 
 [data-theme="dark"] {
@@ -22,6 +24,8 @@
   --sm-background-color: #1d1d1f;
   --active-background-color: #f2de1f;
   --active-color: #1d1d1f;
+  --card-background-color: #1d1d1f;
+  --card-text-color: #fff;
 }
 
 /* 

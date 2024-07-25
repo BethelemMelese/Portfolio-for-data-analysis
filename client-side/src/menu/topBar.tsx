@@ -29,9 +29,6 @@ type Theme = "dark" | "light";
 const TopBar = () => {
   const [theme, setTheme] = useState<Theme>("light");
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
-  const [click, setClick] = useState(false);
-  // const handleClick = () => setClick(!click);
-  // const token = userService.token;
   const [userInfo, setUserInfo] = useState<any>();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
@@ -75,24 +72,6 @@ const TopBar = () => {
     <div>
       <div className="top-bar-header">
         <nav className="top-bar-menu">
-          <div className="sidebar-toggle">
-            <IconButton
-              id="check"
-              onClick={handleClick}
-              className="menu-toggle"
-              style={
-                theme == "light"
-                  ? { backgroundColor: "#1d1d1f" }
-                  : { backgroundColor: "#f2de1f" }
-              }
-            >
-              <MenuIcon
-                style={
-                  theme == "light" ? { color: "#f2de1f" } : { color: "#1d1d1f" }
-                }
-              />
-            </IconButton>
-          </div>
           <div className="tob-bar-log">
             <h2>
               <b>Ablene Melese</b> / DATA SCIENTISTS
@@ -120,13 +99,13 @@ const TopBar = () => {
               </IconButton>
             </Tooltip>
           </div>
-          <div className="notify">
+          {/* <div className="notify">
             <IconButton id="check" onClick={handleClick}>
               <Badge badgeContent={4} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-          </div>
+          </div> */}
           <div className="profile">
             <Box>
               <Tooltip title="Account settings">
