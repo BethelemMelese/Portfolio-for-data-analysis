@@ -8,6 +8,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--primary-color);
 }
 
 .sec-container {
@@ -139,10 +140,12 @@ nav {
 
 .personal-name h5 {
   color: #000;
+  text-align: center;
 }
 .personal-name h3 {
   margin-top: -10px;
   color: #000;
+  text-align: center;
 }
 
 .personal-name p {
@@ -279,6 +282,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-bottom: 2px;
 }
 
 .created-by {
@@ -307,8 +311,9 @@ nav {
 }
 
 .address-item h4,
-p {
+.address-item p {
   color: var(--text-second-color);
+  text-align: center;
 }
 
 .address-item p {
@@ -398,37 +403,171 @@ p {
 
 /* for contact me style */
 
-.contactme-container {
-  width: 90%;
+.contact-container {
+  width: 80.8%;
   margin-top: 35px;
-  padding-bottom: 10%;
-  margin-left: 50px;
-  position: relative;
 }
 
-.contact-form-card {
-  border-radius: 5px;
+.back-card {
+  width: 155%;
+  height: 100%;
+  margin-left: 20%;
+  background-color: var(--secondary-color);
+  border: none;
 }
 
-.info-card {
-  /* background-color: var(--third-color); */
+.contact-info-card {
+  margin-left: -20%;
+  background-color: var(--third-color);
+  width: 70%;
+  height: 50%;
+  margin-top: 10px;
+  box-shadow: 6px 0 6px 0 rgba(130, 123, 94, 0.37),
+    6px 10px 10px 0 rgba(0, 0, 0, 0.2);
+  border: none;
 }
 
-.contact-title {
+.google-map-location h2 {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.map-location {
+  margin-top: -10px;
+}
+
+.contact-info h3 {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   text-align: center;
 }
 
-.input-forms {
-  padding-left: 20%;
+.contact-sm-link {
+  background-color: var(--sm-background-color);
+  width: 114%;
+  height: 150%;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 10px 15px 10px;
+  margin-right: 30px;
+  margin-left: -24px;
+  margin-bottom: -26px;
+  border-radius: 2px;
 }
+
+.contact-address {
+  display: block;
+  margin-top: -20px;
+}
+
+.contact-address-item {
+  margin-left: 20px;
+}
+
+.contact-address .contact-icon {
+  margin-right: 8px;
+}
+
+.contact-address-item p {
+  color: #000;
+}
+
+.contact-message h2,
+.contact-message p {
+  color: var(--text-second-color);
+  text-align: center;
+}
+
+.contact-inputs {
+  text-align: center;
+  margin-left: 50%;
+  margin-top: -20%;
+}
+
+.input-label {
+  color: var(--text-second-color);
+  margin-right: 100%;
+}
+
 .contactsubmit {
-  background-image: linear-gradient(
-    to right,
-    var(--text-second-color),
-    var(--text-second-color)
-  );
-  color: var(--third-color);
+  background-image: linear-gradient(to right, #000, #000);
+  width: 40%;
+}
+
+.contact-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  margin-left: 30%;
-  padding-left: 100%;
+  margin-top: -18px;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  font: inherit;
+  letter-spacing: inherit;
+  color: #fff;
+  padding: 4px 0 5px;
+  border: none;
+  box-sizing: content-box;
+  background: #84838379;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding: 16.5px 14px;
+  border-radius: 43px;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  color: #fff;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  border-radius: 43px;
+  background: #84838379;
+}
+
+.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4px 0 5px;
+  position: relative;
+  border-radius: 4px;
+  padding: 16.5px 14px;
+  background: #84838379;
 }
