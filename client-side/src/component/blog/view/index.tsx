@@ -185,180 +185,177 @@ const ViewBlog = () => {
 
   return (
     <div className="blog-container">
-      <Card>
-        {viewMode == "view" && (
-          <Grid container spacing={2}>
-            <Grid item xs={8}>
-              <Card
-                title="Blogs"
-                style={{
-                  height: "660px",
-                  overflowX: "hidden",
-                  overflowY: "auto",
-                }}
-              >
-                {blogMokeDate.map((item: any) => {
-                  return (
-                    <>
-                      <Card
-                        title={
-                          <Grid container>
-                            <Grid item xs={12}>
-                              <h3>{item.blogName}</h3>
-                              <h5
+      {viewMode == "view" && (
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            <div
+              style={{
+                height: "660px",
+                overflowX: "hidden",
+                overflowY: "auto",
+              }}
+            >
+              {blogMokeDate.map((item: any) => {
+                return (
+                  <>
+                    <Card
+                      title={
+                        <Grid container>
+                          <Grid item xs={12}>
+                            <h3>{item.blogName}</h3>
+                            <h5
+                              style={{
+                                fontSize: "10px",
+                                marginTop: "-10px",
+                                color: "#5f5e53fe",
+                              }}
+                            >
+                              Author: {item.author}
+                            </h5>
+                          </Grid>
+                        </Grid>
+                      }
+                      extra={
+                        <>
+                          <Tooltip title="To edit the blog">
+                            <IconButton
+                              onClick={() => {
+                                setViewMode("edit");
+                              }}
+                            >
+                              <ModeEditIcon color="warning" />
+                            </IconButton>
+                          </Tooltip>
+                          |
+                          <Tooltip title="To delete the blog">
+                            <IconButton
+                              onClick={() => {
+                                showConfirm(item.id);
+                              }}
+                            >
+                              <DeleteForeverIcon color="error" />
+                            </IconButton>
+                          </Tooltip>
+                        </>
+                      }
+                      style={{ marginTop: "20px" }}
+                    >
+                      <Grid container spacing={0}>
+                        <Grid item xs={12} style={{ marginTop: "-15px" }}>
+                          <Grid container spacing={0}>
+                            <Grid item xs={4}>
+                              <img
+                                src={BlogImage}
+                                width={150}
+                                height={110}
                                 style={{
-                                  fontSize: "10px",
-                                  marginTop: "-10px",
-                                  color: "#5f5e53fe",
+                                  margin: "20px",
+                                  borderRadius: "5px",
                                 }}
-                              >
-                                Author: {item.author}
+                              />
+                            </Grid>
+                            <Grid item xs={8}>
+                              <h5 className="maincontent">
+                                {item.mainContent.slice(0, 290) + "..."}
                               </h5>
                             </Grid>
                           </Grid>
-                        }
-                        extra={
-                          <>
-                            <Tooltip title="To edit the blog">
-                              <IconButton
-                                onClick={() => {
-                                  setViewMode("edit");
-                                }}
-                              >
-                                <ModeEditIcon color="warning" />
-                              </IconButton>
-                            </Tooltip>
-                            |
-                            <Tooltip title="To delete the blog">
-                              <IconButton
-                                onClick={() => {
-                                  showConfirm(item.id);
-                                }}
-                              >
-                                <DeleteForeverIcon color="error" />
-                              </IconButton>
-                            </Tooltip>
-                          </>
-                        }
-                        style={{ marginTop: "20px" }}
-                      >
-                        <Grid container spacing={0}>
-                          <Grid item xs={12} style={{ marginTop: "-15px" }}>
-                            <Grid container spacing={0}>
-                              <Grid item xs={4}>
-                                <img
-                                  src={BlogImage}
-                                  width={150}
-                                  height={110}
-                                  style={{
-                                    margin: "20px",
-                                    borderRadius: "5px",
-                                  }}
-                                />
-                              </Grid>
-                              <Grid item xs={8}>
-                                <h5 className="maincontent">
-                                  {item.mainContent.slice(0, 290) + "..."}
-                                </h5>
-                              </Grid>
-                            </Grid>
-                          </Grid>
-                          <Grid item xs={10}>
-                            <h5
-                              style={{
-                                marginTop: "-20px",
-                                color: "#5f5e53fe",
-                                marginLeft: "20px",
-                              }}
-                            >
-                              Published Date: {item.datePublished}
-                            </h5>
-                          </Grid>
-                          <Grid item xs={2} className="more-btn">
-                            <Button
-                              variant="outlined"
-                              size="small"
-                              color="warning"
-                              onClick={handleClick}
-                            >
-                              More
-                            </Button>
-                            <Menu
-                              keepMounted
-                              anchorEl={anchorEl}
-                              onClose={handleClose}
-                              open={Boolean(anchorEl)}
-                            >
-                              <MenuItem onClick={handleClose}>
-                                Source Code Link
-                              </MenuItem>
-                              <MenuItem onClick={handleClose}>
-                                Other Link
-                              </MenuItem>
-                            </Menu>
-                          </Grid>
                         </Grid>
-                      </Card>
-                    </>
-                  );
-                })}
-              </Card>
-            </Grid>
-            <Grid item xs={4}>
-              <Card
-                title="Categories"
-                extra={
-                  <Tooltip title="To add new blog">
-                    <Button
-                      variant="contained"
-                      size="small"
-                      className="create-btn"
-                      onClick={() => {
-                        setViewMode("new");
-                      }}
-                    >
-                      Add Blog
-                    </Button>
-                  </Tooltip>
-                }
-              >
-                <List
-                  itemLayout="horizontal"
-                  dataSource={data}
-                  pagination={{
-                    pageSize: 4,
-                  }}
-                  renderItem={(item, index) => (
-                    <List.Item>
-                      <List.Item.Meta
-                        title={<a href="https://ant.design">{item.title}</a>}
-                        description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                      />
-                    </List.Item>
-                  )}
-                />
-              </Card>
-            </Grid>
+                        <Grid item xs={10}>
+                          <h5
+                            style={{
+                              marginTop: "-20px",
+                              color: "#5f5e53fe",
+                              marginLeft: "20px",
+                            }}
+                          >
+                            Published Date: {item.datePublished}
+                          </h5>
+                        </Grid>
+                        <Grid item xs={2} className="more-btn">
+                          <Button
+                            variant="outlined"
+                            size="small"
+                            color="warning"
+                            onClick={handleClick}
+                          >
+                            More
+                          </Button>
+                          <Menu
+                            keepMounted
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            open={Boolean(anchorEl)}
+                          >
+                            <MenuItem onClick={handleClose}>
+                              Source Code Link
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>
+                              Other Link
+                            </MenuItem>
+                          </Menu>
+                        </Grid>
+                      </Grid>
+                    </Card>
+                  </>
+                );
+              })}
+            </div>
           </Grid>
-        )}
+          <Grid item xs={4}>
+            <Card
+              title="Categories"
+              extra={
+                <Tooltip title="To add new blog">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    className="create-btn"
+                    onClick={() => {
+                      setViewMode("new");
+                    }}
+                  >
+                    Add Blog
+                  </Button>
+                </Tooltip>
+              }
+            >
+              <List
+                itemLayout="horizontal"
+                dataSource={data}
+                pagination={{
+                  pageSize: 4,
+                }}
+                renderItem={(item, index) => (
+                  <List.Item>
+                    <List.Item.Meta
+                      title={<a href="https://ant.design">{item.title}</a>}
+                      description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                    />
+                  </List.Item>
+                )}
+              />
+            </Card>
+          </Grid>
+        </Grid>
+      )}
 
-        {viewMode == "new" && (
-          <AddBlog
-            //@ts-ignore
-            selectedBlog={initialState}
-            viewMode={viewMode}
-            closeedit={() => setViewMode("view")}
-          />
-        )}
-        {viewMode == "edit" && (
-          <AddBlog
-            //@ts-ignore
-            selectedBlog={selectedBlog}
-            viewMode={viewMode}
-            closeedit={() => setViewMode("view")}
-          />
-        )}
-      </Card>
+      {viewMode == "new" && (
+        <AddBlog
+          //@ts-ignore
+          selectedBlog={initialState}
+          viewMode={viewMode}
+          closeedit={() => setViewMode("view")}
+        />
+      )}
+      {viewMode == "edit" && (
+        <AddBlog
+          //@ts-ignore
+          selectedBlog={selectedBlog}
+          viewMode={viewMode}
+          closeedit={() => setViewMode("view")}
+        />
+      )}
       <Notification notify={notify} setNotify={setNotify} />
     </div>
   );

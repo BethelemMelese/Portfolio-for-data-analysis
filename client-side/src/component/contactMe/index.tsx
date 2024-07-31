@@ -22,8 +22,6 @@ import Controls from "../../commonComponent/Controls";
 import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { alpha, styled } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 
 interface ContactMeState {
   name: string;
@@ -73,13 +71,9 @@ const ContactMe = () => {
     googleMapsApiKey: "AIzaSyCYuI2C4_88HVPTBZxqYntZECDV6PKdLY4",
   });
 
-  if (loadError) {
-    return <div>Error loading maps</div>;
-  }
-
-  if (!isLoaded) {
-    return <div>Loading maps</div>;
-  }
+  // if (loadError) {
+  //   return <div>Error loading maps</div>;
+  // }
   return (
     <div className="contact-container">
       <Grid container spacing={4}>
@@ -161,13 +155,14 @@ const ContactMe = () => {
               <div className="google-map-location">
                 <h2>Where To Find Me</h2>
                 <div className="map-location">
-                  <GoogleMap
+                  <Card>Their is Map here</Card>
+                  {/* <GoogleMap
                     mapContainerStyle={mapContainerStyle}
                     zoom={10}
                     center={center}
                   >
                     <Marker position={center} />
-                  </GoogleMap>
+                  </GoogleMap> */}
                 </div>
               </div>
 

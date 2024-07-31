@@ -11,6 +11,7 @@ import Login from "./component/login";
 import Registration from "./component/registration";
 import ViewProject from "./component/project/view";
 import ViewBlog from "./component/blog/view";
+import Dashboard from "./component/Dashboard";
 import "./css/style.css";
 import "./css/responsive.css";
 import "./css/main.style.css";
@@ -33,6 +34,7 @@ function AppRoute() {
         </Route>
 
         <Route path="datawizdipsy" element={<MainLayout />}>
+          <Route path="home" element={<Dashboard />} />
           <Route path="viewProject" element={<ViewProject />} />
           <Route path="viewBlog" element={<ViewBlog />} />
         </Route>

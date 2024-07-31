@@ -12,17 +12,19 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-// import { userService } from "../../polices/userService";
 import { useNavigate } from "react-router-dom";
 import SyncLockIcon from "@mui/icons-material/SyncLock";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import profilePhoto from "../images/Pp.jpeg";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import SideBar from "./sideBar";
 
 type Theme = "dark" | "light";
 
-const TopBar = () => {
+const TopBar = ({...props}) => {
+  const [routeName, setRouteName] = useState(props.routeName);
+  console.log("routeName...",routeName);
   const [theme, setTheme] = useState<Theme>("light");
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
   const [userInfo, setUserInfo] = useState<any>();
@@ -66,102 +68,73 @@ const TopBar = () => {
 
   return (
     <div>
-      <div className="top-bar-header">
-        <nav className="top-bar-menu">
-          <div className="tob-bar-log">
-            <h2>
-              <b>Ablene Melese</b> / DATA SCIENTISTS
-            </h2>
-          </div>
-          <div className="main-setting">
-            <Tooltip
-              title={`Switch to ${theme == "light" ? "Dark" : "Light"} Mode`}
-              placement="bottom"
-              color="light"
+      {/* <div className="top-bar-header"> */}
+      <nav className="top-bar-menu">
+        <div className="page-title">
+          <h2>Dashboard</h2>
+        </div>
+        <div className="profile-setting">
+          <IconButton id="check" onClick={handleClick}>
+            <Badge badgeContent={4} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+
+          <Tooltip title="Account settings">
+            <IconButton
+              onClick={handleClick}
+              size="small"
+              sx={{ ml: 2 }}
+              aria-controls={open ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
             >
-              <IconButton
-                onClick={toggleDarkTheme}
-                style={
-                  theme == "light"
-                    ? { backgroundColor: "#1d1d1f" }
-                    : { backgroundColor: "#f2de1f" }
-                }
+              <Badge
+                badgeContent="Ablena"
+                color="success"
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "right",
+                }}
               >
-                {theme == "light" ? (
-                  <DarkModeOutlined style={{ color: "#f2de1f" }} />
-                ) : (
-                  <LightModeOutlined style={{ color: "#1d1d1f" }} />
-                )}
-              </IconButton>
-            </Tooltip>
-          {/* </div> */}
-          {/* <div className="notify">
-            <IconButton id="check" onClick={handleClick}>
-              <Badge badgeContent={4} color="error">
-                <NotificationsIcon />
+                <Avatar
+                  sx={{ width: 45, height: 45 }}
+                  src={profilePhoto}
+                ></Avatar>
               </Badge>
             </IconButton>
-          </div> */}
-          {/* <div className="profile"> */}
-            <Box>
-              <Tooltip title="Account settings">
-                <IconButton
-                  onClick={handleClick}
-                  size="small"
-                  sx={{ ml: 2 }}
-                  aria-controls={open ? "account-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                >
-                  <Badge
-                    badgeContent="Ablena"
-                    color="warning"
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "right",
-                    }}
-                  >
-                    <Avatar
-                      sx={{ width: 45, height: 45 }}
-                      src={profilePhoto}
-                    ></Avatar>
-                  </Badge>
-                </IconButton>
-              </Tooltip>
+          </Tooltip>
 
-              <Menu
-                anchorEl={anchorEl}
-                id="account-menu"
-                open={open}
-                onClose={handleClose}
-                onClick={handleClose}
-                transformOrigin={{ horizontal: "left", vertical: "top" }}
-                anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
-              >
-                <MenuItem onClick={() => navigate("/egila/info")}>
-                  <ListItemIcon>
-                    <PermIdentityIcon fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText>Profile</ListItemText>
-                </MenuItem>
-                <MenuItem onClick={() => navigate("/egila/changePassword")}>
-                  <ListItemIcon>
-                    <SyncLockIcon fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText>Change Password</ListItemText>
-                </MenuItem>
-                <MenuItem onClick={logOut}>
-                  <ListItemIcon>
-                    <LogoutIcon fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText>Logout</ListItemText>
-                </MenuItem>
-              </Menu>
-            </Box>
-          </div>
-        </nav>
-      </div>
-      <SideBar />
+          <Menu
+            anchorEl={anchorEl}
+            id="account-menu"
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            transformOrigin={{ horizontal: "left", vertical: "top" }}
+            anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+          >
+            <MenuItem onClick={() => navigate("/egila/info")}>
+              <ListItemIcon>
+                <PermIdentityIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Profile</ListItemText>
+            </MenuItem>
+            <MenuItem onClick={() => navigate("/egila/changePassword")}>
+              <ListItemIcon>
+                <SyncLockIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Change Password</ListItemText>
+            </MenuItem>
+            <MenuItem onClick={logOut}>
+              <ListItemIcon>
+                <LogoutIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Logout</ListItemText>
+            </MenuItem>
+          </Menu>
+        </div>
+      </nav>
     </div>
   );
 };

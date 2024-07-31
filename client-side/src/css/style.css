@@ -8,7 +8,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
 }
 
 .sec-container {
@@ -67,11 +67,11 @@ nav {
 }
 
 .nav-item-menu .nav-item:hover {
-  color: #000;
+  color: var(--third-color);
   border-radius: 5px;
   padding: auto;
-  background: #fff;
-  border-bottom: 1px solid #000;
+  background: #5e5d5d;
+  border-bottom: 1px solid #5e5d5d;
 }
 
 .nav-item-menu .active {
@@ -340,32 +340,384 @@ nav {
   border-bottom: 1px solid var(--third-color);
 }
 
+/* for blog style part is here */
+
+.blog-main-container {
+  margin-top: 20px;
+}
+
+.blog-hero {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  background-color: var(--third-color);
+  width: 80%;
+  margin: 0px auto;
+  border-radius: 50px;
+}
+
+.blog-hero-image img {
+  margin-bottom: -4px;
+}
+
+.blog-qute {
+  margin-top: 80px;
+}
+
+.blog-qute h1,
+.blog-qute p {
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", Arial, sans-serif;
+}
+
+.blog-qute p {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.anc-more-btn {
+  margin-top: 30px;
+}
+
+.blog-qute a {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: 40%;
+}
+
+.blog-content {
+  margin: 50px;
+  border: none;
+  margin-top: -20px;
+}
+
+.blog-category {
+  margin-top: 20px;
+  background-color: var(--text-color);
+  color: var(--text-second-color);
+  border: none;
+}
+
+.blog-item-fis {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  background-color: var(--text-color);
+  color: var(--text-second-color);
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.blog-item-img a {
+  list-style: none;
+  text-decoration: none;
+}
+
+.blog-item-msg {
+  margin-left: 20px;
+}
+
+.blog-item-msg h3 a {
+  font-family: var(--font-family-titles);
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-weight-titles);
+  letter-spacing: var(--h3-letter-spacing);
+  line-height: var(--h3-line-height);
+}
+
+.blog-item-msg h3 a {
+  text-decoration: none;
+  list-style: none;
+  color: var(--text-second-color);
+}
+
+.blog-item-msg h3 a:hover {
+  color: var(--color-hover-title);
+  border-bottom: 1px solid var(--color-hover-title);
+}
+
+.blog-item-msg p {
+  text-align: justify;
+  width: 80%;
+}
+
+.blog-au-info {
+  display: flex;
+}
+
+.blog-au-info p {
+  color: var(--color-gray);
+  font-size: small;
+  font-family: var(--font-family-main);
+}
+
+.arc-more-btn:hover {
+  background: var(--color-gray);
+  border-radius: 5px;
+}
+
+.category-list {
+  background-color: var(--text-color);
+  color: var(--text-second-color);
+  border: none;
+  margin-top: -20px;
+}
+
+.category-item-title a {
+  color: var(--text-second-color);
+}
+
+.category-item-title a:hover {
+  color: var(--third-color);
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-pagination {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: var(--color-gray);
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  display: flex;
+}
+
+.before-footer {
+  background-color: var(--card-background-color);
+  color: var(--card-text-color);
+  border: none;
+}
+
+.bef-footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  width: 80%;
+  margin: 20px;
+}
+
+.footer-quote {
+  width: 40%;
+  margin-left: 50px;
+}
+
+.footer-quote h4 {
+  color: var(--third-color);
+}
+
+.footer-quote p {
+  text-align: justify;
+}
+
+.shot-link {
+  margin-left: -10%;
+}
+
+.shot-link h4 {
+  color: var(--color-gray);
+}
+
+.shot-link li {
+  text-decoration: none;
+  list-style: none;
+  margin: 20px;
+  color: var(--color-gray);
+}
+
+.shot-link li a {
+  text-decoration: none;
+  list-style: none;
+}
+
+.shot-link li:hover {
+  border-bottom: 1px solid var(--text-second-color);
+  background-color: var(--color-gray);
+  border-radius: 5px;
+}
+
+.blog-sm h4 {
+  text-align: center;
+  color: var(--color-gray);
+}
+
+.blog-sm-link {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10%;
+}
+
+.blog-sm-link a {
+  color: var(--text-second-color);
+  text-decoration: none;
+  list-style: none;
+  margin-left: 20px;
+}
+
+.blog-sm-item a:hover {
+  color: var(--third-color);
+}
+
+.detail-blog-container {
+  margin: 40px;
+}
+
+.detail-blog-content {
+  color: var(--text-second-color);
+  margin: 50px;
+}
+
+.detail-blog-content h1 {
+  text-align: center;
+}
+
+.detail-blog-content img {
+  margin-left: 30%;
+}
+
+.detail-blog-content p {
+  margin: 50px;
+  text-align: justify;
+  font-size: var(--full-width-post-font-size);
+  font-family: var(--font-family-main);
+  line-height: var(--full-width-post-line-height);
+}
+
+.detail-blog-contact {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--color-second-gray);
+  width: 60%;
+  margin: 0px auto;
+  border-radius: 2px;
+  color: var(--text-second-color);
+}
+
+.detail-sm-link {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Pp-blog {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-left: -50px;
+}
+
+.Pp-blog p {
+  color: var(--color-gray);
+  margin-right: 10px;
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.detail-sm-link a {
+  color: var(--text-second-color);
+  text-decoration: none;
+  list-style: none;
+  margin-left: 20px;
+}
+
 /* for project style part is here */
-.project-container {
-  /* border-top: 1px solid var(--third-color); */
-  margin-left: 400px;
-  margin-top: -40px;
+.proj-container {
+  background: linear-gradient(180deg, #f2de1f 50%, var(--primary-color) 50%);
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.project-desc {
+  background-color: var(--primary-color);
+  width: 60%;
+  margin: 0px auto;
+  border: none;
+  box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.19),
+    10px 10px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.project-desc h1 {
+  text-align: center;
+  color: var(--text-second-color);
+  margin-top: -20px;
 }
 
 .project-desc p {
   text-align: justify;
-  background-color: var(--text-color);
-  padding: 30px;
+  color: var(--text-second-color);
+  padding: 20px;
   border-radius: 5px;
+  width: 90%;
+  margin: 0px auto;
 }
 
 .project-card {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
+  color: var(--text-second-color);
+  height: 400px;
+  line-height: 160px;
+  border: none;
+  margin-bottom: 80px;
+}
+
+.project-slides {
+  width: 60%;
+  margin: 0px auto;
+  /* margin-bottom: 10px; */
+}
+
+.project-image img {
+  border-radius: 30px;
+}
+
+.project-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sec-project-card {
+  background-color: var(--primary-color);
+  color: var(--text-second-color);
+  border: none;
+  /* margin-top: -18px; */
+}
+
+.project-dec {
+  margin-left: 20px;
+}
+
+.project-dec p {
+  text-align: justify;
+}
+
+.project-image {
+  margin-left: 20px;
+}
+
+.project-image img {
+  border-radius: 10px;
+}
+
+.more-lev-btn {
+  background-color: var(--text-second-color);
+  color: var(--text-color);
 }
 
 :where(.css-dev-only-do-not-override-p8b6i).ant-carousel .slick-next {
   position: absolute;
-  margin-left: 10px;
   top: 50%;
   width: 45px;
   height: 14px;
   transform: translateY(-50%);
-  color: var(--text-color);
+  color: var(--text-second-color);
   opacity: 1.4;
   background: transparent;
   padding: 14px;
@@ -379,12 +731,11 @@ nav {
 
 :where(.css-dev-only-do-not-override-p8b6i).ant-carousel .slick-prev {
   position: absolute;
-  margin-left: 10px;
   top: 50%;
   width: 45px;
   height: 14px;
   transform: translateY(-50%);
-  color: var(--text-color);
+  color: var(--text-second-color);
   opacity: 1.4;
   background: transparent;
   padding: 14px;
@@ -397,8 +748,30 @@ nav {
   transition: opacity 0.3s;
 }
 
-.project-names {
-  margin: 0;
+:where(.css-dev-only-do-not-override-p8b6i).ant-carousel
+  .slick-dots
+  li.slick-active
+  button {
+  background: var(--text-second-color);
+  color: var(--third-color);
+  opacity: 1;
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-carousel .slick-dots li button {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  background: var(--text-second-color);
+  border: 0;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  opacity: 0.2;
+  transition: all 0.3s;
 }
 
 /* for contact me style */

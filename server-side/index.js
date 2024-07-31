@@ -1,8 +1,9 @@
-const express = require('express')
+const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const app = express();
+const ProjectRoute = require("./routes/project.route.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,10 +24,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/",(req,res)=>{
-    res.send('Hello World from Node API');
-});
-
 // Connection with Mongodb Database and run the server
 let PORT = process.env.PORT || 5000;
 mongoose
@@ -40,3 +37,10 @@ mongoose
   .catch((error) => {
     console.log("Connection failed!", error);
   });
+
+app.get("/", (req, res) => {
+  res.send("Hello World from Node API");
+});
+
+// all the end points / routesy of backend
+app.use("/api/project", ProjectRoute);

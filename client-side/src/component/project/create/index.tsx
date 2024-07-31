@@ -106,7 +106,7 @@ const AddProject = ({ ...props }) => {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           })
-          .post(appUrl + "roles", values)
+          .post(appUrl + "project", values)
           .then(() => onCreateSuccess())
           .catch((error) => onCreateError(error.response.data.message));
       } else {
@@ -117,7 +117,7 @@ const AddProject = ({ ...props }) => {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           })
-          .put(appUrl + `roles/${selectedProject.id}`, values)
+          .put(appUrl + `project/${selectedProject.id}`, values)
           .then(() => onUpdateSuccess())
           .catch((error) => onUpdateError(error.response.data.message));
       }
@@ -126,18 +126,19 @@ const AddProject = ({ ...props }) => {
   });
 
   return (
-    <div className="create-card">
+    <div>
       <Card
         title={
-          <h3>
-            {viewMode == "new" ? <b>Add Project</b> : <b>Modify Project</b>}
-          </h3>
+          viewMode == "new" ? <h4>New Project</h4> : <h4>Modify the Project Content</h4>
         }
         extra={
-          <a onClick={() => props.closeedit()}>
-            <CloseIcon fontSize="medium" className="close-btn" />
-          </a>
+          viewMode == "edit" && (
+            <a onClick={() => props.closeedit()}>
+              <CloseIcon fontSize="medium" className="close-btn" />
+            </a>
+          )
         }
+        className="create-card"
       >
         <Form autoComplete="off" noValidate onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>

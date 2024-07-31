@@ -41,7 +41,7 @@ const initialState: ProjectState = {
 
 const ViewProject = () => {
   const [openDialog, setOpenDialog] = useState(false);
-  const [viewMode, setViewMode] = useState("view");
+  const [viewMode, setViewMode] = useState("new");
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState<any>([]);
   const [selectedProject, setSelectedProject] = useState();
@@ -129,100 +129,85 @@ const ViewProject = () => {
 
   return (
     <div className="project-container">
-      <Paper elevation={0}>
-        <Card
-          style={{
-            marginTop: 16,
-            height: "660px",
-            overflowX: "hidden",
-            overflowY: "auto",
-          }}
-          type="inner"
-          title="Inner Card title"
-          extra={
-            <Button
-              variant="contained"
-              size="small"
-              className="create-btn"
-              onClick={() => {
-                setViewMode("new");
-                setOpenDialog(true);
-              }}
-            >
-              Add Project
-            </Button>
-          }
-        >
-          <List
-            itemLayout="vertical"
-            size="large"
-            pagination={{
-              pageSize: 3,
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <Card
+            style={{
+              marginTop: 10,
+              height: "650px",
+              overflowX: "hidden",
+              overflowY: "auto",
             }}
-            dataSource={data}
-            renderItem={(item: any) => (
-              <List.Item
-                key={item.title}
-                actions={[
-                  <Tooltip title="To edit the project">
-                    <IconButton
-                      onClick={() => {
-                        setViewMode("edit");
-                        setOpenDialog(true);
-                      }}
-                    >
-                      <ModeEditIcon color="warning" />
-                    </IconButton>
-                  </Tooltip>,
-                  <Tooltip title="To delete the project">
-                    <IconButton
-                      onClick={() => {
-                        showConfirm(item.id);
-                      }}
-                    >
-                      <DeleteForeverIcon color="error" />
-                    </IconButton>
-                  </Tooltip>,
-                ]}
-                extra={
-                  <img
-                    width={272}
-                    alt="logo"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+            className="project-list"
+          >
+            <List
+              itemLayout="vertical"
+              size="large"
+              pagination={{
+                pageSize: 3,
+              }}
+              dataSource={data}
+              renderItem={(item: any) => (
+                <List.Item
+                  key={item.title}
+                  actions={[
+                    <Tooltip title="To edit the project">
+                      <IconButton
+                        onClick={() => {
+                          setViewMode("edit");
+                          setOpenDialog(true);
+                        }}
+                      >
+                        <ModeEditIcon color="warning" />
+                      </IconButton>
+                    </Tooltip>,
+                    <Tooltip title="To delete the project">
+                      <IconButton
+                        onClick={() => {
+                          showConfirm(item.id);
+                        }}
+                      >
+                        <DeleteForeverIcon color="error" />
+                      </IconButton>
+                    </Tooltip>,
+                  ]}
+                  extra={
+                    <img
+                      width={272}
+                      alt="logo"
+                      src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                    />
+                  }
+                >
+                  <List.Item.Meta
+                    title={item.title}
+                    description={item.content}
                   />
-                }
-              >
-                <List.Item.Meta title={item.title} description={item.content} />
-              </List.Item>
+                </List.Item>
+              )}
+            />
+          </Card>
+        </Grid>
+        <Grid item xs={4}>
+          <Card className="new-project">
+            {viewMode == "new" ? (
+              <AddProject
+                //@ts-ignore
+                selectedProject={initialState}
+                viewMode={viewMode}
+              />
+            ) : (
+              <AddProject
+                //@ts-ignore
+                selectedProject={selectedProject}
+                viewMode={viewMode}
+                closeedit={() => setViewMode("new")}
+              />
             )}
-          />
-
-          {/* to open the dialog for create and update form */}
-          <Dialogs
-            openDialog={openDialog}
-            setOpenDialog={openDialog}
-            height="70%"
-            maxHeight="435"
-            children={
-              viewMode == "new" ? (
-                <AddProject
-                  //@ts-ignore
-                  selectedProject={initialState}
-                  viewMode={viewMode}
-                  closeedit={() => setOpenDialog(false)}
-                />
-              ) : (
-                <AddProject
-                  //@ts-ignore
-                  selectedProject={selectedProject}
-                  viewMode={viewMode}
-                  closeedit={() => setOpenDialog(false)}
-                />
-              )
-            }
-          />
-        </Card>
-      </Paper>
+          </Card>
+          {/* <h2>This part is for Add Project</h2> */}
+        </Grid>
+      </Grid>
       <Notification notify={notify} setNotify={setNotify} />
     </div>
   );
