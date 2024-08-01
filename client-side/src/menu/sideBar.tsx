@@ -10,7 +10,7 @@ import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 type Theme = "dark" | "light";
 
 const SideBar = ({ ...props }) => {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
   const [routeName, setRouteName] = useState("");
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
   const toggleDarkTheme = () => {
@@ -20,7 +20,7 @@ const SideBar = ({ ...props }) => {
   };
 
   useEffect(() => {
-    return document.body.setAttribute("data-theme", theme);
+    return document.body.setAttribute("light-theme", theme);
   }, [theme]);
 
   useEffect(() => {
@@ -41,7 +41,10 @@ const SideBar = ({ ...props }) => {
           <li>
             <NavLink
               to="/datawizdipsy/home"
-              onClick={() => setRouteName("Dashboard")}
+              onClick={() => {
+                props.setRouteName("Dashboard");
+                localStorage.setItem("current-page", "Dashboard");
+              }}
               className="sideBar-item"
             >
               <GridViewIcon className="menu-icon" /> Dashboard
@@ -50,19 +53,36 @@ const SideBar = ({ ...props }) => {
           <li>
             <NavLink
               to="/datawizdipsy/viewProject"
-              onClick={() => setRouteName("Project")}
+              onClick={() => {
+                props.setRouteName("Project");
+                localStorage.setItem("current-page", "Project");
+              }}
               className="sideBar-item"
             >
               <TaskAltIcon className="menu-icon" /> Project
             </NavLink>
           </li>
           <li>
-            <NavLink to="/datawizdipsy/viewBlog" className="sideBar-item">
+            <NavLink
+              to="/datawizdipsy/viewBlog"
+              onClick={() => {
+                props.setRouteName("Blog");
+                localStorage.setItem("current-page", "Blog");
+              }}
+              className="sideBar-item"
+            >
               <ArticleIcon className="menu-icon" /> Blog
             </NavLink>
           </li>
           <li>
-            <NavLink to="/datawizdipsy/viewResume" className="sideBar-item">
+            <NavLink
+              to="/datawizdipsy/viewResume"
+              onClick={() => {
+                props.setRouteName("Resume");
+                localStorage.setItem("current-page", "Resume");
+              }}
+              className="sideBar-item"
+            >
               <SummarizeIcon className="menu-icon" /> Resume
             </NavLink>
           </li>

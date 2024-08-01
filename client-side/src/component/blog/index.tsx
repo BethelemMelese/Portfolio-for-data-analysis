@@ -10,6 +10,7 @@ import { Card, List } from "antd";
 import { useState } from "react";
 import DetailBlog from "./detail-blog";
 import CategoryDetailBlog from "./category-detail-blog";
+import FooterBlog from "../../menu/footer";
 
 const data = [
   {
@@ -216,6 +217,7 @@ const Blog = ({ ...props }) => {
               </Grid>
             </Grid>
           </section>
+          <FooterBlog />
         </>
       )}
 
@@ -233,7 +235,7 @@ const Blog = ({ ...props }) => {
           closeedit={() => setViewMode("main")}
         />
       )}
-      <section>
+      {/* <section>
         <Card className="before-footer">
           <div className="bef-footer-container">
             <div className="footer-quote">
@@ -301,7 +303,7 @@ const Blog = ({ ...props }) => {
         <div className="created-by">
           <p>Copyright &copy; 2024 by Bethelem Melese, all rights reserved.</p>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };

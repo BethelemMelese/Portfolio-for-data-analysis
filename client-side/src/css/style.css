@@ -397,7 +397,7 @@ nav {
 
 .blog-category {
   margin-top: 20px;
-  background-color: var(--text-color);
+  background-color: var(--main-third-background-color);
   color: var(--text-second-color);
   border: none;
 }
@@ -406,7 +406,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-content: center;
-  background-color: var(--text-color);
+  background-color: var(--main-third-background-color);
   color: var(--text-second-color);
   margin-top: 20px;
   border-radius: 10px;
@@ -461,7 +461,7 @@ nav {
 }
 
 .category-list {
-  background-color: var(--text-color);
+  background-color: var(--main-third-background-color);
   color: var(--text-second-color);
   border: none;
   margin-top: -20px;
@@ -479,7 +479,7 @@ nav {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background: var(--color-gray);
+  background: var(--pagination-background-color);
   font-size: 14px;
   line-height: 1.5714285714285714;
   list-style: none;
@@ -626,6 +626,66 @@ nav {
   margin-left: 20px;
 }
 
+.category-detail-container {
+  margin: 30px;
+  margin-bottom: 10%;
+}
+
+.category-blog-content {
+  text-align: center;
+}
+
+.category-blog-content h1 {
+  color: var(--text-second-color);
+  font-family: var(--font-family-main);
+  font-weight: var(--font-weight-titles);
+  font-size: var(--h1-font-size);
+}
+
+.category-blog-content p {
+  color: var(--text-second-color);
+  font-family: var(--font-family-titles);
+}
+
+.category-blog-img {
+  margin: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.blog-item {
+  color: var(--text-second-color);
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.blog-item .blog-item-content p {
+  background-color: var(--third-color);
+  border-radius: 10px;
+  color: var(--text-color);
+  padding: 2px;
+  padding-left: 10px;
+  width: 35%;
+  font-size: 12px;
+  
+}
+
+.blog-item .blog-item-content h6{
+  letter-spacing: -0.02em;
+  line-height: 200%;
+  font-size: 14px;
+  width: 100%;
+}
+
+.blog-item .blog-info p {
+  background-color: transparent;
+}
+
+.blog-item .blog-info {
+  color: var(--color-gray);
+  font-size: 12px;
+}
 /* for project style part is here */
 .proj-container {
   background: linear-gradient(180deg, #f2de1f 50%, var(--primary-color) 50%);
@@ -878,11 +938,10 @@ nav {
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   font: inherit;
   letter-spacing: inherit;
-  color: #fff;
+  color: var(--text-second-color);
   padding: 4px 0 5px;
   border: none;
   box-sizing: content-box;
-  background: #84838379;
   height: 1.4375em;
   margin: 0;
   -webkit-tap-highlight-color: transparent;
@@ -895,6 +954,7 @@ nav {
   animation-duration: 10ms;
   padding: 16.5px 14px;
   border-radius: 43px;
+  background: #8483833a;
 }
 
 .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
@@ -903,7 +963,7 @@ nav {
   font-size: 1rem;
   line-height: 1.4375em;
   letter-spacing: 0.00938em;
-  color: #fff;
+  color: var(--text-second-color);
   box-sizing: border-box;
   position: relative;
   cursor: text;
@@ -917,7 +977,7 @@ nav {
   align-items: center;
   position: relative;
   border-radius: 43px;
-  background: #84838379;
+  background: #8483833a;
 }
 
 .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
@@ -926,7 +986,7 @@ nav {
   font-size: 1rem;
   line-height: 1.4375em;
   letter-spacing: 0.00938em;
-  color: rgba(0, 0, 0, 0.87);
+  color: var(--text-second-color);
   box-sizing: border-box;
   position: relative;
   cursor: text;
@@ -942,5 +1002,26 @@ nav {
   position: relative;
   border-radius: 4px;
   padding: 16.5px 14px;
-  background: #84838379;
+  background: #8483833a;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--text-second-color);
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding: 16.5px 14px;
 }

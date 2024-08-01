@@ -2,18 +2,18 @@ const mongoose = require("mongoose");
 
 const projectSchema = mongoose.Schema(
   {
-    project_Number: {
+    projectNumber: {
       type: Number,
     },
-    project_Title: {
+    projectTitle: {
       type: String,
       required: [true, "Please insert the Project Title"],
     },
-    project_Description: {
+    projectDescription: {
       type: String,
       required: [true, "Please insert the Project Description"],
     },
-    project_Image: {
+    projectImage: {
       data: Buffer,
       contentType: String,
     },
@@ -21,7 +21,7 @@ const projectSchema = mongoose.Schema(
       type: String,
       required: [true, "Please insert the Source Code Link"],
     },
-    OtherLink: {
+    otherLink: {
       type: String,
     },
   },

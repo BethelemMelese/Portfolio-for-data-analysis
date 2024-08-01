@@ -1,16 +1,13 @@
 import { IconButton, Tooltip } from "@mui/material";
-import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 import * as React from "react";
 import Badge from "@mui/material/Badge";
 import { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
 import {
   Avatar,
   ListItemIcon,
   ListItemText,
   Menu,
   MenuItem,
-  Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import SyncLockIcon from "@mui/icons-material/SyncLock";
@@ -18,21 +15,12 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import profilePhoto from "../images/Pp.jpeg";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import SideBar from "./sideBar";
 
-type Theme = "dark" | "light";
-
-const TopBar = ({...props}) => {
+const TopBar = ({ ...props }) => {
   const [routeName, setRouteName] = useState(props.routeName);
-  console.log("routeName...",routeName);
-  const [theme, setTheme] = useState<Theme>("light");
-  const [toggleDarkMode, setToggleDarkMode] = useState(true);
-  const [userInfo, setUserInfo] = useState<any>();
+  const [pageTitle, setPageTitle] = useState();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const open2 = Boolean(anchorE2);
-  const id = open ? "simple-popover" : undefined;
   const navigate = useNavigate();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -40,23 +28,6 @@ const TopBar = ({...props}) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const toggleDarkTheme = () => {
-    setToggleDarkMode(!toggleDarkMode);
-    setTheme(toggleDarkMode ? "dark" : "light");
-    localStorage.setItem("theme-color", toggleDarkMode ? "dark" : "light");
-  };
-
-  useEffect(() => {
-    return document.body.setAttribute("data-theme", theme);
-  }, [theme]);
-
-  useEffect(() => {
-    const currentTheme: any = localStorage.getItem("theme-color");
-    if (currentTheme) {
-      setTheme(currentTheme);
-    }
-  }, []);
 
   const logOut = () => {
     localStorage.removeItem("token");
@@ -66,12 +37,19 @@ const TopBar = ({...props}) => {
     navigate("/");
   };
 
+  useEffect(() => {
+    const currentPage: any = localStorage.getItem("current-page");
+    if (currentPage) {
+      setPageTitle(currentPage);
+    }
+  }, [props.routeName == undefined]);
+
   return (
     <div>
       {/* <div className="top-bar-header"> */}
       <nav className="top-bar-menu">
         <div className="page-title">
-          <h2>Dashboard</h2>
+          <h2>{props.routeName == undefined ? pageTitle : props.routeName}</h2>
         </div>
         <div className="profile-setting">
           <IconButton id="check" onClick={handleClick}>

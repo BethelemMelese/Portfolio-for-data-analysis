@@ -5,7 +5,7 @@ function App() {
   useEffect(() => {
     const currentTheme: any = localStorage.getItem("theme-color");
     if (!currentTheme) {
-      localStorage.setItem("theme-color","light");
+      localStorage.setItem("theme-color","dark");
     }
   }, []);
   

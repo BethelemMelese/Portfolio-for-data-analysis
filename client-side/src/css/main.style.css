@@ -105,13 +105,13 @@ html {
 
 .page-title {
   margin-left: 70px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .page-title h2 {
-  font-size: 180%;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-size: 170%;
+  font-family: var(--font-family-titles);
+  letter-spacing: 2px;
 }
 
 .profile-setting {
@@ -138,11 +138,13 @@ html {
   padding-top: 100px;
 }
 
-.loginForm h2, .loginForm p, .loginForm h4{
+.loginForm h2,
+.loginForm p,
+.loginForm h4 {
   text-align: center;
 }
 
-.inputField{
+.inputField {
   margin-left: 100%;
 }
 
@@ -165,7 +167,7 @@ html {
   color: var(--text-second-color);
 }
 
-.shot-link{
+.shot-link {
   text-align: center;
 }
 
@@ -302,21 +304,13 @@ html {
 
 .btn-form {
   margin-top: 10px;
-  margin-left: 10px;
-  float: right;
-}
-
-.create-btn {
-  background-image: linear-gradient(to right, #000, #000);
-  color: #fff;
-  border: 1px solid var(--third-color);
-  padding: 50px;
 }
 
 .submit-btn {
   background-image: linear-gradient(to right, #000, #000);
   color: #fff;
   border: 1px solid var(--third-color);
+  width: 100%;
 }
 
 .css-11qr2p8-MuiButtonBase-root-MuiButton-root {
@@ -373,34 +367,81 @@ html {
 /* for the main content or for props.child content */
 
 .main-content {
-  /* background-color: var(--text-second-color); */
+  background-color: var(--main-background-color);
 }
 
 .project-container {
   margin-top: 5%;
   margin-left: 15%;
   width: 84%;
-  position: fixed;
+  /* position: fixed; */
 }
 
 .project-list {
   background-color: var(--main-sec-background-color);
   color: var(--text-second-color);
   box-sizing: 50px;
+  border: none;
 }
 
 .new-project {
   background-color: var(--main-sec-background-color);
   color: var(--text-second-color);
   margin-top: 2%;
-  height: 80%;
+  height: 100%;
+  border: none;
+}
+
+.upload-file p {
+  color: #fff;
 }
 
 .create-card {
   background-color: var(--main-sec-background-color);
   color: var(--text-second-color);
   border-color: var(--main-sec-background-color);
+  width: 100%;
 }
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-list
+  .ant-list-item
+  .ant-list-item-meta
+  .ant-list-item-meta-title {
+  margin: 0 0 4px 0;
+  color: var(--text-second-color);
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper
+  .ant-upload-drag
+  p.ant-upload-text {
+  margin: 0 0 4px;
+  color: var(--text-second-color);
+  font-size: 16px;
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper
+  .ant-upload-drag
+  p.ant-upload-drag-icon
+  .anticon {
+  color: var(--text-second-color);
+  font-size: 48px;
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper
+  .ant-upload-drag {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.02);
+  border: 2px dashed #d9d9d9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
 /* for dialog style */
 .css-rnmm7m-MuiPaper-root-MuiDialog-paper {
   background-color: var(--primary-color);
@@ -432,7 +473,7 @@ html {
 
 /* for all text field style */
 
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+/* .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   text-align: left;
   position: absolute;
   bottom: 0;
@@ -448,7 +489,84 @@ html {
   overflow: hidden;
   min-width: 0%;
   border-color: var(--text-second-color);
+  color: var(--text-second-color);
+} */
+
+/* .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding: 16.5px 14px;
+  color: var(--text-second-color);
+} */
+
+/* .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  border-radius: 4px;
   color: #fff;
+} */
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper
+  .ant-upload-list {
+  line-height: 1.571429;
+  margin-left: -10px;
+  padding-left: 58px;
+}
+
+.file-upload {
+  width: 100%;
+}
+
+.upload-file{
+  position: relative;
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper .ant-upload-list .ant-upload-list-item .ant-upload-list-item-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0 8px;
+  line-height: 1.5714285714285714;
+  flex: auto;
+  transition: all 0.3s;
+  color: var(--text-second-color);
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper .ant-upload-list {
+  line-height: 1.571429;
+  margin-left: -10px;
+  padding-left: 58px;
 }
 
 /* for blog page style */

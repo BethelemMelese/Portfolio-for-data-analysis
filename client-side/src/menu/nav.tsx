@@ -9,7 +9,7 @@ import { Link, NavLink } from "react-router-dom";
 type Theme = "dark" | "light";
 
 const NavMenu = () => {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
@@ -21,7 +21,7 @@ const NavMenu = () => {
   };
 
   useEffect(() => {
-    return document.body.setAttribute("data-theme", theme);
+    return document.body.setAttribute("light-theme", theme);
   }, [theme]);
 
   useEffect(() => {

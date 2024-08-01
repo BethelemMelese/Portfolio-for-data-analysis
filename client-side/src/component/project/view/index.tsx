@@ -1,10 +1,9 @@
 import { Button, Grid, IconButton, Paper, Tooltip } from "@mui/material";
 import { Card, Modal } from "antd";
 import { List } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { Dialogs } from "../../../commonComponent/dialog";
 import AddProject from "../create";
 import { appUrl, token } from "../../../appurl";
 import axios from "axios";
@@ -129,22 +128,22 @@ const ViewProject = () => {
 
   return (
     <div className="project-container">
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item xs={8}>
           <Card
             style={{
               marginTop: 10,
-              height: "650px",
-              overflowX: "hidden",
-              overflowY: "auto",
+              // height: "650px",
+              // overflowX: "hidden",
+              // overflowY: "auto",
             }}
             className="project-list"
           >
             <List
-              itemLayout="vertical"
+              itemLayout="horizontal"
               size="large"
               pagination={{
-                pageSize: 3,
+                pageSize: 5,
               }}
               dataSource={data}
               renderItem={(item: any) => (
@@ -173,7 +172,7 @@ const ViewProject = () => {
                   ]}
                   extra={
                     <img
-                      width={272}
+                      width={200}
                       alt="logo"
                       src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
                     />
