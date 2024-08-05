@@ -6,24 +6,29 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please insert First Name"],
     },
+    middleName: {
+      type: String,
+      required: [true, "Please insert MIddle Name"],
+    },
     lastName: {
       type: String,
       required: [true, "Please insert Last Name"],
     },
+    fullName: {
+      type: String,
+      required: [true, "Please insert Full Name"],
+    },
     email: {
       type: String,
       required: [true, "Please insert Email Address"],
-      Unique,
     },
     phone: {
       type: String,
       required: [true, "Please insert Phone Number"],
-      Unique,
     },
     passwordHash: {
       type: String,
       required: true,
-      Unique,
     },
     profession: {
       type: String,
@@ -32,6 +37,10 @@ const userSchema = mongoose.Schema(
     profileImage: {
       data: Buffer,
       contentType: String,
+    },
+    token: {
+      type: String,
+      required: false,
     },
   },
   { timestamp: true }

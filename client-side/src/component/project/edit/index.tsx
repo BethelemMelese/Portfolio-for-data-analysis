@@ -29,7 +29,7 @@ const initialState: ProjectState = {
   sourceCodeLink: "",
   otherLink: "",
 };
-const AddProject = ({ ...props }) => {
+const EditProject = ({ ...props }) => {
   const [viewMode, setViewMode] = useState(props.viewMode);
   const [selectedProject, setSelectedProject] = useState(props.selectedProject);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -52,27 +52,36 @@ const AddProject = ({ ...props }) => {
     }
   }, [props.viewMode, props.selectedProject]);
 
-  const onCreateSuccess = () => {
+  const onUpdateSuccess = () => {
     setNotify({
       isOpen: true,
       type: "success",
-      message: "Project is Successfully Added !",
+      message: "Project is Successfully Updated !",
     });
     setTimeout(() => {
       setIsSubmitting(false);
-      window.location.reload();
+      //   window.location.reload();
     }, 2000);
   };
 
-  const onCreateError = (response: any) => {
+  const onUpdateError = (response: any) => {
     setNotify({
       isOpen: true,
       type: "error",
-      message: response.message,
+      message: response,
     });
     setTimeout(() => {
       setIsSubmitting(false);
     }, 2000);
+  };
+
+  //   Notification for Success and error actions
+  const onViewError = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "error",
+      message: response,
+    });
   };
 
   const validationSchema = Yup.object().shape({
@@ -84,38 +93,25 @@ const AddProject = ({ ...props }) => {
     ),
   });
 
-  const onValidFileRequired = () => {
-    if (fileList.length == 0) {
-      setFileRequired(true);
-    } else {
-      setFileRequired(false);
-    }
-  };
-
   const formik = useFormik({
     initialValues: selectedProject,
     onSubmit: (values) => {
-      if (fileList.length == 0) {
-        setFileRequired(true);
-      } else {
-        setFileRequired(false);
-        setIsSubmitting(true);
-        const formData = new FormData();
-        formData.append("file", fileList);
-        formData.append("projectTitle", values.projectTitle);
-        formData.append("projectDescription", values.projectDescription);
-        formData.append("sourceCodeLink", values.sourceCodeLink);
-        formData.append("otherLink", values.otherLink);
-        axios
-          .create({
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-          .post(appUrl + "project", formData)
-          .then(() => onCreateSuccess())
-          .catch((error) => onCreateError(error.response.data.message));
-      }
+      setIsSubmitting(true);
+      const formData = new FormData();
+      formData.append("file", fileList);
+      formData.append("projectTitle", values.projectTitle);
+      formData.append("projectDescription", values.projectDescription);
+      formData.append("sourceCodeLink", values.sourceCodeLink);
+      formData.append("otherLink", values.otherLink);
+      axios
+        .create({
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .put(appUrl + `project/${selectedProject.id}`, formData)
+        .then(() => onUpdateSuccess())
+        .catch((error) => onUpdateError(error.response.data.message));
     },
     validationSchema: validationSchema,
   });
@@ -142,7 +138,12 @@ const AddProject = ({ ...props }) => {
   return (
     <div>
       <Card
-        title={<h4>Add New Project to the Portfolio</h4>}
+        title={<h4>Modify the Project Content</h4>}
+        extra={
+          <a onClick={() => props.closeedit()}>
+            <CloseIcon fontSize="medium" className="close-btn" />
+          </a>
+        }
         className="create-card"
       >
         <Form autoComplete="off" noValidate onSubmit={formik.handleSubmit}>
@@ -238,12 +239,11 @@ const AddProject = ({ ...props }) => {
               <div className="btn-form">
                 {isSubmitting ? (
                   <Button
-                    size="small"
                     variant="contained"
                     className="submitting-btn"
                     disabled={isSubmitting}
                   >
-                    Submitting...
+                    Updating...
                   </Button>
                 ) : (
                   <Button
@@ -251,9 +251,8 @@ const AddProject = ({ ...props }) => {
                     type="submit"
                     size="small"
                     className="submit-btn"
-                    onClick={onValidFileRequired}
                   >
-                    Submit
+                    Update
                   </Button>
                 )}
               </div>
@@ -266,4 +265,4 @@ const AddProject = ({ ...props }) => {
   );
 };
 
-export default AddProject;
+export default EditProject;

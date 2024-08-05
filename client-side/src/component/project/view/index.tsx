@@ -5,22 +5,14 @@ import { useEffect, useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddProject from "../create";
+import EditProject from "../edit";
 import { appUrl, token } from "../../../appurl";
 import axios from "axios";
 import Notification from "../../../commonComponent/notification";
 import { ExclamationCircleFilled } from "@ant-design/icons";
+import { Buffer } from "buffer";
 
 const { confirm } = Modal;
-
-const data = Array.from({ length: 23 }).map((_, i) => ({
-  href: "https://ant.design",
-  title: `Project Title Part ${i}`,
-  avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=${i}`,
-  description:
-    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-  content:
-    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
-}));
 
 interface ProjectState {
   projectTitle: string;
@@ -39,7 +31,6 @@ const initialState: ProjectState = {
 };
 
 const ViewProject = () => {
-  const [openDialog, setOpenDialog] = useState(false);
   const [viewMode, setViewMode] = useState("new");
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState<any>([]);
@@ -54,7 +45,7 @@ const ViewProject = () => {
     setNotify({
       isOpen: true,
       type: "success",
-      message: response.message,
+      message: "The Project is Successfully Deleted",
     });
     onFetchProject();
   };
@@ -84,7 +75,7 @@ const ViewProject = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
-      .get(appUrl + `projects`)
+      .get(appUrl + `project`)
       .then((res) => {
         setLoading(false);
         setDataSource(res.data);
@@ -99,7 +90,7 @@ const ViewProject = () => {
     confirm({
       title: "Do you want to delete this project?",
       icon: <ExclamationCircleFilled />,
-      content: "You are unable to undo the deletion of this.",
+      content: "You aren't unable to undo the deletion of this.",
       okText: "Yes",
       okType: "danger",
       cancelText: "No",
@@ -110,9 +101,9 @@ const ViewProject = () => {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           })
-          .delete(appUrl + `projects/${value}`)
+          .delete(appUrl + `project/${value}`)
           .then((response) => {
-            onDeleteSuccess(response.data);
+            onDeleteSuccess(response.data[0]);
           })
           .catch((error) => onDeleteError(error.response.data.message));
       },
@@ -120,10 +111,27 @@ const ViewProject = () => {
     });
   };
 
+  const onUpdateCall = (id: any) => {
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + `project/${id}`)
+      .then((res) => {
+        setSelectedProject(res.data[0]);
+        setViewMode("edit");
+      })
+      .catch((error: any) => {
+        onViewError(error.response.data.error);
+      });
+  };
+
   //   to fetch data using useEffect, when every time this page is loaded
   useEffect(() => {
     setLoading(true);
-    // onFetchProject();
+    onFetchProject();
   }, []);
 
   return (
@@ -133,58 +141,60 @@ const ViewProject = () => {
           <Card
             style={{
               marginTop: 10,
-              // height: "650px",
-              // overflowX: "hidden",
-              // overflowY: "auto",
             }}
             className="project-list"
           >
-            <List
-              itemLayout="horizontal"
-              size="large"
-              pagination={{
-                pageSize: 5,
-              }}
-              dataSource={data}
-              renderItem={(item: any) => (
-                <List.Item
-                  key={item.title}
-                  actions={[
-                    <Tooltip title="To edit the project">
-                      <IconButton
-                        onClick={() => {
-                          setViewMode("edit");
-                          setOpenDialog(true);
-                        }}
-                      >
-                        <ModeEditIcon color="warning" />
-                      </IconButton>
-                    </Tooltip>,
-                    <Tooltip title="To delete the project">
-                      <IconButton
-                        onClick={() => {
-                          showConfirm(item.id);
-                        }}
-                      >
-                        <DeleteForeverIcon color="error" />
-                      </IconButton>
-                    </Tooltip>,
-                  ]}
-                  extra={
-                    <img
-                      width={200}
-                      alt="logo"
-                      src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+            {dataSource.length != 0 && (
+              <List
+                itemLayout="horizontal"
+                size="large"
+                pagination={{
+                  pageSize: 5,
+                }}
+                dataSource={dataSource}
+                renderItem={(item: any) => (
+                  <List.Item
+                    key={item.projectNumber}
+                    actions={[
+                      <Tooltip title="To edit the project">
+                        <IconButton
+                          onClick={() => {
+                            onUpdateCall(item.id);
+                          }}
+                        >
+                          <ModeEditIcon color="warning" />
+                        </IconButton>
+                      </Tooltip>,
+                      <Tooltip title="To delete the project">
+                        <IconButton
+                          onClick={() => {
+                            showConfirm(item.id);
+                          }}
+                        >
+                          <DeleteForeverIcon color="error" />
+                        </IconButton>
+                      </Tooltip>,
+                    ]}
+                    extra={
+                      <img
+                        width={200}
+                        alt="Project Image"
+                        src={`data:${
+                          item.projectImage.contentType
+                        },${Buffer.from(item.projectImage.data.data).toString(
+                          "base64"
+                        )}`}
+                      />
+                    }
+                  >
+                    <List.Item.Meta
+                      title={item.projectTitle}
+                      description={item.projectDescription}
                     />
-                  }
-                >
-                  <List.Item.Meta
-                    title={item.title}
-                    description={item.content}
-                  />
-                </List.Item>
-              )}
-            />
+                  </List.Item>
+                )}
+              />
+            )}
           </Card>
         </Grid>
         <Grid item xs={4}>
@@ -196,7 +206,7 @@ const ViewProject = () => {
                 viewMode={viewMode}
               />
             ) : (
-              <AddProject
+              <EditProject
                 //@ts-ignore
                 selectedProject={selectedProject}
                 viewMode={viewMode}
@@ -204,7 +214,6 @@ const ViewProject = () => {
               />
             )}
           </Card>
-          {/* <h2>This part is for Add Project</h2> */}
         </Grid>
       </Grid>
       <Notification notify={notify} setNotify={setNotify} />

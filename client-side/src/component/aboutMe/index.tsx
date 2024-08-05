@@ -5,8 +5,49 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LanguageIcon from "@mui/icons-material/Language";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { appUrl } from "../../appurl";
+import Notification from "../../commonComponent/notification";
 
 const AboutMe = () => {
+  const [dataSource, setDataSource] = useState<any>();
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+  //   Notification for Success and error actions
+  const onViewError = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "error",
+      message: response,
+    });
+  };
+
+  //   for get all data
+  const onFetchResume = () => {
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + `resume`)
+      .then((res) => {
+        setDataSource(res.data);
+      })
+      .catch((error: any) => {
+        onViewError(error.response.data.error);
+      });
+  };
+
+  //   to fetch data using useEffect, when every time this page is loaded
+  useEffect(() => {
+    onFetchResume();
+  }, []);
+
   return (
     <div className="about-me-container">
       <Grid container spacing={4}>
@@ -80,9 +121,20 @@ const AboutMe = () => {
                 <h1>Hello</h1>
                 <p>Here's Who I am & What i do</p>
                 <div className="bio-buttons">
-                  <div className="bio-btn bio-btn1">
-                    <a href="#">Resume</a>
-                  </div>
+                  {dataSource != undefined && (
+                    <>
+                      {dataSource.map((item: any) => {
+                        return (
+                          <div className="bio-btn bio-btn1">
+                            <a href={item.resumeLink} target="_blank">
+                              Resume
+                            </a>
+                          </div>
+                        );
+                      })}
+                    </>
+                  )}
+
                   <div className="bio-btn bio-btn2">
                     <a href="project">Projects</a>
                   </div>
@@ -110,7 +162,9 @@ const AboutMe = () => {
         <Grid item xs={12}>
           <footer className="aboutme-footer">
             <div className="created-by">
-              <p>&copy; 2024, by Bethelem Melese</p>
+              <p>
+                Copyright &copy; 2024 by Bethelem Melese, all rights reserved.
+              </p>
             </div>
 
             <div className="address">
@@ -167,6 +221,7 @@ const AboutMe = () => {
           </footer>
         </Grid>
       </Grid>
+      <Notification notify={notify} setNotify={setNotify} />
     </div>
   );
 };

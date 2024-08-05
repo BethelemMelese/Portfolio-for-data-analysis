@@ -2,27 +2,67 @@ import { Button, Grid, Paper } from "@mui/material";
 import { Card } from "antd";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Form } from "../../commonComponent/Form";
 import Controls from "../../commonComponent/Controls";
+import logo from "../../images/White Img Logo.png";
+import axios from "axios";
+import { appUrl } from "../../appurl";
+import Notification from "../../commonComponent/notification";
 
 interface LoginState {
-  username: string;
+  email: string;
   password: string;
 }
 
 const initialState: LoginState = {
-  username: "",
+  email: "",
   password: "",
 };
 
 const Login = () => {
   const navigate = useNavigate();
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+
+  const onLoginSuccess = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "success",
+      message: response.message,
+    });
+    setTimeout(() => {
+      setIsSubmitting(false);
+      onAfterLogin(response);
+    }, 2000);
+  };
+
+  const onLoginError = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "error",
+      message: response,
+    });
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2000);
+  };
+
+  function onAfterLogin(response: any) {
+    localStorage.setItem("token", response.token);
+    localStorage.setItem("current-page", "Dashboard");
+    localStorage.setItem("name", response.name);
+    navigate("/datawizdipsy/home");
+    window.location.reload();
+  }
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Username is required"),
+    email: Yup.string().required("Email is required"),
     password: Yup.string()
       .min(8, "A Password can't insert less than 8 Characters")
       .matches(
@@ -35,11 +75,11 @@ const Login = () => {
   const formik = useFormik({
     initialValues: initialState,
     onSubmit: (values) => {
-      //   setisSumibt(true);
-      //   axios
-      //     .post(appUrl + "users/login", values)
-      //     .then((response) => onLoginSuccess(response.data))
-      //     .catch((error) => onLoginError(error.response.data.message));
+      setIsSubmitting(true);
+      axios
+        .post(appUrl + "user/login", values)
+        .then((response) => onLoginSuccess(response.data))
+        .catch((error) => onLoginError(error.response.data.message));
     },
     validationSchema: validationSchema,
   });
@@ -58,11 +98,17 @@ const Login = () => {
             <Form autoComplete="off" noValidate onSubmit={formik.handleSubmit}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
+                  <img
+                    src={logo}
+                    className="log-img"
+                    alt="Profile Picture"
+                    style={{ width: 150, height: 50, borderRadius: 10 }}
+                  />
                   <h2>
                     <b>Ablene Melese</b> / DATA SCIENTISTS
                   </h2>
                   <p>Dynamic Personal Portfolio</p>
-                  <h4>Login</h4>
+                  <h4>Sign In</h4>
                 </Grid>
                 <Grid item xs={12}>
                   <Grid container spacing={2}>
@@ -71,14 +117,14 @@ const Login = () => {
                         className="inputField"
                         required
                         id="email"
-                        label="Username"
-                        {...formik.getFieldProps("username")}
-                        helperText="use your Email Address to login !"
+                        label="Email"
+                        {...formik.getFieldProps("email")}
                         error={
-                          formik.touched.username && formik.errors.username
-                            ? formik.errors.username
+                          formik.touched.email && formik.errors.email
+                            ? formik.errors.email
                             : ""
                         }
+                        helperText="use your Email Address to login !"
                         onKeyPress={(event: any) => handleKeyPress(event)}
                       />
                     </Grid>
@@ -109,7 +155,7 @@ const Login = () => {
                       </a>
                     </Grid>
                     <Grid item xs={12}>
-                      {isSubmit ? (
+                      {isSubmitting ? (
                         <Button variant="contained" disabled>
                           Signing...
                         </Button>
@@ -118,8 +164,7 @@ const Login = () => {
                           variant="contained"
                           className="buttonField"
                           type="submit"
-                          disabled={isSubmit}
-
+                          disabled={isSubmitting}
                         >
                           Sign In
                         </Button>
@@ -132,7 +177,7 @@ const Login = () => {
                       justifyContent="flex-end"
                     >
                       <a onClick={() => navigate("/mainPage/register")}>
-                      Not have Account? <u>Sign Up</u> here
+                        Not have Account? <u>Sign Up</u> here
                       </a>
                     </Grid>
                   </Grid>
@@ -142,6 +187,7 @@ const Login = () => {
           </Card>
         </Paper>
       </div>
+      <Notification notify={notify} setNotify={setNotify} />
     </div>
   );
 };

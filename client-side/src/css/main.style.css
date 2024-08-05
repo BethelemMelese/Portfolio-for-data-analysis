@@ -2,13 +2,13 @@
 
 html {
   display: block;
-  background-color: var(--main-background-color);
+  /* background-color: var(--main-background-color); */
 }
 
 /* for theme setting in the sidebar part */
 .theme-setting {
   position: fixed;
-  margin-top: 18%;
+  margin-top: 14%;
   width: 14%;
 }
 
@@ -105,7 +105,6 @@ html {
 
 .page-title {
   margin-left: 70px;
-  /* margin-top: 20px; */
 }
 
 .page-title h2 {
@@ -135,7 +134,8 @@ html {
   height: 100vh;
   width: 40%;
   margin: 0px auto;
-  padding-top: 100px;
+  padding-top: 80px;
+  text-align: center;
 }
 
 .loginForm h2,
@@ -151,8 +151,8 @@ html {
 .buttonField {
   background-image: linear-gradient(
     to right,
-    var(--text-second-color),
-    var(--text-second-color)
+    #000,
+    #000
   );
   color: var(--third-color);
   width: 80%;
@@ -164,7 +164,7 @@ html {
     var(--third-color),
     var(--third-color)
   );
-  color: var(--text-second-color);
+  color: #000;
 }
 
 .shot-link {
@@ -173,14 +173,18 @@ html {
 
 .shot-link a {
   list-style: none;
-  color: var(--text-second-color);
+  color: var(--text-color);
 }
 
 .shot-link a:hover {
-  color: var(--text-second-color);
+  color: var(--text-color);
   background-color: rgba(89, 89, 87, 0.118);
   border-radius: 5px;
   padding: 8px;
+}
+
+.log-img {
+  margin: 0px auto;
 }
 
 /* for registration page style */
@@ -192,14 +196,16 @@ html {
   background-position: center;
   background-size: cover;
   width: 100%;
+  /* position: fixed; */
 }
 
 .registerForm {
   height: 100vh;
   width: 60%;
   margin: 0px auto;
-  padding-top: 60px;
-  padding-bottom: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
 }
 
 /* for scrollable style */
@@ -374,7 +380,6 @@ html {
   margin-top: 5%;
   margin-left: 15%;
   width: 84%;
-  /* position: fixed; */
 }
 
 .project-list {
@@ -548,11 +553,14 @@ html {
   width: 100%;
 }
 
-.upload-file{
+.upload-file {
   position: relative;
 }
 
-:where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper .ant-upload-list .ant-upload-list-item .ant-upload-list-item-name {
+:where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper
+  .ant-upload-list
+  .ant-upload-list-item
+  .ant-upload-list-item-name {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -563,7 +571,8 @@ html {
   color: var(--text-second-color);
 }
 
-:where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper .ant-upload-list {
+:where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper
+  .ant-upload-list {
   line-height: 1.571429;
   margin-left: -10px;
   padding-left: 58px;
@@ -585,4 +594,68 @@ html {
 
 .more-btn {
   margin-right: 20px;
+}
+
+.text-danger {
+  color: rgb(251, 9, 9);
+}
+
+/* for resume page style */
+
+.resume-container {
+  margin-top: 10%;
+  margin-left: 15%;
+  margin-bottom: 27%;
+  width: 84%;
+}
+
+.resume-card {
+  background-color: var(--main-sec-background-color);
+  color: var(--text-second-color);
+  border: none;
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-list .ant-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  color: var(--text-second-color);
+}
+
+.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input {
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--text-second-color);
+  padding: 0;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: auto;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  resize: none;
+  padding-top: 0;
+  padding: 0;
+}
+
+/* for change password page style */
+
+.chagPassword-container {
+  margin-top: 8%;
+  margin-left: 30%;
+  margin-bottom: 5%;
+  width: 50%;
+}
+
+.change-password-form{
+  margin: 0px auto;
+  text-align: center;
 }

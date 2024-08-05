@@ -1,14 +1,19 @@
-import { Button, Grid, Paper } from "@mui/material";
+import { Avatar, Button, Grid, Paper } from "@mui/material";
 import { Card } from "antd";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Form } from "../../commonComponent/Form";
 import Controls from "../../commonComponent/Controls";
+import axios from "axios";
+import { appUrl } from "../../appurl";
+import logo from "../../images/White Img Logo.png";
+import Notification from "../../commonComponent/notification";
 
 interface RegistrationState {
   firstName: string;
+  middleName: string;
   lastName: string;
   email: string;
   password: string;
@@ -19,6 +24,7 @@ interface RegistrationState {
 
 const initialState: RegistrationState = {
   firstName: "",
+  middleName: "",
   lastName: "",
   email: "",
   password: "",
@@ -29,14 +35,43 @@ const initialState: RegistrationState = {
 
 const Registration = () => {
   const navigate = useNavigate();
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+
+  const onRegistrationSuccess = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "success",
+      message: response,
+    });
+    setTimeout(() => {
+      setIsSubmitting(false);
+      navigate("/");
+    }, 2000);
+  };
+
+  const onRegistrationError = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "error",
+      message: response.message,
+    });
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2000);
+  };
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("First Name is required"),
+    middleName: Yup.string().required("MIddle Name is required"),
     lastName: Yup.string().required("Last Name is required"),
     email: Yup.string().required("Email is required"),
     phone: Yup.string().required("Phone is required"),
-    // ddress: Yup.string().required("Address is required"),
+    profession: Yup.string().required("Profession is required"),
     password: Yup.string()
       .min(8, "A Password can't insert less than 8 Characters")
       .matches(
@@ -53,11 +88,11 @@ const Registration = () => {
   const formik = useFormik({
     initialValues: initialState,
     onSubmit: (values) => {
-      //   setisSumibt(true);
-      //   axios
-      //     .post(appUrl + "users/login", values)
-      //     .then((response) => onRegistrationSuccess(response.data))
-      //     .catch((error) => onRegistrationError(error.response.data.message));
+      setIsSubmitting(true);
+      axios
+        .post(appUrl + "user/register/", values)
+        .then((response) => onRegistrationSuccess(response.data))
+        .catch((error) => onRegistrationError(error.response.data.message));
     },
     validationSchema: validationSchema,
   });
@@ -76,11 +111,17 @@ const Registration = () => {
             <Form autoComplete="off" noValidate onSubmit={formik.handleSubmit}>
               <Grid container spacing={0}>
                 <Grid item xs={12}>
+                  <img
+                    src={logo}
+                    className="log-img"
+                    alt="Profile Picture"
+                    style={{ width: 150, height: 50, borderRadius: 10 }}
+                  />
                   <h2>
                     <b>Ablene Melese</b> / DATA SCIENTISTS
                   </h2>
                   <p>Dynamic Personal Portfolio</p>
-                  <h4>Registration</h4>
+                  <h4>Sign Up</h4>
                 </Grid>
                 <Grid item xs={12}>
                   <Grid container spacing={1}>
@@ -94,6 +135,21 @@ const Registration = () => {
                         error={
                           formik.touched.firstName && formik.errors.firstName
                             ? formik.errors.firstName
+                            : ""
+                        }
+                        onKeyPress={(event: any) => handleKeyPress(event)}
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Controls.Input
+                        className="inputField"
+                        required
+                        id="middleName"
+                        label="Middle Name"
+                        {...formik.getFieldProps("middleName")}
+                        error={
+                          formik.touched.middleName && formik.errors.middleName
+                            ? formik.errors.middleName
                             : ""
                         }
                         onKeyPress={(event: any) => handleKeyPress(event)}
@@ -144,6 +200,22 @@ const Registration = () => {
                     </Grid>
 
                     <Grid item xs={6}>
+                      <Controls.Input
+                        className="inputField"
+                        id="profession"
+                        label="Your Profession"
+                        required
+                        {...formik.getFieldProps("profession")}
+                        error={
+                          formik.touched.profession && formik.errors.profession
+                            ? formik.errors.profession
+                            : ""
+                        }
+                        onKeyPress={(event: any) => handleKeyPress(event)}
+                      />
+                    </Grid>
+
+                    <Grid item xs={6}>
                       <Controls.Password
                         className="inputField"
                         required
@@ -176,29 +248,13 @@ const Registration = () => {
                       />
                     </Grid>
 
-                    <Grid item xs={6}>
-                      <Controls.Input
-                        className="inputField"
-                        id="profession"
-                        label="Your Profession"
-                        required
-                        {...formik.getFieldProps("profession")}
-                        error={
-                          formik.touched.profession && formik.errors.profession
-                            ? formik.errors.profession
-                            : ""
-                        }
-                        onKeyPress={(event: any) => handleKeyPress(event)}
-                      />
-                    </Grid>
-
                     <Grid item xs={12} className="shot-link">
                       <a onClick={() => navigate("/")}>
                         <u>Go to home</u>
                       </a>
                     </Grid>
                     <Grid item xs={12}>
-                      {isSubmit ? (
+                      {isSubmitting ? (
                         <Button variant="contained" disabled>
                           Signing...
                         </Button>
@@ -207,7 +263,7 @@ const Registration = () => {
                           variant="contained"
                           className="buttonField"
                           type="submit"
-                          disabled={isSubmit}
+                          disabled={isSubmitting}
                         >
                           Sign In
                         </Button>
@@ -229,6 +285,7 @@ const Registration = () => {
             </Form>
           </Card>
         </Paper>
+        <Notification notify={notify} setNotify={setNotify} />
       </div>
     </div>
   );

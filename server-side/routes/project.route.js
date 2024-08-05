@@ -1,5 +1,6 @@
 const {
   GetAllProject,
+  GetProjectById,
   CreateProject,
   UpdateProject,
   DeleteProject,
@@ -12,8 +13,9 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 router.get("/", GetAllProject);
+router.get("/:id", GetProjectById);
 router.post("/",upload.single('file'), CreateProject);
-router.put("/:id", UpdateProject);
+router.put("/:id",UpdateProject);
 router.delete("/:id", DeleteProject);
 
 module.exports = router;

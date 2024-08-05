@@ -35,7 +35,7 @@ export const Password = ({ ...props }) => {
       name={name}
       value={value}
       onChange={onChange}
-      size="small"
+      size="medium"
       InputProps={{
         endAdornment: (
           <IconButton onClick={toggleShowPassword}>

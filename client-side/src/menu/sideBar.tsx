@@ -3,6 +3,7 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import ArticleIcon from "@mui/icons-material/Article";
 import SummarizeIcon from "@mui/icons-material/Summarize";
+import ContactsIcon from "@mui/icons-material/Contacts";
 import { useEffect, useState } from "react";
 import { Divider, IconButton, Tooltip } from "@mui/material";
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
@@ -11,7 +12,7 @@ type Theme = "dark" | "light";
 
 const SideBar = ({ ...props }) => {
   const [theme, setTheme] = useState<Theme>("dark");
-  const [routeName, setRouteName] = useState("");
+  const [routeName, setRouteName] = useState("Dashboard");
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
   const toggleDarkTheme = () => {
     setToggleDarkMode(!toggleDarkMode);
@@ -84,6 +85,18 @@ const SideBar = ({ ...props }) => {
               className="sideBar-item"
             >
               <SummarizeIcon className="menu-icon" /> Resume
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/datawizdipsy/viewContacts"
+              onClick={() => {
+                props.setRouteName("Contacts");
+                localStorage.setItem("current-page", "Contacts");
+              }}
+              className="sideBar-item"
+            >
+              <ContactsIcon className="menu-icon" /> Contacts
             </NavLink>
           </li>
         </ul>

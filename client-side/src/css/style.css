@@ -39,9 +39,14 @@ nav {
   margin-top: 10px;
 }
 
-.nav-log h2 {
+/* .nav-log h2 {
   font-size: 16px;
   color: var(--text-second-color);
+} */
+
+.nav-log img{
+  margin-top: 30px;
+  margin-left: 60px;
 }
 
 .nav-item-menu {
@@ -112,7 +117,7 @@ nav {
 
 .about-me-container {
   width: 80%;
-  margin-top: 35px;
+  margin-top: 25px;
 }
 
 .pic-card {
@@ -282,14 +287,13 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 2px;
 }
 
 .created-by {
   margin-left: 70px;
   padding-right: 20%;
-  margin-bottom: 10px;
-  margin-top: 20px;
+  /* margin-bottom: 10px; */
+  margin-top: -10px;
 }
 
 .created-by p {
@@ -302,7 +306,7 @@ nav {
   justify-content: space-between;
   margin-left: 10px;
   padding-left: 20px;
-  margin-top: -20px;
+  margin-top: -50px;
   margin-right: -20%;
 }
 

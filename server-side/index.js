@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const app = express();
 const ProjectRoute = require("./routes/project.route.js");
+const ResumeRoute = require("./routes/resume.route.js");
+const UserRoute = require("./routes/user.route.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,5 +44,7 @@ app.get("/", (req, res) => {
   res.send("Hello World from Node API");
 });
 
-// all the end points / routesy of backend
+// all the end points / routes of backend
 app.use("/api/project", ProjectRoute);
+app.use("/api/resume", ResumeRoute);
+app.use("/api/user", UserRoute);

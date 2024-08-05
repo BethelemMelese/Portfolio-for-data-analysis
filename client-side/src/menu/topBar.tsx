@@ -15,11 +15,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import profilePhoto from "../images/Pp.jpeg";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import UserService from "../police/userService";
 
 const TopBar = ({ ...props }) => {
   const [routeName, setRouteName] = useState(props.routeName);
   const [pageTitle, setPageTitle] = useState();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const userName = UserService.currentUser;
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -31,10 +33,9 @@ const TopBar = ({ ...props }) => {
 
   const logOut = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("permission");
-    localStorage.removeItem("role");
-    localStorage.removeItem("controller");
-    navigate("/");
+    localStorage.removeItem("current-page");
+    localStorage.removeItem("name");
+    navigate("/mainpage/login");
   };
 
   useEffect(() => {
@@ -46,7 +47,6 @@ const TopBar = ({ ...props }) => {
 
   return (
     <div>
-      {/* <div className="top-bar-header"> */}
       <nav className="top-bar-menu">
         <div className="page-title">
           <h2>{props.routeName == undefined ? pageTitle : props.routeName}</h2>
@@ -68,7 +68,7 @@ const TopBar = ({ ...props }) => {
               aria-expanded={open ? "true" : undefined}
             >
               <Badge
-                badgeContent="Ablena"
+                badgeContent={userName}
                 color="success"
                 anchorOrigin={{
                   vertical: "bottom",
@@ -92,13 +92,23 @@ const TopBar = ({ ...props }) => {
             transformOrigin={{ horizontal: "left", vertical: "top" }}
             anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
           >
-            <MenuItem onClick={() => navigate("/egila/info")}>
+            <MenuItem
+              onClick={() => {
+                localStorage.setItem("current-page", "Profile");
+                navigate("/datawizdipsy/profile");
+              }}
+            >
               <ListItemIcon>
                 <PermIdentityIcon fontSize="small" />
               </ListItemIcon>
               <ListItemText>Profile</ListItemText>
             </MenuItem>
-            <MenuItem onClick={() => navigate("/egila/changePassword")}>
+            <MenuItem
+              onClick={() => {
+                localStorage.setItem("current-page", "Change Password");
+                navigate("/datawizdipsy/changePassword");
+              }}
+            >
               <ListItemIcon>
                 <SyncLockIcon fontSize="small" />
               </ListItemIcon>
