@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../images/Black Img Logo.png"
+import Whitelogo from "../images/WHite Logo.png";
+import Blacklogo from "../images/Black  Logo.png";
 
 type Theme = "dark" | "light";
 
@@ -38,7 +39,7 @@ const NavMenu = () => {
         {/* <h2>
           <b>Ablene Melese</b> / DATA SCIENTISTS
         </h2> */}
-        <img src={logo} width={180} height={80}/>
+        {theme == "light" ? <img src={Whitelogo} width={160}/>: <img src={Blacklogo} width={160}/>}
       </div>
       <ul className="nav-item-menu">
         <li>

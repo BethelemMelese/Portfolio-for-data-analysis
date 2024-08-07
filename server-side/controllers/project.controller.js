@@ -49,10 +49,7 @@ const CreateProject = async (req, res) => {
       projectNumber: total.length + 1,
       projectTitle: req.body.projectTitle,
       projectDescription: req.body.projectDescription,
-      projectImage: {
-        data: req.file.buffer,
-        contentType: req.file.mimetype,
-      },
+      projectImage: req.file.filename,
       sourceCodeLink: req.body.sourceCodeLink,
       otherLink: req.body.otherLink,
     };

@@ -22,6 +22,9 @@ import Controls from "../../commonComponent/Controls";
 import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import axios from "axios";
+import { appUrl } from "../../appurl";
+import Notification from "../../commonComponent/notification";
 
 interface ContactMeState {
   name: string;
@@ -46,7 +49,35 @@ const center = {
 
 const ContactMe = () => {
   const navigate = useNavigate();
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+
+  const onContactMeSuccess = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "success",
+      message: "Your message is Successfully send !",
+    });
+    setTimeout(() => {
+      setIsSubmitting(false);
+      window.location.reload();
+    }, 2000);
+  };
+
+  const onContactMeError = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "error",
+      message: response,
+    });
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2000);
+  };
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
@@ -57,11 +88,11 @@ const ContactMe = () => {
   const formik = useFormik({
     initialValues: initialState,
     onSubmit: (values) => {
-      // setisSumibt(true);
-      // axios
-      //   .post(appUrl + "users/login", values)
-      //   .then((response) => onRegistrationSuccess(response.data))
-      //   .catch((error) => onRegistrationError(error.response.data.message));
+      setIsSubmitting(true);
+      axios
+        .post(appUrl + "contact", values)
+        .then((response) => onContactMeSuccess(response.data))
+        .catch((error) => onContactMeError(error.response.data.message));
     },
     validationSchema: validationSchema,
   });
@@ -71,9 +102,6 @@ const ContactMe = () => {
     googleMapsApiKey: "AIzaSyCYuI2C4_88HVPTBZxqYntZECDV6PKdLY4",
   });
 
-  // if (loadError) {
-  //   return <div>Error loading maps</div>;
-  // }
   return (
     <div className="contact-container">
       <Grid container spacing={4}>
@@ -126,7 +154,7 @@ const ContactMe = () => {
                       className="inputField"
                       required
                       id="message"
-                      label="Write Your Message..."
+                      label="Write Your Message here..."
                       {...formik.getFieldProps("message")}
                       error={
                         formik.touched.message && formik.errors.message
@@ -136,13 +164,19 @@ const ContactMe = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <Button
-                      variant="contained"
-                      className="contactsubmit"
-                      type="submit"
-                    >
-                      Send
-                    </Button>
+                    {isSubmitting ? (
+                      <Button variant="contained" disabled>
+                        Sending...
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        className="contactsubmit"
+                        type="submit"
+                      >
+                        Send
+                      </Button>
+                    )}
                   </Grid>
                 </Grid>
               </Form>
@@ -236,6 +270,7 @@ const ContactMe = () => {
           </footer>
         </Grid>
       </Grid>
+      <Notification notify={notify} setNotify={setNotify} />
     </div>
   );
 };

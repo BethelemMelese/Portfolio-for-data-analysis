@@ -33,9 +33,14 @@ html {
   position: fixed;
 }
 
-.sidebar-menu h2 {
+/* .sidebar-menu h2 {
   text-align: center;
   color: var(--text-second-color);
+} */
+
+.sidebar-menu img {
+  margin-left: 30px;
+  margin-top: 10px;
 }
 
 .sidebar-menu .collapsed {
@@ -43,7 +48,7 @@ html {
 }
 
 .menu-items {
-  margin-top: 40%;
+  margin-top: 10%;
   text-align: center;
 }
 
@@ -66,6 +71,7 @@ html {
   border-radius: 5px;
   padding: auto;
   background: #5e5d5d;
+  border-right: 6px solid var(--third-color);
 }
 
 .sideBar-item .menu-icon {
@@ -78,6 +84,7 @@ html {
   padding: auto;
   background: var(--active-background-color);
   border-radius: 5px;
+  border-right: 6px solid var(--third-color);
 }
 
 /* for Top bar style */
@@ -108,9 +115,10 @@ html {
 }
 
 .page-title h2 {
-  font-size: 170%;
-  font-family: var(--font-family-titles);
-  letter-spacing: 2px;
+  font-size: 180%;
+  font-family: var(--font-family-main);
+  letter-spacing: 1px;
+  margin-bottom: -10px;
 }
 
 .profile-setting {
@@ -123,7 +131,7 @@ html {
 /* for login page style */
 .login-container {
   height: 100vh;
-  background-color: var(--primary-color);
+  background-color: #fff;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -138,6 +146,10 @@ html {
   text-align: center;
 }
 
+.login-card {
+  background-color: #f4f3f0;
+}
+
 .loginForm h2,
 .loginForm p,
 .loginForm h4 {
@@ -149,11 +161,7 @@ html {
 }
 
 .buttonField {
-  background-image: linear-gradient(
-    to right,
-    #000,
-    #000
-  );
+  background-image: linear-gradient(to right, #000, #000);
   color: var(--third-color);
   width: 80%;
 }
@@ -191,7 +199,7 @@ html {
 
 .register-container {
   height: 100vh;
-  background-color: var(--primary-color);
+  background-color: #fff;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -206,6 +214,10 @@ html {
   padding-top: 50px;
   padding-bottom: 50px;
   text-align: center;
+}
+
+.register-card {
+  background-color: #f4f3f0;
 }
 
 /* for scrollable style */
@@ -447,100 +459,7 @@ html {
   transition: border-color 0.3s;
 }
 
-/* for dialog style */
-.css-rnmm7m-MuiPaper-root-MuiDialog-paper {
-  background-color: var(--primary-color);
-  color: var(--primary-color);
-  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  border-radius: 4px;
-  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
-    0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
-  margin: 32px;
-  position: relative;
-  overflow-y: auto;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  max-height: calc(100% - 64px);
-  max-width: 900px;
-  width: calc(100% - 64px);
-}
-
-.dialog-container {
-  background-color: var(--primary-color);
-  color: var(--primary-color);
-}
-
 /* for all text field style */
-
-/* .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-  text-align: left;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  top: -5px;
-  left: 0;
-  margin: 0;
-  padding: 0 8px;
-  pointer-events: none;
-  border-radius: inherit;
-  border-style: solid;
-  border-width: 1px;
-  overflow: hidden;
-  min-width: 0%;
-  border-color: var(--text-second-color);
-  color: var(--text-second-color);
-} */
-
-/* .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  font: inherit;
-  letter-spacing: inherit;
-  color: currentColor;
-  padding: 4px 0 5px;
-  border: 0;
-  box-sizing: content-box;
-  background: none;
-  height: 1.4375em;
-  margin: 0;
-  -webkit-tap-highlight-color: transparent;
-  display: block;
-  min-width: 0;
-  width: 100%;
-  -webkit-animation-name: mui-auto-fill-cancel;
-  animation-name: mui-auto-fill-cancel;
-  -webkit-animation-duration: 10ms;
-  animation-duration: 10ms;
-  padding: 16.5px 14px;
-  color: var(--text-second-color);
-} */
-
-/* .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.4375em;
-  letter-spacing: 0.00938em;
-  color: rgba(0, 0, 0, 0.87);
-  box-sizing: border-box;
-  position: relative;
-  cursor: text;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  position: relative;
-  border-radius: 4px;
-  color: #fff;
-} */
 
 :where(.css-dev-only-do-not-override-p8b6i).ant-upload-wrapper
   .ant-upload-list {
@@ -585,11 +504,18 @@ html {
 }
 
 .blog-container {
-  margin-top: 6%;
+  margin-top: 5%;
   margin-left: 15%;
+  margin-bottom: -10px;
   width: 84%;
-  position: fixed;
-  box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, 0.19);
+}
+
+.blog-category {
+  margin: 20px;
+}
+
+.blog-category-list {
+  margin-top: 20px;
 }
 
 .more-btn {
@@ -598,6 +524,87 @@ html {
 
 .text-danger {
   color: rgb(251, 9, 9);
+}
+
+.create-btn {
+  background-image: linear-gradient(to right, #000, #000);
+  color: var(--third-color);
+  width: 100%;
+}
+
+.create-btn:hover {
+  background-image: linear-gradient(
+    to right,
+    var(--third-color),
+    var(--third-color)
+  );
+  color: #000;
+}
+
+.category-detail-container {
+  margin-top: 8%;
+}
+
+.detailBlog-container {
+  margin-top: 8%;
+}
+
+.detailBlog-content {
+  color: var(--text-second-color);
+  margin: 0px auto;
+  margin-top: -20px;
+}
+
+.detailBlog-content h1 {
+  text-align: center;
+}
+
+.detailBlog-content img {
+  margin-left: 30%;
+  margin-top: -20px;
+}
+
+.detailBlog-content p {
+  margin: 50px;
+  text-align: justify;
+  font-size: var(--full-width-post-font-size);
+  font-family: var(--font-family-main);
+  line-height: var(--full-width-post-line-height);
+}
+
+.blog-info {
+  text-align: center;
+}
+
+.blog-info p {
+  color: var(--color-gray);
+  text-align: center;
+  margin-top: -20px;
+  font-size: 12px;
+}
+
+.blog-links {
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+  background-color: var(--color-second-gray);
+  border-radius: 10px;
+  width: 50%;
+  margin: 0px auto;
+  padding: 5px;
+  margin-top: 20px;
+}
+
+.blog-links a {
+  color: #000;
+  border-bottom: 1px solid #000;
+}
+
+.blog-links a:hover {
+  color: #fff;
+  background-color: var(--color-hover-title);
+  padding: 2px;
+  border-radius: 5px;
 }
 
 /* for resume page style */
@@ -655,7 +662,86 @@ html {
   width: 50%;
 }
 
-.change-password-form{
+.change-password-form {
   margin: 0px auto;
   text-align: center;
+}
+
+/* for contact page style */
+.contacts-main-container {
+  margin-top: 6%;
+  margin-left: 17%;
+  width: 80%;
+}
+
+.comment-list {
+  border: none;
+}
+
+.comment-contact {
+  display: flex;
+}
+
+.comment-info {
+  margin-left: 15px;
+  margin-top: -10px;
+}
+
+.comment-info h5 {
+  color: var(--color-gray);
+  width: 100%;
+  margin-top: -10px;
+}
+
+.comment-content p {
+  color: var(--color-gray);
+  width: 100%;
+  text-align: justify;
+}
+
+/* for profile style */
+.profile-container {
+  margin-top: 6%;
+  margin-left: 15%;
+  width: 84%;
+}
+
+.photo-content {
+  display: flex;
+  justify-content: start;
+}
+
+.img-pp {
+  margin-left: 10px;
+}
+
+.upload-photo,
+.remove-photo {
+  margin-left: 60px;
+  margin-top: 20px;
+}
+
+.profile-btn {
+  margin-top: 50px;
+}
+.maker-btn {
+  background-image: linear-gradient(to right, #000, #000);
+  color: var(--third-color);
+  width: 15%;
+  margin-top: 30px;
+  float: right;
+}
+
+.maker-btn:hover {
+  background-image: linear-gradient(
+    to right,
+    var(--third-color),
+    var(--third-color)
+  );
+  color: #000;
+}
+
+.profile-form{
+  padding-top: 20px;
+  margin-bottom: 9%;
 }

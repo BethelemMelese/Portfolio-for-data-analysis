@@ -8,7 +8,7 @@ import { Form } from "../../commonComponent/Form";
 import Controls from "../../commonComponent/Controls";
 import axios from "axios";
 import { appUrl } from "../../appurl";
-import logo from "../../images/White Img Logo.png";
+import logo from "../../images/WHite Logo.png";
 import Notification from "../../commonComponent/notification";
 
 interface RegistrationState {
@@ -107,7 +107,7 @@ const Registration = () => {
     <div className="register-container">
       <div className="registerForm">
         <Paper elevation={8}>
-          <Card>
+          <Card className="register-card">
             <Form autoComplete="off" noValidate onSubmit={formik.handleSubmit}>
               <Grid container spacing={0}>
                 <Grid item xs={12}>
@@ -115,7 +115,7 @@ const Registration = () => {
                     src={logo}
                     className="log-img"
                     alt="Profile Picture"
-                    style={{ width: 150, height: 50, borderRadius: 10 }}
+                    style={{ width: 160}}
                   />
                   <h2>
                     <b>Ablene Melese</b> / DATA SCIENTISTS

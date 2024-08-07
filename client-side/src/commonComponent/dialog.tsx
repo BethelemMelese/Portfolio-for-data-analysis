@@ -41,23 +41,20 @@ export const SamllDialogs = ({ ...props }) => {
 
   return (
     <React.Fragment>
-      <div className="dialog-container">
-        <BootstrapDialog
-          aria-labelledby="customized-dialog-title"
-          open={openDialog}
-          sx={{
-            "& .MuiDialog-paper": {
-              width: "50%",
-              height: height,
-              maxHeight: maxHeight,
-              backgroundColor: "#000",
-            },
-          }}
-          maxWidth="sm"
-        >
-          <DialogContent dividers>{children}</DialogContent>
-        </BootstrapDialog>
-      </div>
+      <BootstrapDialog
+        aria-labelledby="customized-dialog-title"
+        open={openDialog}
+        sx={{
+          "& .MuiDialog-paper": {
+            width: "50%",
+            height: height,
+            maxHeight: maxHeight,
+          },
+        }}
+        maxWidth="sm"
+      >
+        <DialogContent dividers>{children}</DialogContent>
+      </BootstrapDialog>
     </React.Fragment>
   );
 };

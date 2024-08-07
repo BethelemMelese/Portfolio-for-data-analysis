@@ -39,6 +39,30 @@ const GetUserByUserName = async (req, res) => {
   }
 };
 
+const GetUserByToken = async (req, res) => {
+  try {
+    const { token } = req.params;
+    const user = await User.findOne({ token: token });
+    if (!user) {
+      res.status(404).json({ message: "User not Found !" });
+    }
+
+    res.status(200).json({
+      id: user._id,
+      firstName: user.firstName,
+      middleName: user.middleName,
+      lastName: user.lastName,
+      fullName: user.fullName,
+      phone: user.phone,
+      email: user.email,
+      profession: user.profession,
+      profileImage: user.profileImage,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const LoginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -142,15 +166,24 @@ const RegisterUser = async (req, res) => {
 const UpdateUserInfo = async (req, res) => {
   try {
     const { id } = req.params;
-
-    const user = await User.findByIdAndUpdate(id, req.body);
-
-    if (!user) {
-      return res.status(404).json({ message: "User not Found !" });
-    }
-
-    const updatedUser = await User.findById(id);
-    res.status(200).json(updatedUser);
+    const user = await User.findByIdAndUpdate(
+      { _id: id },
+      {
+        firstName: req.body.firstName,
+        middleName: req.body.middleName,
+        lastName: req.body.lastName,
+        fullName:
+          req.body.firstName +
+          " " +
+          req.body.middleName +
+          " " +
+          req.body.lastName,
+        phone: req.body.phone,
+        email: req.body.email,
+        profession: req.body.profession,
+      }
+    );
+     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -195,6 +228,7 @@ const UpdateProfileImg = async (req, res) => {
       res.status(404).json({ message: "User is Not Found !" });
     }
 
+    console.log("req.file...",req.file);
     const updateUserProfile = await User.findByIdAndUpdate(id, {
       profileImage: req.file.filename,
     });
@@ -249,6 +283,7 @@ const DownloadPhoto = async (req, res) => {
   try {
     const { filePath } = req.params;
     const path = process.env.FILE_PATH;
+    console.log("path...",path)
     const response = path + filePath;
     res.sendFile(response);
   } catch (error) {
@@ -260,6 +295,7 @@ module.exports = {
   GetUser,
   GetUserById,
   GetUserByUserName,
+  GetUserByToken,
   LoginUser,
   GenerateToken,
   VerificationToken,

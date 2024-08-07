@@ -6,11 +6,11 @@ const blogItemSchema = mongoose.Schema(
       type: String,
       required: [true, "Please insert the Blog Item"],
     },
-    Author: {
+    author: {
       type: String,
       required: true,
     },
-    PublishedDate: {
+    publishedDate: {
       type: Date,
       required: true,
     },
@@ -18,9 +18,14 @@ const blogItemSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    blogCategoryId: {
+    blogImage: {
       type: String,
-      required: true,
+      required: [true, "please insert image path"],
+    },
+    blogCategoryId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogCategory",
+      required: false,
     },
   },
   {

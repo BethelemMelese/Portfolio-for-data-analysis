@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
 import { appUrl } from "../../appurl";
-import logo from "../../images/White Img Logo.png";
+import logo from "../../images/WHite Logo.png";
 import Notification from "../../commonComponent/notification";
 import { Form } from "../../commonComponent/Form";
 import Controls from "../../commonComponent/Controls";

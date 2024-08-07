@@ -7,6 +7,7 @@ import ContactsIcon from "@mui/icons-material/Contacts";
 import { useEffect, useState } from "react";
 import { Divider, IconButton, Tooltip } from "@mui/material";
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
+import Whitelogo from "../images/WHite Logo 2.png";
 
 type Theme = "dark" | "light";
 
@@ -34,9 +35,10 @@ const SideBar = ({ ...props }) => {
   return (
     <>
       <div className="sidebar-menu">
-        <h2>
+        {/* <h2>
           <b>Ablene Melese</b> / DATA SCIENTISTS
-        </h2>
+        </h2> */}
+        <img src={Whitelogo} width={160} />
         <Divider orientation="horizontal" sx={{ borderWidth: 1 }} />
         <ul className="menu-items">
           <li>
@@ -102,7 +104,7 @@ const SideBar = ({ ...props }) => {
         </ul>
 
         <div className="theme-setting">
-          <Tooltip
+          {/* <Tooltip
             title={`Switch to ${theme == "light" ? "Dark" : "Light"} Mode`}
             placement="bottom"
             color="light"
@@ -124,7 +126,7 @@ const SideBar = ({ ...props }) => {
                 )}
               </a>
             </div>
-          </Tooltip>
+          </Tooltip> */}
         </div>
       </div>
     </>

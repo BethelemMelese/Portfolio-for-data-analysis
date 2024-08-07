@@ -14,8 +14,8 @@ const projectSchema = mongoose.Schema(
       required: [true, "Please insert the Project Description"],
     },
     projectImage: {
-      data: Buffer,
-      contentType: String,
+      type: String,
+      required: [true, "please insert image path"],
     },
     sourceCodeLink: {
       type: String,

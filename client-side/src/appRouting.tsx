@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import AboutMe from "./component/aboutMe";
 import Blog from "./component/blog";
 import ContactMe from "./component/contactMe";
@@ -14,6 +14,7 @@ import Dashboard from "./component/Dashboard";
 import ViewResume from "./component/resume/view";
 import ChangePassword from "./component/changePassword";
 import Profile from "./component/profile";
+import ViewContact from "./component/contactMe/view";
 import "./css/style.css";
 import "./css/responsive.css";
 import "./css/main.style.css";
@@ -43,6 +44,7 @@ function AppRoute() {
           <Route path="viewProject" element={<ViewProject />} />
           <Route path="viewBlog" element={<ViewBlog />} />
           <Route path="viewResume" element={<ViewResume />} />
+          <Route path="viewContacts" element={<ViewContact />} />
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="profile" element={<Profile />} />
         </Route>

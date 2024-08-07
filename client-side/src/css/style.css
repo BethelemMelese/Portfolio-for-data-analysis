@@ -44,7 +44,7 @@ nav {
   color: var(--text-second-color);
 } */
 
-.nav-log img{
+.nav-log img {
   margin-top: 30px;
   margin-left: 60px;
 }
@@ -672,10 +672,9 @@ nav {
   padding-left: 10px;
   width: 35%;
   font-size: 12px;
-  
 }
 
-.blog-item .blog-item-content h6{
+.blog-item .blog-item-content h6 {
   letter-spacing: -0.02em;
   line-height: 200%;
   font-size: 14px;
@@ -690,6 +689,7 @@ nav {
   color: var(--color-gray);
   font-size: 12px;
 }
+
 /* for project style part is here */
 .proj-container {
   background: linear-gradient(180deg, #f2de1f 50%, var(--primary-color) 50%);
@@ -928,7 +928,17 @@ nav {
 
 .contactsubmit {
   background-image: linear-gradient(to right, #000, #000);
+  color: var(--third-color);
   width: 40%;
+}
+
+.contactsubmit:hover {
+  background-image: linear-gradient(
+    to right,
+    var(--third-color),
+    var(--third-color)
+  );
+  color: #000;
 }
 
 .contact-footer {
@@ -936,7 +946,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-top: -18px;
+  margin-top: 15px;
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {

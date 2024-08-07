@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Form } from "../../commonComponent/Form";
 import Controls from "../../commonComponent/Controls";
-import logo from "../../images/White Img Logo.png";
+import logo from "../../images/WHite Logo.png";
 import axios from "axios";
 import { appUrl } from "../../appurl";
 import Notification from "../../commonComponent/notification";
@@ -94,7 +94,7 @@ const Login = () => {
     <div className="login-container">
       <div className="loginForm">
         <Paper elevation={8}>
-          <Card>
+          <Card className="login-card">
             <Form autoComplete="off" noValidate onSubmit={formik.handleSubmit}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -102,7 +102,7 @@ const Login = () => {
                     src={logo}
                     className="log-img"
                     alt="Profile Picture"
-                    style={{ width: 150, height: 50, borderRadius: 10 }}
+                    style={{ width: 160 }}
                   />
                   <h2>
                     <b>Ablene Melese</b> / DATA SCIENTISTS

@@ -10,6 +10,10 @@ const blogCategorySchema = mongoose.Schema(
       type: String,
       required: [true, "Please insert Category Description"],
     },
+    categoryImage: {
+      type: String,
+      required: [true, "please insert image path"],
+    },
     blogItemId: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -23,4 +27,4 @@ const blogCategorySchema = mongoose.Schema(
   }
 );
 
-module.exports=mongoose.model("BlogCategory",blogCategorySchema);
+module.exports = mongoose.model("BlogCategory", blogCategorySchema);

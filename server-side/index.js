@@ -6,6 +6,8 @@ const app = express();
 const ProjectRoute = require("./routes/project.route.js");
 const ResumeRoute = require("./routes/resume.route.js");
 const UserRoute = require("./routes/user.route.js");
+const ContactRoute = require("./routes/contact.route.js");
+const BlogRoute = require("./routes/blog.route.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -48,3 +50,5 @@ app.get("/", (req, res) => {
 app.use("/api/project", ProjectRoute);
 app.use("/api/resume", ResumeRoute);
 app.use("/api/user", UserRoute);
+app.use("/api/contact", ContactRoute);
+app.use("/api/blog/", BlogRoute);

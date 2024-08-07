@@ -16,9 +16,13 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import profilePhoto from "../images/Pp.jpeg";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import UserService from "../police/userService";
+import axios from "axios";
+import { appUrl } from "../appurl";
+import userService from "../police/userService";
 
 const TopBar = ({ ...props }) => {
-  const [routeName, setRouteName] = useState(props.routeName);
+  const [dataSource, setDataSource] = useState<any>(0);
+  const [response, setResponse] = useState<any>();
   const [pageTitle, setPageTitle] = useState();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const userName = UserService.currentUser;
@@ -29,6 +33,24 @@ const TopBar = ({ ...props }) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+
+  const onFetchSuccess = (response: any) => {
+    setResponse(response);
+  };
+
+  const onFetchError = (error: any) => {
+    setNotify({
+      isOpen: true,
+      message: error,
+      type: "error",
+    });
   };
 
   const logOut = () => {
@@ -45,6 +67,50 @@ const TopBar = ({ ...props }) => {
     }
   }, [props.routeName == undefined]);
 
+  //   Notification for Success and error actions
+  const onViewError = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "error",
+      message: response,
+    });
+  };
+
+  //   for get all data
+  const onFetchContacts = () => {
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + "contact/notify")
+      .then((res) => {
+        setDataSource(res.data.message);
+      })
+      .catch((error: any) => {
+        onViewError(error.response.data.error);
+      });
+  };
+
+  //   to fetch data using useEffect, when every time this page is loaded
+  useEffect(() => {
+    onFetchContacts();
+  }, []);
+
+  useEffect(() => {
+    const userToken = userService.token;
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + `user/userInfo/${userToken}`)
+      .then((response: any) => onFetchSuccess(response.data))
+      .catch((error: any) => onFetchError(error));
+  }, []);
+
   return (
     <div>
       <nav className="top-bar-menu">
@@ -53,7 +119,7 @@ const TopBar = ({ ...props }) => {
         </div>
         <div className="profile-setting">
           <IconButton id="check" onClick={handleClick}>
-            <Badge badgeContent={4} color="error">
+            <Badge badgeContent={dataSource} color="error">
               <NotificationsIcon />
             </Badge>
           </IconButton>
@@ -68,17 +134,18 @@ const TopBar = ({ ...props }) => {
               aria-expanded={open ? "true" : undefined}
             >
               <Badge
-                badgeContent={userName}
                 color="success"
                 anchorOrigin={{
                   vertical: "bottom",
                   horizontal: "right",
                 }}
               >
-                <Avatar
-                  sx={{ width: 45, height: 45 }}
-                  src={profilePhoto}
-                ></Avatar>
+                {response != undefined && (
+                  <Avatar
+                    sx={{ width: 45, height: 45 }}
+                    src={appUrl + `user/uploads/${response.profileImage}`}
+                  />
+                )}
               </Badge>
             </IconButton>
           </Tooltip>
