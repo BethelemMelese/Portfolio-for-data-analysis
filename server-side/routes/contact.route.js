@@ -12,6 +12,6 @@ router.get("/", GetAllContact);
 router.post("/", AddContactMe);
 router.get("/notify/", GetNotify);
 router.get("/latest/", GetLatestContact);
-router.put("/:id",EditStatus);
+router.get("/editStatus/",EditStatus);
 
 module.exports = router;

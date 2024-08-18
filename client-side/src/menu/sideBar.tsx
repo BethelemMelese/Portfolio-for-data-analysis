@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Divider, IconButton, Tooltip } from "@mui/material";
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 import Whitelogo from "../images/WHite Logo 2.png";
+import Blacklogo from "../images/Black  Logo 2.png";
 
 type Theme = "dark" | "light";
 
@@ -38,7 +39,11 @@ const SideBar = ({ ...props }) => {
         {/* <h2>
           <b>Ablene Melese</b> / DATA SCIENTISTS
         </h2> */}
-        <img src={Whitelogo} width={160} />
+        {theme == "light" ? (
+          <img src={Whitelogo} width={100} />
+        ) : (
+          <img src={Blacklogo} width={100} />
+        )}
         <Divider orientation="horizontal" sx={{ borderWidth: 1 }} />
         <ul className="menu-items">
           <li>

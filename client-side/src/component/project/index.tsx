@@ -1,16 +1,11 @@
-import {
-  Grid,
-  IconButton,
-  ListItemIcon,
-  ListItemText,
-  MenuItem,
-  Menu,
-} from "@mui/material";
-import { Card } from "antd";
+import { Grid, IconButton, MenuItem, Menu, Button } from "@mui/material";
+import { Alert, Card, Dropdown, Spin } from "antd";
 import { Carousel } from "antd";
 import projectPhoto from "../../images/nasa-Q1p7bh3SHj8-unsplash.jpg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { appUrl } from "../../appurl";
+import axios from "axios";
 
 const mokeData = [
   {
@@ -46,7 +41,23 @@ const mokeData = [
 ];
 
 const Project = () => {
+  const [projectResponse, setProjectResponse] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+
+  const onViewError = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "error",
+      message: response,
+    });
+  };
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -54,6 +65,24 @@ const Project = () => {
     setAnchorEl(null);
   };
   const open = Boolean(anchorEl);
+
+  useEffect(() => {
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + `project`)
+      .then((res) => {
+        setLoading(false);
+        setProjectResponse(res.data);
+      })
+      .catch((error: any) => {
+        setLoading(false);
+        onViewError(error.response.data.error);
+      });
+  }, []);
   return (
     <div className="proj-container">
       <Card className="proj-container">
@@ -79,51 +108,69 @@ const Project = () => {
           <Grid item xs={12}>
             <div className="project-slides">
               <Card className="project-card">
-                <Carousel arrows infinite={true}>
-                  {mokeData.map((item: any) => {
-                    return (
-                      <Card
-                        title={<h3>{item.projectName}</h3>}
-                        className="sec-project-card"
-                        extra={
-                          <>
-                            <IconButton
-                              onClick={handleClick}
+                <Spin
+                  spinning={loading}
+                  delay={500}
+                  size="large"
+                  tip="Loading..."
+                >
+                  <Carousel autoplay arrows infinite={true}>
+                    {projectResponse.map((item: any) => {
+                      return (
+                        <Card
+                          title={<h3>{item.projectTitle}</h3>}
+                          className="sec-project-card"
+                          extra={
+                            <Button
+                              variant="text"
                               size="small"
-                              className="more-lev-btn"
-                              style={{
-                                background: "#fff",
-                                borderRadius: "50px",
-                              }}
+                              color="warning"
+                              target="_blank"
+                              href={item.otherLink}
                             >
-                              <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                              anchorEl={anchorEl}
-                              open={open}
-                              onClose={handleClose}
-                              onClick={handleClose}
-                            >
-                              <MenuItem>Source Code</MenuItem>
-                              <MenuItem>See More</MenuItem>
-                            </Menu>
-                          </>
-                        }
-                      >
-                        <div className="project-layout">
-                          <div className="project-dec">
-                            <p>
-                              {item.projectDescription.slice(0, 400) + "..."}
-                            </p>
+                              See More
+                            </Button>
+                          }
+                        >
+                          <div className="project-layout">
+                            <div className="project-dec">
+                              <Grid container spacing={4}>
+                                <Grid item xs={12}>
+                                  <p>
+                                    {item.projectDescription.slice(0, 400) +
+                                      "..."}
+                                  </p>
+                                </Grid>
+                                <Grid item xs={12}>
+                                  <Button
+                                    variant="outlined"
+                                    size="small"
+                                    color="warning"
+                                    target="_blank"
+                                    href={item.sourceCodeLink}
+                                  >
+                                    Source Code
+                                  </Button>
+                                </Grid>
+                              </Grid>
+                            </div>
+                            <div className="project-image">
+                              <img
+                                src={
+                                  appUrl +
+                                  `project/uploads/${item.projectImage}`
+                                }
+                                width="80%"
+                                style={{ maxHeight: "80%", maxWidth: "80%" }}
+                                height="90%"
+                              />
+                            </div>
                           </div>
-                          <div className="project-image">
-                            <img src={projectPhoto} width="90%" height="90%" />
-                          </div>
-                        </div>
-                      </Card>
-                    );
-                  })}
-                </Carousel>
+                        </Card>
+                      );
+                    })}
+                  </Carousel>
+                </Spin>
               </Card>
             </div>
           </Grid>

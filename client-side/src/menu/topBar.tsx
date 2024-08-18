@@ -1,4 +1,4 @@
-import { IconButton, Tooltip } from "@mui/material";
+import { Grid, IconButton, Tooltip } from "@mui/material";
 import * as React from "react";
 import Badge from "@mui/material/Badge";
 import { useEffect, useState } from "react";
@@ -9,23 +9,38 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SyncLockIcon from "@mui/icons-material/SyncLock";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import profilePhoto from "../images/Pp.jpeg";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import UserService from "../police/userService";
 import axios from "axios";
 import { appUrl } from "../appurl";
 import userService from "../police/userService";
+import { Button, Drawer, List } from "antd";
+
+const data = [
+  {
+    title: "Blog Category 1",
+  },
+  {
+    title: "Blog Category 2",
+  },
+  {
+    title: "Blog Category 3",
+  },
+  {
+    title: "Blog Category 4",
+  },
+];
 
 const TopBar = ({ ...props }) => {
   const [dataSource, setDataSource] = useState<any>(0);
   const [response, setResponse] = useState<any>();
   const [pageTitle, setPageTitle] = useState();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const userName = UserService.currentUser;
+  const [openNotify, setOpenNotify] = useState(false);
+  const [latestContact, setLatestContact] = useState<any>();
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -33,6 +48,14 @@ const TopBar = ({ ...props }) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const showDrawer = () => {
+    setOpenNotify(true);
+  };
+
+  const onClose = () => {
+    setOpenNotify(false);
   };
 
   const [notify, setNotify] = useState({
@@ -76,8 +99,8 @@ const TopBar = ({ ...props }) => {
     });
   };
 
-  //   for get all data
-  const onFetchContacts = () => {
+  //   to fetch data using useEffect, when every time this page is loaded
+  useEffect(() => {
     axios
       .create({
         headers: {
@@ -91,11 +114,22 @@ const TopBar = ({ ...props }) => {
       .catch((error: any) => {
         onViewError(error.response.data.error);
       });
-  };
+  }, []);
 
-  //   to fetch data using useEffect, when every time this page is loaded
   useEffect(() => {
-    onFetchContacts();
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + "contact/latest")
+      .then((res) => {
+        setLatestContact(res.data);
+      })
+      .catch((error: any) => {
+        onViewError(error.response.data.error);
+      });
   }, []);
 
   useEffect(() => {
@@ -111,6 +145,22 @@ const TopBar = ({ ...props }) => {
       .catch((error: any) => onFetchError(error));
   }, []);
 
+  const onUpdateStatus = () => {
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + "contact/editStatus")
+      .then((res) => {
+        setLatestContact(res.data);
+      })
+      .catch((error: any) => {
+        onViewError(error.response.data.error);
+      });
+  };
+
   return (
     <div>
       <nav className="top-bar-menu">
@@ -118,11 +168,48 @@ const TopBar = ({ ...props }) => {
           <h2>{props.routeName == undefined ? pageTitle : props.routeName}</h2>
         </div>
         <div className="profile-setting">
-          <IconButton id="check" onClick={handleClick}>
+          <IconButton id="check" onClick={showDrawer}>
             <Badge badgeContent={dataSource} color="error">
               <NotificationsIcon />
             </Badge>
           </IconButton>
+
+          <Drawer title="Notification" onClose={onClose} open={openNotify}>
+            <List
+              itemLayout="horizontal"
+              dataSource={latestContact}
+              pagination={{
+                pageSize: 4,
+              }}
+              renderItem={(item: any) => (
+                <List.Item>
+                  <List.Item.Meta
+                    title={item.name}
+                    description={
+                      <Grid container spacing={0}>
+                        <Grid item xs={12} className="notify-message">
+                          <p>{item.email}</p>
+                          <p>{item.message.slice(0, 100) + "..."}</p>
+                        </Grid>
+                      </Grid>
+                    }
+                  />
+                </List.Item>
+              )}
+            />
+            {latestContact != 0 && (
+              <Button
+                className="see-more-notify"
+                onClick={() => {
+                  onUpdateStatus();
+                  navigate("/datawizdipsy/viewContacts");
+                  window.location.reload();
+                }}
+              >
+                See More
+              </Button>
+            )}
+          </Drawer>
 
           <Tooltip title="Account settings">
             <IconButton

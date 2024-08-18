@@ -39,8 +39,9 @@ html {
 } */
 
 .sidebar-menu img {
-  margin-left: 30px;
-  margin-top: 10px;
+  margin-left: 50px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .sidebar-menu .collapsed {
@@ -504,18 +505,28 @@ html {
 }
 
 .blog-container {
-  margin-top: 5%;
+  margin-top: 80px;
   margin-left: 15%;
   margin-bottom: -10px;
   width: 84%;
 }
 
-.blog-category {
-  margin: 20px;
-}
-
 .blog-category-list {
   margin-top: 20px;
+  background-color: var(--main-sec-background-color);
+  color: var(--text-second-color);
+  border: none;
+}
+
+.blog-list {
+  background-color: var(--main-sec-background-color);
+  color: var(--text-second-color);
+}
+
+.create-card {
+  background-color: var(--main-sec-background-color);
+  color: var(--text-second-color);
+  border: 1px;
 }
 
 .more-btn {
@@ -605,6 +616,18 @@ html {
   background-color: var(--color-hover-title);
   padding: 2px;
   border-radius: 5px;
+}
+
+.create-blog-container {
+  margin: 20px;
+}
+
+.add-list-btn {
+  float: left;
+}
+
+.remove-list-btn {
+  float: right;
 }
 
 /* for resume page style */
@@ -741,7 +764,28 @@ html {
   color: #000;
 }
 
-.profile-form{
+.profile-form {
   padding-top: 20px;
   margin-bottom: 9%;
+}
+
+.notify-message p {
+  color: var(--color-gray);
+}
+
+.see-more-notify {
+  position: fixed;
+  width: 22%;
+  margin-top: 18px;
+  background-image: linear-gradient(to right, #000, #000);
+  color: #fff;
+}
+
+.see-more-notify:hover {
+  background-image: linear-gradient(
+    to right,
+    var(--third-color),
+    var(--third-color)
+  );
+  color: #000;
 }

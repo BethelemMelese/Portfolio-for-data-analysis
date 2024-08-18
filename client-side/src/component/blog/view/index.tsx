@@ -2,9 +2,6 @@ import {
   Button,
   Grid,
   IconButton,
-  Menu,
-  MenuItem,
-  Paper,
   Tooltip,
 } from "@mui/material";
 import { Card, Modal } from "antd";
@@ -189,7 +186,6 @@ const ViewBlog = () => {
 
   return (
     <div className="blog-container">
-      <div className="blog-category">
         {viewCategory == "view" && (
           <Grid container spacing={2}>
             <Grid item xs={8}>
@@ -245,6 +241,7 @@ const ViewBlog = () => {
                             </>
                           }
                           style={{ marginTop: "20px" }}
+                          className="blog-list"
                         >
                           <Grid container spacing={0}>
                             <Grid item xs={12} style={{ marginTop: "-15px" }}>
@@ -355,7 +352,7 @@ const ViewBlog = () => {
                       ]}
                     >
                       <List.Item.Meta
-                        title={<a href="https://ant.design">{item.title}</a>}
+                        title={item.title}
                         description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                       />
                     </List.Item>
@@ -381,7 +378,6 @@ const ViewBlog = () => {
           />
         )}
         <Notification notify={notify} setNotify={setNotify} />
-      </div>
     </div>
   );
 };

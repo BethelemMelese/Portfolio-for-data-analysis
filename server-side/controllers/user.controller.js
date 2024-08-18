@@ -228,7 +228,6 @@ const UpdateProfileImg = async (req, res) => {
       res.status(404).json({ message: "User is Not Found !" });
     }
 
-    console.log("req.file...",req.file);
     const updateUserProfile = await User.findByIdAndUpdate(id, {
       profileImage: req.file.filename,
     });
@@ -283,7 +282,6 @@ const DownloadPhoto = async (req, res) => {
   try {
     const { filePath } = req.params;
     const path = process.env.FILE_PATH;
-    console.log("path...",path)
     const response = path + filePath;
     res.sendFile(response);
   } catch (error) {

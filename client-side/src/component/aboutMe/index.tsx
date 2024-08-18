@@ -1,6 +1,5 @@
 import { Avatar, Divider, Grid, Tooltip } from "@mui/material";
 import { Card } from "antd";
-import profilePhoto from "../../images/Pp.jpeg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -13,7 +12,6 @@ import Notification from "../../commonComponent/notification";
 const AboutMe = () => {
   const [dataSource, setDataSource] = useState<any>();
   const [response, setResponse] = useState<any>();
-  console.log("response...", response);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",

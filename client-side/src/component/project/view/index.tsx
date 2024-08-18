@@ -120,7 +120,7 @@ const ViewProject = () => {
       })
       .get(appUrl + `project/${id}`)
       .then((res) => {
-        setSelectedProject(res.data[0]);
+        setSelectedProject(res.data);
         setViewMode("edit");
       })
       .catch((error: any) => {
@@ -144,7 +144,7 @@ const ViewProject = () => {
             }}
             className="project-list"
           >
-            {dataSource.length != 0 && (
+            {dataSource != undefined && (
               <List
                 itemLayout="horizontal"
                 size="large"
@@ -159,7 +159,9 @@ const ViewProject = () => {
                       <Tooltip title="To edit the project">
                         <IconButton
                           onClick={() => {
-                            onUpdateCall(item.id);
+                            // onUpdateCall(item.id);
+                            setSelectedProject(item);
+                            setViewMode("edit");
                           }}
                         >
                           <ModeEditIcon color="warning" />
@@ -179,11 +181,7 @@ const ViewProject = () => {
                       <img
                         width={200}
                         alt="Project Image"
-                        src={`data:${
-                          item.projectImage.contentType
-                        },${Buffer.from(item.projectImage.data.data).toString(
-                          "base64"
-                        )}`}
+                        src={appUrl + `project/uploads/${item.projectImage}`}
                       />
                     }
                   >

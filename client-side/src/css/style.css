@@ -11,6 +11,82 @@ body {
   /* background-color: var(--primary-color); */
 }
 
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(20);
+  }
+  100% {
+    opacity: 2;
+    transform: translateY(1.1);
+  }
+}
+
+@keyframes msgIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+    transform: translateX(10px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(2);
+  }
+  100% {
+    opacity: 2;
+    transform: translateY(1.1);
+  }
+}
+
+@keyframes title {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(1.2);
+  }
+  100% {
+    opacity: 2;
+    transform: translateX(1.1);
+  }
+}
+
+@keyframes biocard {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(4);
+  }
+  100% {
+    opacity: 2;
+    transform: translateX(3);
+  }
+}
+
+@keyframes navin {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(20);
+  }
+  100% {
+    opacity: 2;
+    transform: translateY(1.1);
+  }
+}
+
 .sec-container {
   background-color: var(--primary-color);
 }
@@ -32,6 +108,7 @@ nav {
   width: 100%;
   z-index: 1;
   top: 0;
+  animation: navin 0.5s ease-in;
 }
 
 .nav-log {
@@ -69,6 +146,7 @@ nav {
   font-size: 13px;
   border-bottom: 1px solid var(--text-second-color);
   padding: 10px;
+  animation: navin 0.5s ease-in;
 }
 
 .nav-item-menu .nav-item:hover {
@@ -125,6 +203,7 @@ nav {
   border: none;
   width: 155%;
   height: 100%;
+  animation: biocard 1.5s ease-in;
 }
 
 .pic-item-card {
@@ -137,6 +216,7 @@ nav {
   margin-bottom: 20px;
   box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.19),
     10px 10px 10px 0 rgba(0, 0, 0, 0.2);
+  animation: biocard 2s ease-in;
 }
 
 .pic-photo {
@@ -218,6 +298,7 @@ nav {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   color: var(--text-second-color);
+  animation: title 1s ease-in;
 }
 
 .bio-detail p {
@@ -226,16 +307,19 @@ nav {
   font-size: 2.6vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-second-color);
+  animation: title 1.5s ease-in;
 }
 
 .bio-description p {
   color: var(--text-second-color);
+  animation: title 2s ease-in;
 }
 
 .bio-buttons {
   display: flex;
   width: 100px;
   margin: 20px;
+  animation: title 2.5s ease-in;
 }
 
 .bio-btn {
@@ -287,12 +371,12 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  animation: slideIn 1.5s ease-in;
 }
 
 .created-by {
   margin-left: 70px;
   padding-right: 20%;
-  /* margin-bottom: 10px; */
   margin-top: -10px;
 }
 
@@ -705,6 +789,7 @@ nav {
   border: none;
   box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.19),
     10px 10px 10px 0 rgba(0, 0, 0, 0.2);
+  animation: msgIn 1s ease-out;
 }
 
 .project-desc h1 {
@@ -729,12 +814,15 @@ nav {
   line-height: 160px;
   border: none;
   margin-bottom: 80px;
+  animation: slideIn 1s ease-out;
 }
 
 .project-slides {
   width: 60%;
   margin: 0px auto;
-  /* margin-bottom: 10px; */
+  box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.19),
+    10px 10px 10px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
 }
 
 .project-image img {
@@ -751,6 +839,7 @@ nav {
   background-color: var(--primary-color);
   color: var(--text-second-color);
   border: none;
+  margin-top: -17px;
   /* margin-top: -18px; */
 }
 
@@ -768,11 +857,6 @@ nav {
 
 .project-image img {
   border-radius: 10px;
-}
-
-.more-lev-btn {
-  background-color: var(--text-second-color);
-  color: var(--text-color);
 }
 
 :where(.css-dev-only-do-not-override-p8b6i).ant-carousel .slick-next {
@@ -851,6 +935,7 @@ nav {
   margin-left: 20%;
   background-color: var(--secondary-color);
   border: none;
+  animation: title 2s ease-in;
 }
 
 .contact-info-card {
@@ -862,6 +947,7 @@ nav {
   box-shadow: 6px 0 6px 0 rgba(130, 123, 94, 0.37),
     6px 10px 10px 0 rgba(0, 0, 0, 0.2);
   border: none;
+  animation: title 2.5s ease-in;
 }
 
 .google-map-location h2 {
@@ -941,12 +1027,17 @@ nav {
   color: #000;
 }
 
+.contact-form {
+  animation: biocard 2s ease-in;
+}
+
 .contact-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-top: 15px;
+  animation: slideIn 2.5s ease-in;
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {

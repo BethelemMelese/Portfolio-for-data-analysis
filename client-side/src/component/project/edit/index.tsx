@@ -32,6 +32,7 @@ const initialState: ProjectState = {
 const EditProject = ({ ...props }) => {
   const [viewMode, setViewMode] = useState(props.viewMode);
   const [selectedProject, setSelectedProject] = useState(props.selectedProject);
+  console.log("selectedProject..",selectedProject);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileList, setFileList] = useState<any>([]);
   const [validFileFormat, setValidFileFormat] = useState(false);

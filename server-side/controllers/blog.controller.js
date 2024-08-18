@@ -79,6 +79,7 @@ const AddCategoryWithBlog = async (req, res) => {
           author: element.author,
           publishedDate: new Date(),
           mainContent: element.mainContent,
+          blogImage:req.file.filename,
           blogCategoryId: item._id,
         }).then((response) => {
           res.status(200).json(response);

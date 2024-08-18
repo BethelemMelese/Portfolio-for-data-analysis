@@ -63,39 +63,30 @@ const CreateProject = async (req, res) => {
 
 const UpdateProject = async (req, res) => {
   try {
-    const { file } = req.file;
-    console.log("file..", file);
+    const { file } = req.file == undefined ? "" : req.file;
     const { id } = req.params;
-    console.log("id...", id);
-    const project = await Project.findById({ id });
-    console.log("project...", project);
-    let updatedProject;
+    let response;
+    const project = await Project.findById({ _id: id });
+
     if (project) {
-      updatedProject = file
-        ? await Project.findByIdAndUpdate(
-            { id },
-            {
-              projectTitle: req.body.projectTitle,
-              projectDescription: req.body.projectDescription,
-              sourceCodeLink: req.body.sourceCodeLink,
-              otherLink: req.body.otherLink,
-            }
-          )
-        : await Project.findByIdAndUpdate(
-            { id },
-            {
-              projectTitle: req.body.projectTitle,
-              projectDescription: req.body.projectDescription,
-              projectImage: {
-                data: req.file.buffer,
-                contentType: req.file.mimetype,
-              },
-              sourceCodeLink: req.body.sourceCodeLink,
-              otherLink: req.body.otherLink,
-            }
-          );
+      if (file == undefined) {
+        response = await Project.findByIdAndUpdate(id, {
+          projectTitle: req.body.projectTitle,
+          projectDescription: req.body.projectDescription,
+          sourceCodeLink: req.body.sourceCodeLink,
+          otherLink: req.body.otherLink,
+        });
+      } else {
+        response = await Project.findByIdAndUpdate(id, {
+          projectTitle: req.body.projectTitle,
+          projectDescription: req.body.projectDescription,
+          projectImage: req.file.filename,
+          sourceCodeLink: req.body.sourceCodeLink,
+          otherLink: req.body.otherLink,
+        });
+      }
     }
-    res.json(200).status(updatedProject);
+    res.status(200).json(response);
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -111,10 +102,22 @@ const DeleteProject = async (req, res) => {
   }
 };
 
+const DownloadPhoto = async (req, res) => {
+  try {
+    const { filePath } = req.params;
+    const path = process.env.FILE_PATH;
+    const response = path + filePath;
+    res.sendFile(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   GetAllProject,
   GetProjectById,
   CreateProject,
   UpdateProject,
   DeleteProject,
+  DownloadPhoto,
 };

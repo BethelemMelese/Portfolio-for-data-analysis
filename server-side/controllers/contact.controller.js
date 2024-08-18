@@ -63,14 +63,11 @@ const GetLatestContact = async (req, res) => {
 
 const EditStatus = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    const contact = await Contact.findByIdAndUpdate(
-      { _id: id },
-      {
-        reviewStatus: "Viewed",
-      }
+    const contact = await Contact.updateMany(
+      { reviewStatus: "Pending" },
+      { $set: { reviewStatus: "Viewed" } }
     );
+
     res.status(200).json(contact);
   } catch (error) {
     res.status(500).json({ message: error.message });
