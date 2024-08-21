@@ -181,7 +181,7 @@ const ViewProject = () => {
                       <img
                         width={200}
                         alt="Project Image"
-                        src={appUrl + `project/uploads/${item.projectImage}`}
+                        src={appUrl + `blog/uploads/${item.projectImage}`}
                       />
                     }
                   >

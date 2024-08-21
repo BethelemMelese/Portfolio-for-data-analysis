@@ -89,12 +89,41 @@ body {
 
 .sec-container {
   background-color: var(--primary-color);
+  transition: width 2s, height 2s, transform 2s;
 }
 
 .child-container {
   width: 0;
   height: 0;
   background-color: var(--primary-color);
+}
+
+.loading-container {
+  position: absolute;
+  inset: 0;
+  background-color: #1d1d1f;
+  /* opacity: 0.9; */
+  z-index: 100;
+  animation: navin 0.9s ease-out;
+}
+
+.loading-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px auto;
+  color: var(--third-color);
+}
+
+.loading-grid {
+  margin: 0px auto;
+  margin-left: 40%;
+}
+
+.loading-prog {
+  margin: 0px auto;
 }
 
 /* for the nav bar menu */
@@ -108,7 +137,7 @@ nav {
   width: 100%;
   z-index: 1;
   top: 0;
-  animation: navin 0.5s ease-in;
+  /* animation: navin 0.5s ease-in; */
 }
 
 .nav-log {
@@ -146,7 +175,7 @@ nav {
   font-size: 13px;
   border-bottom: 1px solid var(--text-second-color);
   padding: 10px;
-  animation: navin 0.5s ease-in;
+  /* animation: navin 0.5s ease-in; */
 }
 
 .nav-item-menu .nav-item:hover {
@@ -257,13 +286,12 @@ nav {
   display: flex;
   justify-content: space-around;
   padding: 15px 10px 5px 10px;
-  /* margin: 0px auto  ; */
   margin-right: 30px;
   margin-left: -24px;
 }
 
 .sm-item {
-  height: 20px;
+  height: 12px;
   margin: 0px auto;
 }
 
@@ -371,6 +399,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-bottom: 8px;
   animation: slideIn 1.5s ease-in;
 }
 
@@ -609,25 +638,29 @@ nav {
 }
 
 .shot-link h4 {
-  color: var(--color-gray);
-}
-
-.shot-link li {
-  text-decoration: none;
-  list-style: none;
-  margin: 20px;
+  margin-left: 30px;
   color: var(--color-gray);
 }
 
 .shot-link li a {
   text-decoration: none;
   list-style: none;
+  margin: 10px;
+  color: var(--color-gray);
+}
+
+.shot-link li {
+  text-decoration: none;
+  list-style: none;
+  padding: 5px;
 }
 
 .shot-link li:hover {
-  border-bottom: 1px solid var(--text-second-color);
-  background-color: var(--color-gray);
   border-radius: 5px;
+}
+
+.shot-link li a:hover {
+  color: var(--third-color);
 }
 
 .blog-sm h4 {
@@ -654,6 +687,7 @@ nav {
 
 .detail-blog-container {
   margin: 40px;
+  margin-top: -5%;
 }
 
 .detail-blog-content {
@@ -714,9 +748,9 @@ nav {
   margin-left: 20px;
 }
 
-.category-detail-container {
+.main-category-detail-container {
   margin: 30px;
-  margin-bottom: 10%;
+  margin-top: -4%;
 }
 
 .category-blog-content {
@@ -733,6 +767,8 @@ nav {
 .category-blog-content p {
   color: var(--text-second-color);
   font-family: var(--font-family-titles);
+  margin: 0px auto;
+  width: 60%;
 }
 
 .category-blog-img {
@@ -746,16 +782,24 @@ nav {
   color: var(--text-second-color);
   margin-left: 20px;
   margin-top: 20px;
+  margin: 5px;
+  float: left;
+  width: 30%;
+}
+
+.blog-item img {
+  border-radius: 10px;
 }
 
 .blog-item .blog-item-content p {
   background-color: var(--third-color);
   border-radius: 10px;
-  color: var(--text-color);
-  padding: 2px;
+  color: #000;
+  padding: 3px;
   padding-left: 10px;
   width: 35%;
   font-size: 12px;
+  font-weight: 500;
 }
 
 .blog-item .blog-item-content h6 {
@@ -763,6 +807,7 @@ nav {
   line-height: 200%;
   font-size: 14px;
   width: 100%;
+  text-align: justify;
 }
 
 .blog-item .blog-info p {
@@ -772,6 +817,7 @@ nav {
 .blog-item .blog-info {
   color: var(--color-gray);
   font-size: 12px;
+  float: left;
 }
 
 /* for project style part is here */
@@ -789,7 +835,7 @@ nav {
   border: none;
   box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.19),
     10px 10px 10px 0 rgba(0, 0, 0, 0.2);
-  animation: msgIn 1s ease-out;
+  animation: msgIn 0.5s ease-out;
 }
 
 .project-desc h1 {
@@ -814,7 +860,7 @@ nav {
   line-height: 160px;
   border: none;
   margin-bottom: 80px;
-  animation: slideIn 1s ease-out;
+  animation: slideIn 0.5s ease-out;
 }
 
 .project-slides {
@@ -943,7 +989,7 @@ nav {
   background-color: var(--third-color);
   width: 70%;
   height: 50%;
-  margin-top: 10px;
+  /* margin-top: 5px; */
   box-shadow: 6px 0 6px 0 rgba(130, 123, 94, 0.37),
     6px 10px 10px 0 rgba(0, 0, 0, 0.2);
   border: none;
@@ -968,13 +1014,13 @@ nav {
 .contact-sm-link {
   background-color: var(--sm-background-color);
   width: 114%;
-  height: 150%;
+  height: 152%;
   display: flex;
   justify-content: space-around;
-  padding: 15px 10px 15px 10px;
+  padding: 15px;
   margin-right: 30px;
   margin-left: -24px;
-  margin-bottom: -26px;
+  margin-bottom: -15px;
   border-radius: 2px;
 }
 
@@ -1129,4 +1175,86 @@ nav {
   -webkit-animation-duration: 10ms;
   animation-duration: 10ms;
   padding: 16.5px 14px;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  font: inherit;
+  letter-spacing: inherit;
+  color: #fff;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: #fff;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding: 16.5px 14px;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  font: inherit;
+  letter-spacing: inherit;
+  color: #fff;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding: 16.5px 14px;
+}
+
+.inputField {
+  /* color: #fff; */
+  width: 150%;
+  margin-top: 20px;
+  background-color: #8483833a;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 15px;
+  color: var(--text-second-color);
+}
+
+.contact-fields {
+  margin-left: -20%;
+}
+.back-btn {
+  margin-left: 100px;
+  margin-top: 30px;
+}
+
+.contact-btn{
+  margin-top: 40%;
+  width: 80%;
+  margin-left: -50px;
+}
+
+.contact-btn button{
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.error{
+  color: rgb(236, 11, 11);
+  margin-left: 30%;
+  margin-right: -100%;
+  margin-top: 5px;
+  font-size: 12px;
 }

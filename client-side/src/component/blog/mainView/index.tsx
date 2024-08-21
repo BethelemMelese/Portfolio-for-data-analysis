@@ -1,12 +1,6 @@
-import {
-  Button,
-  Grid,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
+import { Button, Grid, IconButton, Tooltip, Avatar } from "@mui/material";
 import { Card, Modal } from "antd";
-import { Avatar, List } from "antd";
-import BlogImage from "../../../images/login_header_image.jpg";
+import { List } from "antd";
 import { useEffect, useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -14,100 +8,37 @@ import { appUrl, token } from "../../../appurl";
 import axios from "axios";
 import Notification from "../../../commonComponent/notification";
 import { ExclamationCircleFilled } from "@ant-design/icons";
-import AddBlog from "../create";
-import DetailCategory from "../detailCategory";
-import DetailBlog from "../detailBlog";
+import AddCategory from "../category/create";
+import DetailCategory from "../category/detail";
+import DetailBlog from "../item/detail";
+import EditBlogCategory from "../category/edit";
+import EditBlog from "../item/edit";
 
 const { confirm } = Modal;
 
 interface BlogState {
   categoryName: string;
   categoryDescription: string;
-  blogItemList: string;
 }
 
 const initialState: BlogState = {
   categoryName: "",
   categoryDescription: "",
-  blogItemList: "",
 };
 
-const data = [
-  {
-    title: "Blog Category 1",
-  },
-  {
-    title: "Blog Category 2",
-  },
-  {
-    title: "Blog Category 3",
-  },
-  {
-    title: "Blog Category 4",
-  },
-];
-
-const blogMokeDate = [
-  {
-    id: 1,
-    blogName: "Blog One",
-    author: "Ablene Melese",
-    datePublished: "12/03/2024",
-    mainContent:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-    comment: [
-      { id: 1, name: "Betty Melese", message: "I liked your title" },
-      { id: 2, name: "Betty Melese", message: "I liked your title" },
-      { id: 3, name: "Betty Melese", message: "I liked your title" },
-    ],
-  },
-  {
-    id: 2,
-    blogName: "Blog Two",
-    author: "Ablene Melese",
-    datePublished: "12/05/2024",
-    mainContent:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-    comment: [
-      { id: 1, name: "Betty Melese", message: "I liked your title" },
-      { id: 2, name: "Betty Melese", message: "I liked your title" },
-      { id: 3, name: "Betty Melese", message: "I liked your title" },
-    ],
-  },
-  {
-    id: 3,
-    blogName: "Blog Three",
-    author: "Ablene Melese",
-    datePublished: "12/06/2024",
-    mainContent:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-    comment: [
-      { id: 1, name: "Betty Melese", message: "I liked your title" },
-      { id: 2, name: "Betty Melese", message: "I liked your title" },
-      { id: 3, name: "Betty Melese", message: "I liked your title" },
-    ],
-  },
-];
-
 const ViewBlog = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
   const [viewMode, setViewMode] = useState("view");
   const [viewCategory, setViewCategory] = useState("view");
   const [loading, setLoading] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
-  const [dataSource, setDataSource] = useState<any>([]);
+  const [blogDate, setBlogData] = useState<any>([]);
+  const [categoryDate, setCategoryData] = useState<any>([]);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
     type: "",
   });
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const onDeleteSuccess = (response: any) => {
     setNotify({
@@ -115,7 +46,10 @@ const ViewBlog = () => {
       type: "success",
       message: response.message,
     });
-    onFetchProject();
+    setTimeout(() => {
+      onFetchBlog();
+      onFetchCategory();
+    }, 2000);
   };
 
   const onDeleteError = (response: any) => {
@@ -135,17 +69,35 @@ const ViewBlog = () => {
     });
   };
 
-  const onFetchProject = () => {
+  const onFetchBlog = () => {
     axios
       .create({
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
-      .get(appUrl + `projects`)
+      .get(appUrl + `blog/latestBlog/`)
       .then((res) => {
         setLoading(false);
-        setDataSource(res.data);
+        setBlogData(res.data);
+      })
+      .catch((error: any) => {
+        setLoading(false);
+        onViewError(error.response.data.error);
+      });
+  };
+
+  const onFetchCategory = () => {
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + `blog/category/`)
+      .then((res) => {
+        setLoading(false);
+        setCategoryData(res.data);
       })
       .catch((error: any) => {
         setLoading(false);
@@ -155,7 +107,7 @@ const ViewBlog = () => {
 
   const showConfirm = (value: any) => {
     confirm({
-      title: "Do you want to delete this project?",
+      title: "Do you want to delete this blog?",
       icon: <ExclamationCircleFilled />,
       content: "You are unable to undo the deletion of this.",
       okText: "Yes",
@@ -168,7 +120,32 @@ const ViewBlog = () => {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           })
-          .delete(appUrl + `projects/${value}`)
+          .delete(appUrl + `blog/deleteBlog/${value}`)
+          .then((response) => {
+            onDeleteSuccess(response.data);
+          })
+          .catch((error) => onDeleteError(error.response.data.message));
+      },
+      onCancel() {},
+    });
+  };
+
+  const showConfirmForCategory = (value: any) => {
+    confirm({
+      title: "Do you want to delete this category?",
+      icon: <ExclamationCircleFilled />,
+      content: "You are unable to undo the deletion of this.",
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        axios
+          .create({
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .delete(appUrl + `blog/deleteCategory/${value}`)
           .then((response) => {
             onDeleteSuccess(response.data);
           })
@@ -181,30 +158,35 @@ const ViewBlog = () => {
   //   to fetch data using useEffect, when every time this page is loaded
   useEffect(() => {
     setLoading(true);
-    // onFetchProject();
+    onFetchBlog();
+  }, []);
+
+  useEffect(() => {
+    onFetchCategory();
   }, []);
 
   return (
     <div className="blog-container">
-        {viewCategory == "view" && (
-          <Grid container spacing={2}>
-            <Grid item xs={8}>
-              {viewMode == "view" && (
-                <div
-                  style={{
-                    height: "660px",
-                    overflowX: "hidden",
-                    overflowY: "auto",
-                  }}
-                >
-                  {blogMokeDate.map((item: any) => {
+      {viewCategory == "view" && (
+        <Grid container spacing={2}>
+          <Grid item xs={7}>
+            {viewMode == "view" && (
+              <div
+                style={{
+                  height: "660px",
+                  overflowX: "hidden",
+                  overflowY: "auto",
+                }}
+              >
+                {blogDate.length != 0 &&
+                  blogDate.map((item: any) => {
                     return (
                       <>
                         <Card
                           title={
                             <Grid container>
                               <Grid item xs={12}>
-                                <h3>{item.blogName}</h3>
+                                <h3>{item.blogTitle}</h3>
                                 <h5
                                   style={{
                                     fontSize: "10px",
@@ -223,6 +205,7 @@ const ViewBlog = () => {
                                 <IconButton
                                   onClick={() => {
                                     setViewMode("edit");
+                                    setSelectedBlog(item);
                                   }}
                                 >
                                   <ModeEditIcon color="warning" />
@@ -248,7 +231,9 @@ const ViewBlog = () => {
                               <Grid container spacing={0}>
                                 <Grid item xs={4}>
                                   <img
-                                    src={BlogImage}
+                                    src={
+                                      appUrl + `blog/uploads/${item.blogImage}`
+                                    }
                                     width={150}
                                     height={110}
                                     style={{
@@ -272,7 +257,7 @@ const ViewBlog = () => {
                                   marginLeft: "20px",
                                 }}
                               >
-                                Published Date: {item.datePublished}
+                                Published Date: {item.publishedDate}
                               </h5>
                             </Grid>
                             <Grid item xs={2} className="more-btn">
@@ -293,53 +278,82 @@ const ViewBlog = () => {
                       </>
                     );
                   })}
-                </div>
-              )}
-              {viewMode == "new" && (
-                <AddBlog
-                  //@ts-ignore
-                  selectedBlog={initialState}
-                  viewMode={viewMode}
-                  closeedit={() => setViewMode("view")}
-                />
-              )}
-              {viewMode == "edit" && (
-                <AddBlog
-                  //@ts-ignore
-                  selectedBlog={selectedBlog}
-                  viewMode={viewMode}
-                  closeedit={() => setViewMode("view")}
-                />
-              )}
-            </Grid>
-            <Grid item xs={4}>
-              <Card
-                className="blog-category-list"
-                title="Categories"
-                extra={
-                  <Tooltip title="To add new category">
-                    <Button
-                      variant="contained"
-                      size="small"
-                      className="create-btn"
-                      onClick={() => {
-                        setViewMode("new");
-                      }}
-                    >
-                      Add Category
-                    </Button>
-                  </Tooltip>
-                }
-              >
+              </div>
+            )}
+            {viewMode == "new" && (
+              <AddCategory
+                //@ts-ignore
+                selectedBlog={initialState}
+                viewMode={viewMode}
+                closeedit={() => setViewMode("view")}
+              />
+            )}
+            {viewMode == "edit" && (
+              <EditBlog
+                //@ts-ignore
+                selectedCategory={selectedCategory}
+                selectedBlog={selectedBlog}
+                viewMode={viewMode}
+                closeedit={() => setViewMode("view")}
+              />
+            )}
+            {viewMode == "editcategory" && (
+              <EditBlogCategory
+                //@ts-ignore
+                selectedCategory={selectedCategory}
+                viewMode={viewMode}
+                closeedit={() => setViewMode("view")}
+              />
+            )}
+          </Grid>
+          <Grid item xs={5}>
+            <Card
+              className="blog-category-list"
+              title="Categories"
+              extra={
+                <Tooltip title="To add new category">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    className="create-btn"
+                    onClick={() => {
+                      setViewMode("new");
+                    }}
+                  >
+                    Add Category
+                  </Button>
+                </Tooltip>
+              }
+            >
+              {categoryDate.length != 0 && (
                 <List
                   itemLayout="horizontal"
-                  dataSource={data}
+                  dataSource={categoryDate}
                   pagination={{
-                    pageSize: 4,
+                    pageSize: 5,
                   }}
                   renderItem={(item: any) => (
                     <List.Item
                       actions={[
+                        <Tooltip title="To edit the category">
+                          <IconButton
+                            onClick={() => {
+                              setViewMode("editcategory");
+                              setSelectedCategory(item);
+                            }}
+                          >
+                            <ModeEditIcon color="warning" />
+                          </IconButton>
+                        </Tooltip>,
+                        <Tooltip title="To delete the category">
+                          <IconButton
+                            onClick={() => {
+                              showConfirmForCategory(item.id);
+                            }}
+                          >
+                            <DeleteForeverIcon color="error" />
+                          </IconButton>
+                        </Tooltip>,
                         <a
                           key="list-loadmore-edit"
                           onClick={() => {
@@ -352,32 +366,39 @@ const ViewBlog = () => {
                       ]}
                     >
                       <List.Item.Meta
-                        title={item.title}
-                        description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                        avatar={
+                          <Avatar
+                            variant="rounded"
+                            src={appUrl + `blog/uploads/${item.categoryImage}`}
+                          />
+                        }
+                        title={item.categoryName}
+                        description={item.categoryDescription}
                       />
                     </List.Item>
                   )}
                 />
-              </Card>
-            </Grid>
+              )}
+            </Card>
           </Grid>
-        )}
-        {viewCategory == "detail" && (
-          <DetailCategory
-            selectedCategory={selectedCategory}
-            viewCategory={viewCategory}
-            closeedit={() => setViewCategory("view")}
-          />
-        )}
-        {viewCategory == "detailBlog" && (
-          <DetailBlog
-            selectedCategory={selectedCategory}
-            selectedBlog={selectedBlog}
-            viewCategory={viewCategory}
-            closeedit={() => setViewCategory("view")}
-          />
-        )}
-        <Notification notify={notify} setNotify={setNotify} />
+        </Grid>
+      )}
+      {viewCategory == "detail" && (
+        <DetailCategory
+          selectedCategory={selectedCategory}
+          viewCategory={viewCategory}
+          closeedit={() => setViewCategory("view")}
+        />
+      )}
+      {viewCategory == "detailBlog" && (
+        <DetailBlog
+          selectedCategory={selectedCategory}
+          selectedBlog={selectedBlog}
+          viewCategory={viewCategory}
+          closeedit={() => setViewCategory("view")}
+        />
+      )}
+      <Notification notify={notify} setNotify={setNotify} />
     </div>
   );
 };

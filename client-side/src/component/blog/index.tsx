@@ -1,97 +1,76 @@
-import { Button, Grid, Menu, MenuItem, Tooltip } from "@mui/material";
+import { Avatar, Grid } from "@mui/material";
 import BioImage from "../../images/profile-photo.jpg";
-import BlogImage from "../../images/login_header_image.jpg";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LanguageIcon from "@mui/icons-material/Language";
 import { Card, List } from "antd";
-import { useState } from "react";
-import DetailBlog from "./detail-blog";
-import CategoryDetailBlog from "./category-detail-blog";
+import { useEffect, useState } from "react";
+import DetailBlog from "./item/detail-blog";
+import CategoryDetailBlog from "./category/category-detail-blog";
 import FooterBlog from "../../menu/footer";
-
-const data = [
-  {
-    title: "Blog Category 1",
-  },
-  {
-    title: "Blog Category 2",
-  },
-  {
-    title: "Blog Category 3",
-  },
-  {
-    title: "Blog Category 4",
-  },
-];
-
-const blogMokeDate = [
-  {
-    id: 1,
-    blogName: "Blog One",
-    author: "Ablene Melese",
-    datePublished: "12/03/2024",
-    mainContent:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-    comment: [
-      { id: 1, name: "Betty Melese", message: "I liked your title" },
-      { id: 2, name: "Betty Melese", message: "I liked your title" },
-      { id: 3, name: "Betty Melese", message: "I liked your title" },
-    ],
-  },
-  {
-    id: 2,
-    blogName: "Blog Two",
-    author: "Ablene Melese",
-    datePublished: "12/05/2024",
-    mainContent:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-    comment: [
-      { id: 1, name: "Betty Melese", message: "I liked your title" },
-      { id: 2, name: "Betty Melese", message: "I liked your title" },
-      { id: 3, name: "Betty Melese", message: "I liked your title" },
-    ],
-  },
-  {
-    id: 3,
-    blogName: "Blog Three",
-    author: "Ablene Melese",
-    datePublished: "12/06/2024",
-    mainContent:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-    comment: [
-      { id: 1, name: "Betty Melese", message: "I liked your title" },
-      { id: 2, name: "Betty Melese", message: "I liked your title" },
-      { id: 3, name: "Betty Melese", message: "I liked your title" },
-    ],
-  },
-  {
-    id: 4,
-    blogName: "Blog Four",
-    author: "Ablene Melese",
-    datePublished: "12/06/2024",
-    mainContent:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-    comment: [
-      { id: 1, name: "Betty Melese", message: "I liked your title" },
-      { id: 2, name: "Betty Melese", message: "I liked your title" },
-      { id: 3, name: "Betty Melese", message: "I liked your title" },
-    ],
-  },
-];
+import Notification from "../../commonComponent/notification";
+import axios from "axios";
+import { appUrl } from "../../appurl";
 
 const Blog = ({ ...props }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [viewMode, setViewMode] = useState("main");
+  const [loading, setLoading] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState();
-  const handleClose = () => {
-    setAnchorEl(null);
+  const [categoryDate, setCategoryData] = useState<any>([]);
+  const [blogDate, setBlogData] = useState<any>([]);
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+
+  //   Notification for Success and error actions
+  const onViewError = (response: any) => {
+    setNotify({
+      isOpen: true,
+      type: "error",
+      message: response,
+    });
   };
+
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
+
+  useEffect(() => {
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + `blog/category/`)
+      .then((res) => {
+        setLoading(false);
+        setCategoryData(res.data);
+      })
+      .catch((error: any) => {
+        setLoading(false);
+        onViewError(error.response.data.error);
+      });
+  });
+
+  useEffect(() => {
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + `blog/latestBlog/`)
+      .then((res) => {
+        setLoading(false);
+        setBlogData(res.data);
+      })
+      .catch((error: any) => {
+        setLoading(false);
+        onViewError(error.response.data.error);
+      });
+  });
 
   return (
     <div className="blog-main-container">
@@ -120,104 +99,101 @@ const Blog = ({ ...props }) => {
             <Grid container spacing={2}>
               <Grid item xs={8}>
                 <div>
-                  {blogMokeDate.map((item: any) => {
-                    return (
-                      <>
-                        <div className="blog-item-fis">
-                          <div className="blog-item-img">
-                            <a
-                              onClick={() => {
-                                setViewMode("detail");
-                                setSelectedBlog(item);
-                              }}
-                            >
-                              <img
-                                src={BlogImage}
-                                width={200}
-                                height={200}
-                                style={{
-                                  margin: "20px",
-                                  borderRadius: "5px",
-                                }}
-                              />
-                            </a>
-                          </div>
-                          <div className="blog-item-msg">
-                            <h3>
+                  {blogDate.length != 0 &&
+                    blogDate.map((item: any) => {
+                      return (
+                        <>
+                          <div className="blog-item-fis">
+                            <div className="blog-item-img">
                               <a
                                 onClick={() => {
                                   setViewMode("detail");
                                   setSelectedBlog(item);
                                 }}
                               >
-                                {item.blogName}
+                                <img
+                                  src={
+                                    appUrl + `blog/uploads/${item.blogImage}`
+                                  }
+                                  width={200}
+                                  height={200}
+                                  style={{
+                                    margin: "20px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
                               </a>
-                            </h3>
-                            <p>{item.mainContent.slice(0, 290) + "..."}</p>
-                            <div className="blog-au-info">
-                              <p>
-                                {item.datePublished} . by {item.author}
-                              </p>
-                              <h6 className="arc-more-btn">
-                                <a onClick={handleClick}>
-                                  <MoreHorizIcon />
+                            </div>
+                            <div className="blog-item-msg">
+                              <h3>
+                                <a
+                                  onClick={() => {
+                                    setViewMode("detail");
+                                    setSelectedBlog(item);
+                                  }}
+                                >
+                                  {item.blogTitle}
                                 </a>
-                              </h6>
-                              <Menu
-                                keepMounted
-                                anchorEl={anchorEl}
-                                onClose={handleClose}
-                                open={Boolean(anchorEl)}
-                              >
-                                <MenuItem onClick={handleClose}>
-                                  Source Code Link
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
-                                  Other Link
-                                </MenuItem>
-                              </Menu>
+                              </h3>
+                              <p>{item.mainContent.slice(0, 290) + "..."}</p>
+                              <div className="blog-au-info">
+                                <p>
+                                  {item.publishedDate}, by {item.author}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </>
-                    );
-                  })}
+                        </>
+                      );
+                    })}
                 </div>
               </Grid>
               <Grid item xs={4}>
                 <Card title="Blog Category" className="blog-category">
-                  <List
-                    className="category-list"
-                    itemLayout="horizontal"
-                    dataSource={data}
-                    pagination={{
-                      pageSize: 4,
-                    }}
-                    renderItem={(item: any, index) => (
-                      <List.Item>
-                        <List.Item.Meta
-                          title={
-                            <h4 className="category-item-title">
-                              <a
-                                onClick={() => {
-                                  setViewMode("category");
-                                  setSelectedBlog(item);
-                                }}
-                              >
-                                {item.title}
-                              </a>
-                            </h4>
-                          }
-                          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                        />
-                      </List.Item>
-                    )}
-                  />
+                  {categoryDate.length != 0 && (
+                    <List
+                      className="category-list"
+                      itemLayout="horizontal"
+                      dataSource={categoryDate}
+                      pagination={{
+                        pageSize: 4,
+                      }}
+                      renderItem={(item: any, index) => (
+                        <List.Item>
+                          <List.Item.Meta
+                            avatar={
+                              <Avatar
+                                variant="rounded"
+                                src={
+                                  appUrl +
+                                  `project/uploads/${item.categoryImage}`
+                                }
+                              />
+                            }
+                            title={
+                              <h4 className="category-item-title">
+                                <a
+                                  onClick={() => {
+                                    setViewMode("category");
+                                    setSelectedBlog(item);
+                                  }}
+                                >
+                                  {item.categoryName}
+                                </a>
+                              </h4>
+                            }
+                            description={item.categoryDescription}
+                          />
+                        </List.Item>
+                      )}
+                    />
+                  )}
                 </Card>
               </Grid>
             </Grid>
           </section>
           <FooterBlog />
+          <Notification notify={notify} setNotify={setNotify} />
         </>
       )}
 
@@ -235,75 +211,6 @@ const Blog = ({ ...props }) => {
           closeedit={() => setViewMode("main")}
         />
       )}
-      {/* <section>
-        <Card className="before-footer">
-          <div className="bef-footer-container">
-            <div className="footer-quote">
-              <h4>
-                <b>Ablena Melese/ DATA SCIENTISTS</b>
-              </h4>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
-              </p>
-            </div>
-            <div className="shot-link">
-              <h4>Category</h4>
-              <ul>
-                {data.map((item: any) => {
-                  return (
-                    <li>
-                      <a>{item.title}</a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            <div className="blog-sm">
-              <h4>Follow Me</h4>
-              <div className="blog-sm-link">
-                <div className="blog-sm-item">
-                  <Tooltip title="LinkedIn">
-                    <a href="https://www.linkedin.com/in/ablene-melese-821b36223">
-                      {" "}
-                      <LinkedInIcon />
-                    </a>
-                  </Tooltip>
-                </div>
-                <div className="blog-sm-item">
-                  <Tooltip title="WhatsApp">
-                    <a href="#">
-                      <WhatsAppIcon />
-                    </a>
-                  </Tooltip>
-                </div>
-                <div className="blog-sm-item">
-                  <Tooltip title="Instagram">
-                    <a href="#">
-                      <InstagramIcon />
-                    </a>
-                  </Tooltip>
-                </div>
-                <div className="blog-sm-item">
-                  <Tooltip title="WWW">
-                    <a href="#">
-                      {" "}
-                      <LanguageIcon />
-                    </a>
-                  </Tooltip>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Card>
-      </section>
-      <footer className="contact-footer">
-        <div className="created-by">
-          <p>Copyright &copy; 2024 by Bethelem Melese, all rights reserved.</p>
-        </div>
-      </footer> */}
     </div>
   );
 };

@@ -75,12 +75,6 @@ const NavMenu = () => {
           </IconButton>
         </div>
       )}
-      {/* <CSSTransition
-        in={isMobile ? isOpen : true}
-        timeout={1000}
-        classNames="menu-transition"
-        unmountOnExit
-      > */}
         <ul className={`nav-item-menu ${isMobile && isOpen ? "show" : ""}`}>
           <li>
             <NavLink to="/" className="nav-item">

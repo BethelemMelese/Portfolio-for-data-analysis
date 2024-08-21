@@ -1,5 +1,5 @@
 import { Avatar, Divider, Grid, Tooltip } from "@mui/material";
-import { Card } from "antd";
+import { Card, Spin } from "antd";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -12,6 +12,7 @@ import Notification from "../../commonComponent/notification";
 const AboutMe = () => {
   const [dataSource, setDataSource] = useState<any>();
   const [response, setResponse] = useState<any>();
+  const [isLoading, setIsLoading] = useState(true);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -37,9 +38,11 @@ const AboutMe = () => {
       .get(appUrl + `resume`)
       .then((res) => {
         setDataSource(res.data);
+        setIsLoading(false);
       })
       .catch((error: any) => {
         onViewError(error.response.data.error);
+        setIsLoading(true);
       });
   }, []);
 
@@ -51,7 +54,14 @@ const AboutMe = () => {
         },
       })
       .get(appUrl + `user`)
-      .then((response: any) => setResponse(response.data[0]));
+      .then((response: any) => {
+        setResponse(response.data[0]);
+        setIsLoading(false);
+      })
+      .catch((error: any) => {
+        onViewError(error.response.data.error);
+        setIsLoading(true);
+      });
   }, []);
 
   return (
@@ -87,7 +97,10 @@ const AboutMe = () => {
                     <div className="sm-link">
                       <div className="sm-item">
                         <Tooltip title="LinkedIn">
-                          <a href="https://www.linkedin.com/in/ablene-melese-821b36223">
+                          <a
+                            href="https://www.linkedin.com/in/ablene-melese-821b36223"
+                            target="_blank"
+                          >
                             {" "}
                             <LinkedInIcon />
                           </a>
@@ -95,21 +108,24 @@ const AboutMe = () => {
                       </div>
                       <div className="sm-item">
                         <Tooltip title="WhatsApp">
-                          <a href="#">
+                          <a href="https://wa.me/+251799001136" target="_blank">
                             <WhatsAppIcon />
                           </a>
                         </Tooltip>
                       </div>
                       <div className="sm-item">
                         <Tooltip title="Instagram">
-                          <a href="#">
+                          <a
+                            href="https://www.instagram.com/ab_lene26/"
+                            target="_blank"
+                          >
                             <InstagramIcon />
                           </a>
                         </Tooltip>
                       </div>
                       <div className="sm-item">
                         <Tooltip title="WWW">
-                          <a href="#">
+                          <a href="#" target="_blank">
                             {" "}
                             <LanguageIcon />
                           </a>
@@ -170,7 +186,7 @@ const AboutMe = () => {
             <footer className="aboutme-footer">
               <div className="created-by">
                 <p>
-                  Copyright &copy; 2024 by Bethelem Melese, all rights reserved.
+                  Copyright &copy; 2024 by @Bethisa.m, all rights reserved.
                 </p>
               </div>
 
@@ -194,7 +210,10 @@ const AboutMe = () => {
                   <div className="footer-sm-link">
                     <div className="footer-sm-item">
                       <Tooltip title="LinkedIn">
-                        <a href="https://www.linkedin.com/in/ablene-melese-821b36223">
+                        <a
+                          href="https://www.linkedin.com/in/ablene-melese-821b36223"
+                          target="_blank"
+                        >
                           {" "}
                           <LinkedInIcon />
                         </a>
@@ -202,21 +221,24 @@ const AboutMe = () => {
                     </div>
                     <div className="footer-sm-item">
                       <Tooltip title="WhatsApp">
-                        <a href="#">
+                        <a href="https://wa.me/+251799001136" target="_blank">
                           <WhatsAppIcon />
                         </a>
                       </Tooltip>
                     </div>
                     <div className="footer-sm-item">
                       <Tooltip title="Instagram">
-                        <a href="#">
+                        <a
+                          href="https://www.instagram.com/ab_lene26/"
+                          target="_blank"
+                        >
                           <InstagramIcon />
                         </a>
                       </Tooltip>
                     </div>
                     <div className="footer-sm-item">
                       <Tooltip title="WWW">
-                        <a href="#">
+                        <a href="#" target="_blank">
                           {" "}
                           <LanguageIcon />
                         </a>

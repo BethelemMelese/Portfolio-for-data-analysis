@@ -1,49 +1,13 @@
-import { Grid, IconButton, MenuItem, Menu, Button } from "@mui/material";
-import { Alert, Card, Dropdown, Spin } from "antd";
+import { Grid, Button } from "@mui/material";
+import { Card, Spin } from "antd";
 import { Carousel } from "antd";
-import projectPhoto from "../../images/nasa-Q1p7bh3SHj8-unsplash.jpg";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React, { useEffect, useState } from "react";
 import { appUrl } from "../../appurl";
 import axios from "axios";
 
-const mokeData = [
-  {
-    id: 1,
-    projectName: "The First Project",
-    projectDescription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-  },
-  {
-    id: 2,
-    projectName: "The Second Project",
-    projectDescription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-  },
-  {
-    id: 3,
-    projectName: "The Third Project",
-    projectDescription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-  },
-  {
-    id: 4,
-    projectName: "The Fourth Project",
-    projectDescription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-  },
-  {
-    id: 5,
-    projectName: "The Fifth Project",
-    projectDescription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-  },
-];
-
 const Project = () => {
   const [projectResponse, setProjectResponse] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -57,14 +21,6 @@ const Project = () => {
       message: response,
     });
   };
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const open = Boolean(anchorEl);
 
   useEffect(() => {
     axios
@@ -83,6 +39,7 @@ const Project = () => {
         onViewError(error.response.data.error);
       });
   }, []);
+
   return (
     <div className="proj-container">
       <Card className="proj-container">

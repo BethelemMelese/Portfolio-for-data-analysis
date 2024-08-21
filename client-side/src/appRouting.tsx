@@ -9,7 +9,7 @@ import MainLayout from "./menu/mainLayout";
 import Login from "./component/login";
 import Registration from "./component/registration";
 import ViewProject from "./component/project/view";
-import ViewBlog from "./component/blog/view";
+import ViewBlog from "./component/blog/mainView";
 import Dashboard from "./component/Dashboard";
 import ViewResume from "./component/resume/view";
 import ChangePassword from "./component/changePassword";

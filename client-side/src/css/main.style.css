@@ -523,6 +523,16 @@ html {
   color: var(--text-second-color);
 }
 
+.blog-title-link a{
+  color: var(--text-second-color);
+}
+
+.blog-title-link a:hover{
+  color: var(--color-gray);
+  border-bottom: 1px solid var(--color-gray);
+  border-radius: 5px;
+}
+
 .create-card {
   background-color: var(--main-sec-background-color);
   color: var(--text-second-color);

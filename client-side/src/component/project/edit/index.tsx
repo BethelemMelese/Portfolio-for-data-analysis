@@ -32,7 +32,6 @@ const initialState: ProjectState = {
 const EditProject = ({ ...props }) => {
   const [viewMode, setViewMode] = useState(props.viewMode);
   const [selectedProject, setSelectedProject] = useState(props.selectedProject);
-  console.log("selectedProject..",selectedProject);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileList, setFileList] = useState<any>([]);
   const [validFileFormat, setValidFileFormat] = useState(false);
@@ -61,7 +60,7 @@ const EditProject = ({ ...props }) => {
     });
     setTimeout(() => {
       setIsSubmitting(false);
-      //   window.location.reload();
+        window.location.reload();
     }, 2000);
   };
 

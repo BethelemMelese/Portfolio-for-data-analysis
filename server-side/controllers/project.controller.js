@@ -63,13 +63,12 @@ const CreateProject = async (req, res) => {
 
 const UpdateProject = async (req, res) => {
   try {
-    const { file } = req.file == undefined ? "" : req.file;
     const { id } = req.params;
     let response;
     const project = await Project.findById({ _id: id });
 
     if (project) {
-      if (file == undefined) {
+      if (req.file == undefined) {
         response = await Project.findByIdAndUpdate(id, {
           projectTitle: req.body.projectTitle,
           projectDescription: req.body.projectDescription,

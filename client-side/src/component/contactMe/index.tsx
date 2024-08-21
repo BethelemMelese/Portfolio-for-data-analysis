@@ -1,13 +1,5 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import {
-  Button,
-  FormControl,
-  Grid,
-  InputLabel,
-  Paper,
-  TextField,
-  Tooltip,
-} from "@mui/material";
+import { Button, Grid, Tooltip } from "@mui/material";
 import { Card } from "antd";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -40,7 +32,7 @@ const initialState: ContactMeState = {
 
 const mapContainerStyle = {
   width: "22vw",
-  height: "25vh",
+  height: "20vh",
 };
 const center = {
   lat: 7.2905715, // default latitude
@@ -50,6 +42,14 @@ const center = {
 const ContactMe = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setmessage] = useState("");
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -81,14 +81,14 @@ const ContactMe = () => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
-    email: Yup.string().required("Email is required"),
+    email: Yup.string().email().required("Email is required"),
     message: Yup.string().required("Message is required"),
   });
 
   const formik = useFormik({
     initialValues: initialState,
     onSubmit: (values) => {
-      setIsSubmitting(true);
+      console.log("values...", values);
       axios
         .post(appUrl + "contact", values)
         .then((response) => onContactMeSuccess(response.data))
@@ -115,71 +115,65 @@ const ContactMe = () => {
               </p>
             </Grid>
             <Grid item xs={12} className="contact-inputs">
-              <Form
-                autoComplete="off"
-                noValidate
-                onSubmit={formik.handleSubmit}
-              >
+              <form onSubmit={formik.handleSubmit}>
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Controls.Input
-                      className="inputField"
-                      required
-                      id="name"
-                      label="Name"
-                      {...formik.getFieldProps("name")}
-                      error={
-                        formik.touched.name && formik.errors.name
-                          ? formik.errors.name
-                          : ""
-                      }
-                    />
+                  <Grid className="contact-fields">
+                    <Grid item xs={12}>
+                      <input
+                        className="inputField"
+                        type="text"
+                        id="name"
+                        placeholder="Name"
+                        {...formik.getFieldProps("name")}
+                      />
+                      {formik.touched.name && formik.errors.name ? (
+                        <div className="error">{formik.errors.name}</div>
+                      ) : (
+                        ""
+                      )}
+                    </Grid>
+
+                    <Grid item xs={12}>
+                      <input
+                        className="inputField"
+                        type="email"
+                        id="email"
+                        placeholder="Email"
+                        {...formik.getFieldProps("email")}
+                      />
+                      {formik.touched.email && formik.errors.email ? (
+                        <div className="error">{formik.errors.email}</div>
+                      ) : (
+                        ""
+                      )}
+                    </Grid>
+                    <Grid item xs={12}>
+                      <textarea
+                        className="inputField"
+                        id="message"
+                        placeholder="Write your message here..."
+                        cols={40}
+                        rows={5}
+                        {...formik.getFieldProps("message")}
+                      ></textarea>
+                      {formik.touched.message && formik.errors.message ? (
+                        <div className="error">{formik.errors.message}</div>
+                      ) : (
+                        ""
+                      )}
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12}>
-                    <Controls.Input
-                      className="inputField"
-                      required
-                      id="email"
-                      label="Email"
-                      {...formik.getFieldProps("email")}
-                      error={
-                        formik.touched.email && formik.errors.email
-                          ? formik.errors.email
-                          : ""
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Controls.Inputmuliline
-                      className="inputField"
-                      required
-                      id="message"
-                      label="Write Your Message here..."
-                      {...formik.getFieldProps("message")}
-                      error={
-                        formik.touched.message && formik.errors.message
-                          ? formik.errors.message
-                          : ""
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
+                  <div className="contact-btn">
                     {isSubmitting ? (
-                      <Button variant="contained" disabled>
-                        Sending...
-                      </Button>
+                      <button disabled>Sending...</button>
                     ) : (
-                      <Button
-                        variant="contained"
-                        className="contactsubmit"
-                        type="submit"
-                      >
+                      <button className="contactsubmit" type="submit">
                         Send
-                      </Button>
+                      </button>
                     )}
-                  </Grid>
+                  </div>
                 </Grid>
-              </Form>
+              </form>
             </Grid>
           </Grid>
         </Grid>
@@ -189,7 +183,7 @@ const ContactMe = () => {
               <div className="google-map-location">
                 <h2>Where To Find Me</h2>
                 <div className="map-location">
-                  <Card>Their is Map here</Card>
+                  <Card style={mapContainerStyle}>Their is Map here</Card>
                   {/* <GoogleMap
                     mapContainerStyle={mapContainerStyle}
                     zoom={10}
@@ -228,7 +222,10 @@ const ContactMe = () => {
               <div className="contact-sm-link">
                 <div className="sm-item">
                   <Tooltip title="LinkedIn">
-                    <a href="https://www.linkedin.com/in/ablene-melese-821b36223">
+                    <a
+                      href="https://www.linkedin.com/in/ablene-melese-821b36223/"
+                      target="_blank"
+                    >
                       {" "}
                       <LinkedInIcon />
                     </a>
@@ -236,21 +233,24 @@ const ContactMe = () => {
                 </div>
                 <div className="sm-item">
                   <Tooltip title="WhatsApp">
-                    <a href="#">
+                    <a href="https://wa.me/+251799001136" target="_blank">
                       <WhatsAppIcon />
                     </a>
                   </Tooltip>
                 </div>
                 <div className="sm-item">
                   <Tooltip title="Instagram">
-                    <a href="#">
+                    <a
+                      href="https://www.instagram.com/ab_lene26/"
+                      target="_blank"
+                    >
                       <InstagramIcon />
                     </a>
                   </Tooltip>
                 </div>
                 <div className="sm-item">
                   <Tooltip title="WWW">
-                    <a href="#">
+                    <a href="#" target="_blank">
                       {" "}
                       <LanguageIcon />
                     </a>
@@ -264,7 +264,7 @@ const ContactMe = () => {
           <footer className="contact-footer">
             <div className="created-by">
               <p>
-                Copyright &copy; 2024 by Bethelem Melese, all rights reserved.
+                Copyright &copy; 2024 by @Bethisa.m, all rights reserved.
               </p>
             </div>
           </footer>

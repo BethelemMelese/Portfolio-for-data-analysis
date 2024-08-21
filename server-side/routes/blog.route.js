@@ -3,11 +3,12 @@ const {
   GetBlogByCategory,
   GetLatestBlog,
   AddBlogOnly,
-  AddCategoryWithBlog,
+  AddCategoryOnly,
   EditBlogOnly,
   EditCategoryOnly,
   DeleteBlog,
   DeleteCategory,
+  DownloadImage
 } = require("../controllers/blog.controller.js");
 const express = require("express");
 const router = express.Router();
@@ -29,7 +30,7 @@ router.get("/category/", GetCategoryOnly);
 router.get("/byCategoryId/:categoryId", GetBlogByCategory);
 router.get("/latestBlog/", GetLatestBlog);
 router.post("/addBlog/", upload.single("file"), AddBlogOnly);
-router.post("/withBlog/", upload.single("file"), AddCategoryWithBlog);
+router.post("/addCategory/", upload.single("file"), AddCategoryOnly);
 router.put("/editBlog/:blogId", upload.single("file"), EditBlogOnly);
 router.put(
   "/editCategory/:categoryId",
@@ -38,4 +39,5 @@ router.put(
 );
 router.delete("/deleteBlog/:blogId", DeleteBlog);
 router.delete("/deleteCategory/:categoryId", DeleteCategory);
+router.get("/uploads/:filePath", DownloadImage);
 module.exports = router;
