@@ -15,6 +15,7 @@ import ViewResume from "./component/resume/view";
 import ChangePassword from "./component/changePassword";
 import Profile from "./component/profile";
 import ViewContact from "./component/contactMe/view";
+import NavMenu from "./menu/nav";
 import "./css/style.css";
 import "./css/responsive.css";
 import "./css/main.style.css";
@@ -24,6 +25,7 @@ function AppRoute() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/navMenu" element={<NavMenu />} />
         <Route element={<Layout />}>
           <Route path="/" element={<AboutMe />} />
           <Route path="/blog" element={<Blog />} />

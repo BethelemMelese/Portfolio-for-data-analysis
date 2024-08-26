@@ -1,105 +1,203 @@
-@media only screen and (max-width: 1200px) {
-  .checkbtn {
-    display: block;
-    margin-left: 50px;
-  }
-
+@media only screen and (min-width: 1366) {
   .nav-log {
-    padding-left: 10%;
-    margin-left: -10px;
-    margin-right: -10px;
-  }
-
-  .nav-log h2 {
-    font-size: 20px;
-    width: 200px;
-  }
-
-  .nav-item-menu .show {
-    transform: translateY(0);
-    opacity: 1;
+    margin-left: -10%;
+    margin-top: 10px;
+    width: 50%;
+    height: 50%;
   }
 
   .nav-item-menu {
-    position: fixed;
-    top: 100px;
-    right: -100%;
-    background-color: transparent;
-    width: 100%;
-    height: 100vh;
-    display: flex;
+    position: absolute;
+    left: -100%;
+    top: 7rem;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform: translateY(-100%);
-    opacity: 0;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  }
-
-  .nav-item-menu li {
-    margin: 20px 0;
-  }
-
-  .nav-item-menu li a {
-    font-size: 20px;
-  }
-
-  .container-switch {
-    float: right;
-    margin-right: 20px;
-    margin-left: 40px;
-  }
-
-  #check:checked ~ .nav-item-menu {
-    right: 0;
-  }
-
-  /* for about me responsive style */
-
-  .about-me-container {
+    background-color: var(--text-color);
     width: 100%;
-  }
-
-  .pic-card {
-    width: 400%;
-    height: 30%;
-  }
-
-  .pic-item-card {
-    border: none;
+    height: 35%;
+    border-radius: 5px;
     margin: 0px auto;
-    width: 40%;
-    height: 5%;
+    transition: 0.3s;
+    box-shadow: 10 17px 27px rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-item-menu.open {
+    display: flex;
+    left: 0;
+    border-bottom: none;
+    margin: 0px auto;
     margin-top: 20px;
   }
 
-  .sm-link {
+  .nav-item-menu li {
+    margin-top: 20px;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  
+  /* for project page responsive style*/
+  .proj-container {
+    margin-bottom: 100%;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  /* for the navbar responsive */
+
+  .nav-log {
+    margin-left: -10%;
+    margin-top: 10px;
+    width: 50%;
+    height: 50%;
+  }
+
+  .container-switch {
+    margin-top: -60px;
+    margin-right: -20px;
+  }
+
+  .nav-item-menu {
+    position: absolute;
+    left: -100%;
+    top: 7rem;
+    flex-direction: column;
+    background-color: var(--text-color);
+    width: 100%;
+    height: 50%;
+    border-radius: 5px;
+    margin: 0px auto;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-item-menu.open {
+    display: flex;
+    left: 0;
+    border-bottom: none;
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 20px;
+  }
+
+  .nav-item-menu li {
+    margin-top: 20px;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  /* for project page responsive style*/
+  .proj-container {
+    margin-bottom: 80%;
+  }
+
+  .project-desc h1 {
+    font-size: 18px;
+  }
+
+  .project-desc p {
+    font-size: 12px;
     width: 100%;
     margin: 0px auto;
   }
 
-  .bio-card {
-    width: 100%;
-    margin: 0px auto;
-    margin-top: 110%;
+  .project-layout {
+    display: block;
   }
 
-  .bio {
-    width: 100%;
+  .project-dec p {
+    font-size: 12px;
+  }
+
+  .sec-project-card {
+    height: 200%;
+  }
+
+  .project-image {
+    margin-top: 10px;
+  }
+
+  .project-image img {
+    width: 40%;
+    height: 20%;
+    margin: 0px auto;
   }
 }
 
-/* Extra small devices (phones, 600px and down) */
-/* @media only screen and (max-width: 600px) {...} */
+@media screen and (max-width: 980px) {
+  .nav-item-menu {
+    position: absolute;
+    left: -100%;
+    top: 7rem;
+    z-index: 1;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 100%;
+    max-width:500px;
+    max-height:300px;
+    border-radius: 5px;
+    margin: 0px auto;
+    transition: 0.3s;
+    box-shadow: 10 17px 27px rgba(0, 0, 0, 0.05);
+  }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-/* @media only screen and (min-width: 600px) {...} */
+  .nav-item-menu.open {
+    display: flex;
+    left: 0;
+    border-bottom: none;
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 10px;
+  }
 
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {...} */
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    margin-top: 10px;
+  }
 
-/* Large devices (laptops/desktops, 992px and up) */
-/* @media only screen and (min-width: 992px) {...} */
+  /* for about me page responsive style */
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {...} */
+  /* for project page responsive style*/
+
+  .proj-container {
+    margin-bottom: 80%;
+  }
+
+  .project-desc {
+    width: 100%;
+    height: 100%;
+  }
+
+  .project-card {
+    height: 200%;
+  }
+
+  .sec-project-card {
+    width: 100%;
+    height: 100%;
+    margin: 0px auto;
+  }
+
+  .project-slides {
+    width: 100%;
+  }
+
+  .project-dec p {
+    margin-right: 40px;
+  }
+
+ .view-code{
+  margin: 0px auto;
+ }
+}

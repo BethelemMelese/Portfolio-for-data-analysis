@@ -43,19 +43,6 @@ const NavMenu = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1200);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
     <nav className="nav-menu">
       <div className="nav-log">
@@ -68,37 +55,37 @@ const NavMenu = () => {
           <img src={Blacklogo} width={160} />
         )}
       </div>
-      {isMobile && (
-        <div className="checkbtn">
-          <IconButton id="check" onClick={toggleMenu}>
-            <MenuIcon type="checked" className="menubtn" />
-          </IconButton>
-        </div>
-      )}
-        <ul className={`nav-item-menu ${isMobile && isOpen ? "show" : ""}`}>
-          <li>
-            <NavLink to="/" className="nav-item">
-              ABOUT ME
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="blog" className="nav-item">
-              BLOG
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="project" className="nav-item">
-              PROJECT
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="contactMe" className="nav-item">
-              CONTACT
-            </NavLink>
-          </li>
-        </ul>
-      {/* </CSSTransition> */}
-
+      <ul className={`nav-item-menu ${isOpen ? "open" : ""}`}>
+        <li>
+          <NavLink to="/" className="nav-item">
+            ABOUT ME
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="blog" className="nav-item">
+            BLOG
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="project" className="nav-item">
+            PROJECT
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="contactMe" className="nav-item">
+            CONTACT
+          </NavLink>
+        </li>
+      </ul>
+      <div className="hamburger">
+        <IconButton id="check" onClick={toggleMenu}>
+          {isOpen ? (
+            <CloseIcon className="bar" />
+          ) : (
+            <MenuIcon className="bar" />
+          )}
+        </IconButton>
+      </div>
       <div>
         <div className="container-switch">
           <Tooltip

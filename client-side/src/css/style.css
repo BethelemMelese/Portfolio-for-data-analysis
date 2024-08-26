@@ -8,7 +8,8 @@
 body {
   margin: 0;
   padding: 0;
-  /* background-color: var(--primary-color); */
+  max-width: 100%;
+  background-color: var(--primary-color);
 }
 
 @keyframes slideIn {
@@ -98,6 +99,8 @@ body {
   background-color: var(--primary-color);
 }
 
+/* for loading page style */
+
 .loading-container {
   position: absolute;
   inset: 0;
@@ -135,9 +138,7 @@ nav {
   background-color: transparent;
   font-family: "Arial Narrow", Arial, sans-serif;
   width: 100%;
-  z-index: 1;
   top: 0;
-  /* animation: navin 0.5s ease-in; */
 }
 
 .nav-log {
@@ -175,7 +176,6 @@ nav {
   font-size: 13px;
   border-bottom: 1px solid var(--text-second-color);
   padding: 10px;
-  /* animation: navin 0.5s ease-in; */
 }
 
 .nav-item-menu .nav-item:hover {
@@ -194,27 +194,23 @@ nav {
   background: var(--active-background-color);
 }
 
-.checkbtn {
-  font-size: 30px;
-  background-color: var(--third-color);
-  border-radius: 5px;
-  cursor: pointer;
-  float: right;
+.hamburger {
   display: none;
+  background-color: var(--text-second-color);
+  border-radius: 5px;
 }
 
-.menubtn {
-  color: #000;
+.bar {
+  display: block;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  color: var(--primary-color);
 }
 
 .container-switch {
   margin-top: 20px 0 0 0;
   position: sticky;
   float: right;
-}
-
-#check {
-  /* display: none; */
 }
 
 /* for about me style */
@@ -886,7 +882,6 @@ nav {
   color: var(--text-second-color);
   border: none;
   margin-top: -17px;
-  /* margin-top: -18px; */
 }
 
 .project-dec {
@@ -1238,20 +1233,20 @@ nav {
   margin-top: 30px;
 }
 
-.contact-btn{
+.contact-btn {
   margin-top: 40%;
   width: 80%;
   margin-left: -50px;
 }
 
-.contact-btn button{
+.contact-btn button {
   border: none;
   padding: 10px;
   border-radius: 5px;
   color: #fff;
 }
 
-.error{
+.error {
   color: rgb(236, 11, 11);
   margin-left: 30%;
   margin-right: -100%;

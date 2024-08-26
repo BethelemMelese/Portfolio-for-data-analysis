@@ -41,7 +41,7 @@ const Project = () => {
   }, []);
 
   return (
-    <div className="proj-container">
+    <div>
       <Card className="proj-container">
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -90,27 +90,6 @@ const Project = () => {
                           }
                         >
                           <div className="project-layout">
-                            <div className="project-dec">
-                              <Grid container spacing={4}>
-                                <Grid item xs={12}>
-                                  <p>
-                                    {item.projectDescription.slice(0, 400) +
-                                      "..."}
-                                  </p>
-                                </Grid>
-                                <Grid item xs={12}>
-                                  <Button
-                                    variant="outlined"
-                                    size="small"
-                                    color="warning"
-                                    target="_blank"
-                                    href={item.sourceCodeLink}
-                                  >
-                                    Source Code
-                                  </Button>
-                                </Grid>
-                              </Grid>
-                            </div>
                             <div className="project-image">
                               <img
                                 src={
@@ -121,6 +100,28 @@ const Project = () => {
                                 style={{ maxHeight: "80%", maxWidth: "80%" }}
                                 height="90%"
                               />
+                            </div>
+                            <div className="project-dec">
+                              <Grid container spacing={4}>
+                                <Grid item xs={12}>
+                                  <p>
+                                    {item.projectDescription.slice(0, 400) +
+                                      "..."}
+                                  </p>
+                                </Grid>
+                                <Grid item xs={12}>
+                                  <Button
+                                    className="view-code"
+                                    variant="outlined"
+                                    size="small"
+                                    color="warning"
+                                    target="_blank"
+                                    href={item.sourceCodeLink}
+                                  >
+                                    Source Code
+                                  </Button>
+                                </Grid>
+                              </Grid>
                             </div>
                           </div>
                         </Card>

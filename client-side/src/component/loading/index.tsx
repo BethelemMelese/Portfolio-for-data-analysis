@@ -5,7 +5,7 @@ import Blacklogo from "../../images/Black  Logo.png";
 
 const Loading = (): any => {
   const [loading, setLoading] = useState(false);
-  const loadingDuration = 1000;
+  const loadingDuration = 2000;
 
   useEffect(() => {
     setLoading(true);
