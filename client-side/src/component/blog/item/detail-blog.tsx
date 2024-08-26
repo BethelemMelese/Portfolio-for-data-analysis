@@ -87,7 +87,10 @@ const DetailBlog = ({ ...props }) => {
           <div className="detail-sm-link">
             <div className="detail-sm-item">
               <Tooltip title="LinkedIn">
-                <a href="https://www.linkedin.com/in/ablene-melese-821b36223">
+                <a
+                  href="https://www.linkedin.com/in/ablene-melese-821b36223"
+                  target="_blank"
+                >
                   {" "}
                   <LinkedInIcon />
                 </a>
@@ -95,21 +98,21 @@ const DetailBlog = ({ ...props }) => {
             </div>
             <div className="detail-sm-item">
               <Tooltip title="WhatsApp">
-                <a href="#">
+                <a href="https://wa.me/+251799001136" target="_blank">
                   <WhatsAppIcon />
                 </a>
               </Tooltip>
             </div>
             <div className="detail-sm-item">
               <Tooltip title="Instagram">
-                <a href="#">
+                <a href="https://www.instagram.com/ab_lene26/" target="_blank">
                   <InstagramIcon />
                 </a>
               </Tooltip>
             </div>
             <div className="detail-sm-item">
               <Tooltip title="WWW">
-                <a href="#">
+                <a href="#" target="_blank">
                   {" "}
                   <LanguageIcon />
                 </a>

@@ -8,21 +8,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { appUrl } from "../appurl";
 
-const data = [
-  {
-    title: "Blog Category 1",
-  },
-  {
-    title: "Blog Category 2",
-  },
-  {
-    title: "Blog Category 3",
-  },
-  {
-    title: "Blog Category 4",
-  },
-];
-
 const FooterBlog = () => {
   const [categoryDate, setCategoryData] = useState<any>([]);
 

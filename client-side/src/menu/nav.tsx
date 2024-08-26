@@ -45,7 +45,7 @@ const NavMenu = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1200);
     };
 
     window.addEventListener("resize", handleResize);

@@ -52,7 +52,7 @@ const GetLatestBlog = async (req, res) => {
   try {
     const blog = await Blog.find()
       .sort({ _id: -1 })
-      .limit(5)
+      .limit(4)
       .populate("blogCategoryId");
     const response = blog.map((item) => {
       return {

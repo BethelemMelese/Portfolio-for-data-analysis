@@ -1,4 +1,4 @@
-@media (max-width: 1309px) {
+@media only screen and (max-width: 1200px) {
   .checkbtn {
     display: block;
     margin-left: 50px;
@@ -89,19 +89,17 @@
   }
 }
 
-@media (max-width: 1283px) {
-  .bio-card {
-    margin-top: 160%;
-  }
+/* Extra small devices (phones, 600px and down) */
+/* @media only screen and (max-width: 600px) {...} */
 
-  .bio-description p {
-    width: 100%;
-    margin-right: 100%;
-  }
-}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {...} */
 
-/* @media (max-width: 657px) {
-  .bio-card {
-    margin-top: 70%;
-  }
-} */
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (min-width: 768px) {...} */
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {...} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {...} */
