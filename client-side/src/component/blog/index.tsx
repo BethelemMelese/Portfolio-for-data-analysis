@@ -1,6 +1,5 @@
 import { Avatar, Grid } from "@mui/material";
 import BioImage from "../../images/profile-photo.jpg";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Card, List } from "antd";
 import { useEffect, useState } from "react";
 import DetailBlog from "./item/detail-blog";
@@ -30,10 +29,6 @@ const Blog = ({ ...props }) => {
       type: "error",
       message: response,
     });
-  };
-
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
   };
 
   useEffect(() => {
@@ -98,7 +93,7 @@ const Blog = ({ ...props }) => {
           <section id="contact" className="blog-content">
             <Grid container spacing={2}>
               <Grid item xs={8}>
-                <div>
+                <div className="blog-list">
                   {blogDate.length != 0 &&
                     blogDate.map((item: any) => {
                       return (

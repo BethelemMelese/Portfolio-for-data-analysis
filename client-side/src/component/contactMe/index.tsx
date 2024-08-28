@@ -1,4 +1,3 @@
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { Button, Grid, Tooltip } from "@mui/material";
 import { Card } from "antd";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -6,7 +5,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import CallIcon from "@mui/icons-material/Call";
@@ -15,6 +14,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import axios from "axios";
 import { appUrl } from "../../appurl";
 import Notification from "../../commonComponent/notification";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+
 
 interface ContactMeState {
   name: string;
@@ -29,12 +30,13 @@ const initialState: ContactMeState = {
 };
 
 const mapContainerStyle = {
-  width: "22vw",
-  height: "20vh",
+  width: "100%",
+  height: "200px",
 };
+
 const center = {
-  lat: 7.2905715, // default latitude
-  lng: 80.6337262, // default longitude
+  lat: -3.745, // Default coordinates
+  lng: -73.589,
 };
 
 const ContactMe = () => {
@@ -43,6 +45,7 @@ const ContactMe = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setmessage] = useState("");
+  const [currentLocation, setCurrentLocation] = useState(center);
   const [errors, setErrors] = useState({
     name: "",
     email: "",
@@ -94,10 +97,21 @@ const ContactMe = () => {
     validationSchema: validationSchema,
   });
 
-  const libraries = "Addis Ababa";
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCYuI2C4_88HVPTBZxqYntZECDV6PKdLY4",
-  });
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setCurrentLocation({ lat: latitude, lng: longitude });
+        },
+        (error) => {
+          console.error("Error getting location: ", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }, []);
 
   return (
     <div className="contact-container">
@@ -181,14 +195,15 @@ const ContactMe = () => {
               <div className="google-map-location">
                 <h2>Where To Find Me</h2>
                 <div className="map-location">
-                  <Card style={mapContainerStyle}>Their is Map here</Card>
-                  {/* <GoogleMap
-                    mapContainerStyle={mapContainerStyle}
-                    zoom={10}
-                    center={center}
-                  >
-                    <Marker position={center} />
-                  </GoogleMap> */}
+                  <LoadScript googleMapsApiKey="AIzaSyCYuI2C4_88HVPTBZxqYntZECDV6PKdLY4">
+                    <GoogleMap
+                      mapContainerStyle={mapContainerStyle}
+                      center={currentLocation}
+                      zoom={15}
+                    >
+                      <Marker position={currentLocation} />
+                    </GoogleMap>
+                  </LoadScript>
                 </div>
               </div>
 
@@ -261,9 +276,7 @@ const ContactMe = () => {
         <Grid item xs={12}>
           <footer className="contact-footer">
             <div className="created-by">
-              <p>
-                Copyright &copy; 2024 by @Bethisa.m, all rights reserved.
-              </p>
+              <p>Copyright &copy; 2024 by @Bethisa.m, all rights reserved.</p>
             </div>
           </footer>
         </Grid>

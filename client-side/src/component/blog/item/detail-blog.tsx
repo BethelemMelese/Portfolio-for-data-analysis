@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import PpBlogImg from "../../../images/Pp.jpeg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -77,7 +76,7 @@ const DetailBlog = ({ ...props }) => {
         <section className="detail-blog-contact">
           {response != undefined && (
             <div className="Pp-blog">
-              <Avatar src={appUrl + `user/uploads/${response.profileImage}`} />
+              <Avatar className="ava-owner-img" src={appUrl + `user/uploads/${response.profileImage}`} />
               <p>
                 {selectedBlog.author}, {selectedBlog.publishedDate}
               </p>

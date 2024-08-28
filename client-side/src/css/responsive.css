@@ -38,15 +38,19 @@
     margin-top: 10px;
   }
 
-    /* for about me page responsive style */
-    .sm-link{
-      width: 10%;
-    }
-  
+  /* for about me page responsive style */
+  .sm-link {
+    width: 10%;
+  }
 
   /* for project page responsive style*/
   .proj-container {
     margin-bottom: 100%;
+  }
+
+  /* for contact me responsive style */
+  .back-card {
+    margin-top: -1000%;
   }
 }
 
@@ -134,6 +138,11 @@
     height: 20%;
     margin: 0px auto;
   }
+
+  /* for contact me responsive style */
+  .back-card {
+    margin-top: 100%;
+  }
 }
 
 @media screen and (max-width: 980px) {
@@ -195,18 +204,18 @@
     margin-top: 180%;
   }
 
-  .bio-detail h1{
+  .bio-detail h1 {
     font-size: 42px;
     margin-left: -50px;
   }
 
-  .bio-detail p{
+  .bio-detail p {
     font-size: 20px;
     width: 110%;
     margin-left: -50px;
   }
 
-  .bio-buttons{
+  .bio-buttons {
     margin-left: -30px;
   }
 
@@ -219,7 +228,7 @@
     display: block;
   }
 
-  .created-by{
+  .created-by {
     text-align: center;
   }
 
@@ -227,6 +236,139 @@
     margin: 0px auto;
     margin-top: 20px;
   }
+
+  /* for blog page responsive style  */
+  .blog-main-container {
+    width: 100%;
+  }
+  .blog-hero {
+    display: block;
+    padding-bottom: 40px;
+  }
+
+  .blog-hero-image img {
+    width: 80%;
+    height: 80%;
+  }
+
+  .blog-qute {
+    margin-top: -10px;
+  }
+
+  .blog-qute h1 {
+    font-size: 28px;
+  }
+
+  .blog-qute p {
+    font-size: 14px;
+  }
+
+  .anc-more-btn {
+    margin-left: -30px;
+  }
+
+  /* for blog body part */
+  .blog-item-fis {
+    display: block;
+    width: 180%;
+    margin-left: -30px;
+  }
+
+  .blog-list{
+    margin-top: 280%;
+  }
+
+  .blog-item-img img {
+    width: 90%;
+  }
+
+  .blog-item-msg {
+    width: 110%;
+  }
+
+  .blog-category {
+    width: 380%;
+    margin-left: -260%;
+  }
+
+  /* for blog detail part */
+
+  .back-btn{
+    margin-left: -5px;
+  }
+
+  .detail-blog-content h1{
+    font-size: 20px;
+    width: 100%;
+  }
+
+  .detail-blog-content img{
+    width: 100%;
+    height: 80%;
+    margin: 0px auto;
+  }
+
+  .detail-blog-content p{
+    width: 110%;
+    font-size: 12px;
+    margin-left: -10px;
+    letter-spacing: 1px;
+  }
+
+  .detail-blog-contact{
+    display: block;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .Pp-blog p{
+    margin-left: -20px;
+  }
+
+  .ava-owner-img{
+    margin-left: 10%;
+  }
+
+  /* for blog footer part */
+
+  .before-footer{
+    width: 100%;
+  }
+
+  .bef-footer-container {
+    display: block;
+    margin: 0px auto;
+  }
+
+  .footer-quote {
+    margin-left: -20px;
+    margin-top: 20px;
+  }
+
+  .shot-link {
+    margin-top: 20px;
+  }
+
+  .blog-sm {
+    margin-top: 20px;
+  }
+
+  .footer-quote h4 {
+    width: 200%;
+  }
+
+  .footer-quote p {
+    width: 280%;
+  }
+
+  .blog-sm-link {
+    padding: -10px;
+  }
+
+  .blog-sm-item {
+    margin-left: -10px;
+  }
+
   /* for project page responsive style*/
 
   .proj-container {
@@ -261,7 +403,84 @@
   }
 
   /* for contact me */
-  .contact-form{
+  .contact-form {
+    margin: 0px auto;
+  }
+
+  .contact-message h2 {
+    margin: 0px auto;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 150%;
+  }
+
+  .contact-message p {
+    margin-left: 20px;
+    width: 140%;
+  }
+
+  .contact-fields {
+    margin: 0px auto;
+    margin-left: -60%;
+    width: 80%;
+  }
+
+  .contact-btn {
+    margin-top: 20px;
+    margin-bottom: 100%;
+  }
+
+  .contactsubmit {
+    width: 120%;
+    margin-left: 20%;
+  }
+
+  .back-card {
+    margin: 0px auto;
+    margin-top: 450%;
+    margin-left: -260%;
+    width: 360%;
+    height: 30%;
+    box-shadow: none;
+  }
+
+  .contact-info-card {
+    margin: 0px auto;
+    margin-left: 10px;
+    width: 100%;
+  }
+
+  .map-location {
+    width: 100%;
+  }
+
+  .contact-sm-link {
+    width: 115%;
+  }
+
+  .sm-item {
+    margin-bottom: 10px;
+  }
+
+  .contact-address {
+    display: block;
+  }
+
+  .created-by {
+    margin: 0px auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .back-card {
+    margin-top: 550%;
+    width: 340%;
+    height: 30%;
+  }
+
+  .contact-info-card {
+    margin: 0px auto;
+    margin-left: 5px;
     width: 100%;
   }
 }

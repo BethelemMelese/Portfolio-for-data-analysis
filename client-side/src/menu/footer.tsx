@@ -41,7 +41,7 @@ const FooterBlog = () => {
               </p>
             </div>
             <div className="shot-link">
-              <h4>Category</h4>
+              <h4>Blog Category</h4>
               <ul>
                 {categoryDate.length != 0 &&
                   categoryDate.map((item: any) => {
