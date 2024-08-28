@@ -219,14 +219,15 @@ nav {
 }
 
 .about-me-container {
-  width: 80%;
+  width: 100%;
+  height: 100%;
   margin-top: 25px;
 }
 
 .pic-card {
   background-color: var(--secondary-color);
   border: none;
-  width: 155%;
+  width: 110%;
   height: 100%;
   animation: biocard 1.5s ease-in;
 }
@@ -235,7 +236,7 @@ nav {
   background-color: var(--third-color);
   border: none;
   margin-left: 64%;
-  width: 50%;
+  width: 60%;
   height: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -304,18 +305,16 @@ nav {
 .bio-card {
   background-color: transparent;
   border: none;
-  margin-left: 35%;
+  margin-left: 20%;
 }
 
 .bio-detail {
-  margin-left: 5%;
   font-weight: bold;
   display: block;
   color: var(--text-second-color);
 }
 
 .bio-detail h1 {
-  margin-right: 60%;
   font-size: 8vh;
   margin-bottom: 0;
   margin-top: -5px;
@@ -335,6 +334,7 @@ nav {
 }
 
 .bio-description p {
+  width: 80%;
   color: var(--text-second-color);
   animation: title 2s ease-in;
 }
@@ -401,7 +401,6 @@ nav {
 
 .created-by {
   margin-left: 70px;
-  padding-right: 20%;
   margin-top: -10px;
 }
 
@@ -416,7 +415,7 @@ nav {
   margin-left: 10px;
   padding-left: 20px;
   margin-top: -50px;
-  margin-right: -20%;
+  margin-right: 15px;
 }
 
 .address-item {
@@ -966,14 +965,12 @@ nav {
 /* for contact me style */
 
 .contact-container {
-  width: 80.8%;
-  margin-top: 35px;
+  width: 100%;
 }
 
 .back-card {
-  width: 155%;
+  width: 100%;
   height: 100%;
-  margin-left: 20%;
   background-color: var(--secondary-color);
   border: none;
   animation: title 2s ease-in;
@@ -982,9 +979,8 @@ nav {
 .contact-info-card {
   margin-left: -20%;
   background-color: var(--third-color);
-  width: 70%;
+  width: 90%;
   height: 50%;
-  /* margin-top: 5px; */
   box-shadow: 6px 0 6px 0 rgba(130, 123, 94, 0.37),
     6px 10px 10px 0 rgba(0, 0, 0, 0.2);
   border: none;
@@ -1044,8 +1040,10 @@ nav {
 
 .contact-inputs {
   text-align: center;
-  margin-left: 50%;
-  margin-top: -20%;
+}
+
+.contact-fields{
+  margin-left: -80px;
 }
 
 .input-label {
@@ -1215,7 +1213,6 @@ nav {
 }
 
 .inputField {
-  /* color: #fff; */
   width: 150%;
   margin-top: 20px;
   background-color: #8483833a;
@@ -1225,18 +1222,15 @@ nav {
   color: var(--text-second-color);
 }
 
-.contact-fields {
-  margin-left: -20%;
-}
 .back-btn {
   margin-left: 100px;
   margin-top: 30px;
 }
 
 .contact-btn {
-  margin-top: 40%;
-  width: 80%;
-  margin-left: -50px;
+  margin: 0px auto;
+  margin-top: 10px;
+  width:100%;
 }
 
 .contact-btn button {

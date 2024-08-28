@@ -9,8 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Form } from "../../commonComponent/Form";
-import Controls from "../../commonComponent/Controls";
 import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -88,7 +86,6 @@ const ContactMe = () => {
   const formik = useFormik({
     initialValues: initialState,
     onSubmit: (values) => {
-      console.log("values...", values);
       axios
         .post(appUrl + "contact", values)
         .then((response) => onContactMeSuccess(response.data))
@@ -123,7 +120,7 @@ const ContactMe = () => {
                         className="inputField"
                         type="text"
                         id="name"
-                        placeholder="Name"
+                        placeholder="Your Name"
                         {...formik.getFieldProps("name")}
                       />
                       {formik.touched.name && formik.errors.name ? (
@@ -138,7 +135,7 @@ const ContactMe = () => {
                         className="inputField"
                         type="email"
                         id="email"
-                        placeholder="Email"
+                        placeholder="Your Email"
                         {...formik.getFieldProps("email")}
                       />
                       {formik.touched.email && formik.errors.email ? (
@@ -147,13 +144,14 @@ const ContactMe = () => {
                         ""
                       )}
                     </Grid>
+
                     <Grid item xs={12}>
                       <textarea
                         className="inputField"
                         id="message"
-                        placeholder="Write your message here..."
+                        placeholder="Write Your Message Here..."
                         cols={40}
-                        rows={5}
+                        rows={10}
                         {...formik.getFieldProps("message")}
                       ></textarea>
                       {formik.touched.message && formik.errors.message ? (

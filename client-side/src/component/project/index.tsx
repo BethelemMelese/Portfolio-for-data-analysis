@@ -41,7 +41,7 @@ const Project = () => {
   }, []);
 
   return (
-    <div>
+    <div className="proj-container">
       <Card className="proj-container">
         <Grid container spacing={2}>
           <Grid item xs={12}>

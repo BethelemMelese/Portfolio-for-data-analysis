@@ -38,12 +38,16 @@
     margin-top: 10px;
   }
 
+    /* for about me page responsive style */
+    .sm-link{
+      width: 10%;
+    }
   
+
   /* for project page responsive style*/
   .proj-container {
     margin-bottom: 100%;
   }
-
 }
 
 @media screen and (max-width: 768px) {
@@ -143,8 +147,8 @@
     background-color: var(--primary-color);
     width: 100%;
     height: 100%;
-    max-width:500px;
-    max-height:300px;
+    max-width: 500px;
+    max-height: 300px;
     border-radius: 5px;
     margin: 0px auto;
     transition: 0.3s;
@@ -167,7 +171,62 @@
   }
 
   /* for about me page responsive style */
+  .pic-card {
+    height: 40%;
+    width: 400%;
+  }
 
+  .pic-item-card {
+    height: 10%;
+    margin: 0px auto;
+  }
+
+  .pic-photo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .bio {
+    margin: 0px auto;
+    margin-left: -100px;
+  }
+
+  .bio-detail {
+    margin-top: 180%;
+  }
+
+  .bio-detail h1{
+    font-size: 42px;
+    margin-left: -50px;
+  }
+
+  .bio-detail p{
+    font-size: 20px;
+    width: 110%;
+    margin-left: -50px;
+  }
+
+  .bio-buttons{
+    margin-left: -30px;
+  }
+
+  .bio-description p {
+    width: 120%;
+    margin-left: -60px;
+  }
+
+  .aboutme-footer {
+    display: block;
+  }
+
+  .created-by{
+    text-align: center;
+  }
+
+  .address {
+    margin: 0px auto;
+    margin-top: 20px;
+  }
   /* for project page responsive style*/
 
   .proj-container {
@@ -197,7 +256,12 @@
     margin-right: 40px;
   }
 
- .view-code{
-  margin: 0px auto;
- }
+  .view-code {
+    margin: 0px auto;
+  }
+
+  /* for contact me */
+  .contact-form{
+    width: 100%;
+  }
 }
