@@ -30,8 +30,11 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"], // Specify the methods you want to allow
     allowedHeaders: ["Content-Type", "Authorization"], // Specify the headers you want to allow
     credentials: true, // If you need to allow cookies or other credentials
+    optionsSuccessStatus: 200,
   })
 );
+
+app.options('*', cors(corsOptions)); // Handle preflight requests
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
