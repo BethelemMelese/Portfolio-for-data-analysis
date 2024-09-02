@@ -2,13 +2,18 @@ import { Card } from "antd";
 import { useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Button } from "@mui/material";
-import { appUrl } from "../../../../appurl";
+import { Buffer } from "buffer";
 
 const DetailBlog = ({ ...props }) => {
   const [selectedCategory, setSelectedCategory] = useState(
     props.selectedCategory
   );
   const [selectedBlog, setSelectedBlog] = useState(props.selectedBlog);
+
+  const convertBufferToBase64 = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${selectedBlog.blogImage.contentType};base64,${base64String}`;
+  };
   return (
     <div className="detailBlog-container">
       <Card
@@ -34,7 +39,7 @@ const DetailBlog = ({ ...props }) => {
             </p>
           </div>
           <img
-            src={appUrl + `project/uploads/${selectedBlog.blogImage}`}
+            src={convertBufferToBase64(selectedBlog.blogImage.data)}
             width="40%"
             height="30%"
           />

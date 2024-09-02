@@ -13,6 +13,7 @@ import DetailCategory from "../category/detail";
 import DetailBlog from "../item/detail";
 import EditBlogCategory from "../category/edit";
 import EditBlog from "../item/edit";
+import { Buffer } from "buffer";
 
 const { confirm } = Modal;
 
@@ -165,6 +166,16 @@ const ViewBlog = () => {
     onFetchCategory();
   }, []);
 
+  const convertBufferToBase64ForCategory = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${categoryDate[0].categoryImage.contentType};base64,${base64String}`;
+  };
+
+  const convertBufferToBase64ForBlog = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${blogDate[0].blogImage.contentType};base64,${base64String}`;
+  };
+  
   return (
     <div className="blog-container">
       {viewCategory == "view" && (
@@ -231,9 +242,9 @@ const ViewBlog = () => {
                               <Grid container spacing={0}>
                                 <Grid item xs={4}>
                                   <img
-                                    src={
-                                      appUrl + `blog/uploads/${item.blogImage}`
-                                    }
+                                    src={convertBufferToBase64ForBlog(
+                                      item.blogImage.data
+                                    )}
                                     width={150}
                                     height={110}
                                     style={{
@@ -373,7 +384,9 @@ const ViewBlog = () => {
                         avatar={
                           <Avatar
                             variant="rounded"
-                            src={appUrl + `blog/uploads/${item.categoryImage}`}
+                            src={convertBufferToBase64ForCategory(
+                              item.categoryImage.data
+                            )}
                           />
                         }
                         title={item.categoryName}

@@ -425,11 +425,13 @@
   }
 
   .project-dec p {
-    margin-right: 40px;
+    margin-left: 30%;
+    margin-right: 20px;
   }
 
   .view-code {
-    margin: 0px auto;
+    /* margin: 0px auto; */
+    margin-left: -50%;
   }
 
   /* for contact me */

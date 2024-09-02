@@ -107,7 +107,7 @@ html {
   margin-bottom: 2px;
   background-color: var(--main-background-color);
   color: var(--text-second-color);
-  position: fixed;
+  /* position: fixed; */
   margin-left: 14%;
 }
 

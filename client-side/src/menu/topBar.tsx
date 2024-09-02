@@ -9,7 +9,7 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SyncLockIcon from "@mui/icons-material/SyncLock";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
@@ -18,21 +18,7 @@ import axios from "axios";
 import { appUrl } from "../appurl";
 import userService from "../police/userService";
 import { Button, Drawer, List } from "antd";
-
-const data = [
-  {
-    title: "Blog Category 1",
-  },
-  {
-    title: "Blog Category 2",
-  },
-  {
-    title: "Blog Category 3",
-  },
-  {
-    title: "Blog Category 4",
-  },
-];
+import { Buffer } from "buffer";
 
 const TopBar = ({ ...props }) => {
   const [dataSource, setDataSource] = useState<any>(0);
@@ -161,6 +147,11 @@ const TopBar = ({ ...props }) => {
       });
   };
 
+  const convertBufferToBase64 = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${response.profileImage.contentType};base64,${base64String}`;
+  };
+
   return (
     <div>
       <nav className="top-bar-menu">
@@ -230,7 +221,7 @@ const TopBar = ({ ...props }) => {
                 {response != undefined && (
                   <Avatar
                     sx={{ width: 45, height: 45 }}
-                    src={appUrl + `user/uploads/${response.profileImage}`}
+                    src={convertBufferToBase64(response.profileImage.data)}
                   />
                 )}
               </Badge>

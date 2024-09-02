@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { appUrl } from "../../appurl";
 import Notification from "../../commonComponent/notification";
+import { Buffer } from "buffer";
 
 const AboutMe = () => {
   const [dataSource, setDataSource] = useState<any>();
@@ -64,6 +65,12 @@ const AboutMe = () => {
       });
   }, []);
 
+  const convertBufferToBase64 = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${response.profileImage.contentType};base64,${base64String}`;
+  };
+
+
   return (
     <div className="about-me-container">
       {response != undefined && (
@@ -78,7 +85,7 @@ const AboutMe = () => {
                         className="pic-photo"
                         alt="Profile Picture"
                         sx={{ width: 200, height: 200 }}
-                        src={appUrl + `user/uploads/${response.profileImage}`}
+                        src={convertBufferToBase64(response.profileImage.data)}
                       />
                     </div>
                     <div className="divider-fir"></div>

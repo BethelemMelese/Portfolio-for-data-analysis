@@ -10,7 +10,6 @@ import axios from "axios";
 import { Button, Grid } from "@mui/material";
 import { UploadOutlined } from "@ant-design/icons";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-// import QuillEditor from "../../../../commonComponent/QuillEditor";
 import "quill/dist/quill.snow.css"; // import Quill styles
 import Quill from "quill";
 
@@ -38,6 +37,7 @@ const AddBlog = ({ ...props }) => {
   const [validFileFormat, setValidFileFormat] = useState(false);
   const [fileRequired, setFileRequired] = useState(false);
   const [content, setContent] = useState<string>("");
+  const [isContent, setIsContent] = useState(false);
   const quillRef = useRef<any>(null);
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -63,7 +63,7 @@ const AddBlog = ({ ...props }) => {
     });
     setTimeout(() => {
       setIsSubmitting(false);
-      // window.location.reload();
+      window.location.reload();
     }, 2000);
   };
 
@@ -81,31 +81,34 @@ const AddBlog = ({ ...props }) => {
   const validationSchema = Yup.object().shape({
     blogTitle: Yup.string().required("Article Title is required"),
     author: Yup.string().required("Author Name is required"),
-    // mainContent: Yup.string().required("Content is required"),
   });
 
   const formik = useFormik({
     initialValues: initialState,
     onSubmit: (values) => {
-      setIsSubmitting(true);
-      values.blogCategoryId = selectedCategory.id;
-      values.mainContent = content;
-      console.log("values.mainContent...",values.mainContent);
-      const formData = new FormData();
-      formData.append("file", fileList);
-      formData.append("blogTitle", values.blogTitle);
-      formData.append("author", values.author);
-      formData.append(`mainContent`, values.mainContent);
-      formData.append(`blogCategoryId`, values.blogCategoryId);
-      axios
-        .create({
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-        .post(appUrl + "blog/addBlog/", formData)
-        .then(() => onCreateSuccess())
-        .catch((error) => onCreateError(error.response.data.message));
+      if (content == "") {
+        setIsContent(true);
+      } else {
+        setIsContent(false);
+        setIsSubmitting(true);
+        values.blogCategoryId = selectedCategory.id;
+        values.mainContent = content;
+        const formData = new FormData();
+        formData.append("file", fileList);
+        formData.append("blogTitle", values.blogTitle);
+        formData.append("author", values.author);
+        formData.append(`mainContent`, values.mainContent);
+        formData.append(`blogCategoryId`, values.blogCategoryId);
+        axios
+          .create({
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .post(appUrl + "blog/addBlog/", formData)
+          .then(() => onCreateSuccess())
+          .catch((error) => onCreateError(error.response.data.message));
+      }
     },
     validationSchema: validationSchema,
   });
@@ -193,28 +196,21 @@ const AddBlog = ({ ...props }) => {
                       : ""
                   }
                 />
-                {/* <Controls.Input
-                  required
-                  id="mainContent"
-                  label="Main Content"
-                  helper="Write your message here..."
-                  multiline
-                  {...formik.getFieldProps("mainContent")}
-                  error={
-                    formik.touched.mainContent && formik.errors.mainContent
-                      ? formik.errors.mainContent
-                      : ""
-                  }
-                /> */}
-                {/* <label>
-                  Content:
-                  <QuillEditor value={content} onChange={setContent} />
-                </label> */}
               </Card>
             </Grid>
             <Grid item xs={12}>
               <Card title="The Article Content">
+                {/* <label>
+                  Content:
+                  <QuillEditor value={content} onChange={setContent} />
+                </label> */}
                 <div ref={quillRef}></div>
+                <br />
+                {isContent ? (
+                  <span className="text-danger">
+                    Please insert the Content of the article !
+                  </span>
+                ) : null}
               </Card>
             </Grid>
             <Grid item xs={12}>

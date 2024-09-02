@@ -223,6 +223,8 @@ const ChangePassword = async (req, res) => {
 const UpdateProfileImg = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("req.file...",req.file);
+    const { originalname, mimetype, buffer } = req.file;
     const user = await User.findById(id);
 
     if (!user) {
