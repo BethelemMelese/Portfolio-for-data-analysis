@@ -19,6 +19,15 @@ var corsOptions = { origin: whitelist, credentials: true };
 app.use(cors(corsOptions)); // Allowing incoming request from any IP
 // configuration file
 
+app.use(
+  cors({
+    origin: "*", // Replace with your domain or use '*' to allow all origins
+    methods: ["GET", "POST", "PUT", "DELETE"], // Specify the methods you want to allow
+    allowedHeaders: ["Content-Type", "Authorization"], // Specify the headers you want to allow
+    credentials: true, // If you need to allow cookies or other credentials
+  })
+);
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -37,7 +46,9 @@ app.use(express.static("public"));
 // Connection with Mongodb Database and run the server
 let PORT = process.env.PORT || 5000;
 mongoose
-  .connect("mongodb+srv://melesebety2673:Admin123@peronal-portfolio.dxihqri.mongodb.net/?retryWrites=true&w=majority&appName=peronal-portfolio")
+  .connect(
+    "mongodb+srv://melesebety2673:Admin123@peronal-portfolio.dxihqri.mongodb.net/?retryWrites=true&w=majority&appName=peronal-portfolio"
+  )
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}...`);
