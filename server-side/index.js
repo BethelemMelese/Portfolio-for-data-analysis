@@ -37,7 +37,7 @@ app.use(express.static("public"));
 // Connection with Mongodb Database and run the server
 let PORT = process.env.PORT || 5000;
 mongoose
-  .connect(process.env.MONGODB_URL)
+  .connect("mongodb+srv://melesebety2673:Admin123@peronal-portfolio.dxihqri.mongodb.net/?retryWrites=true&w=majority&appName=peronal-portfolio")
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}...`);
