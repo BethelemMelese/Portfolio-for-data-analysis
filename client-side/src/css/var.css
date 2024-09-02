@@ -1,0 +1,101 @@
+[light-theme="light"] {
+  /* #f4f3f0 */
+  /* #fffceb the yellow one */
+  --primary-color: #f4f3f0;
+  --secondary-color: #f0e674;
+  --third-color: #f2de1f;
+  --text-color: #fff;
+  --text-second-color: #000;
+  --resume-btn-color: #f2de1f;
+  --project-btn-color: #f2de1f;
+  --sm-background-color: #fff;
+  --active-background-color: #1d1d1f;
+  --active-color: #f4f3f0;
+  --card-background-color: #fff;
+  --card-text-color: #000;
+  --main-background-color: #e7e7e7;
+  --main-sec-background-color: #fffefe;
+  --main-third-background-color: #dfdedb;
+  --color-gray: #696969;
+  --color-second-gray: #d3cecea2;
+  --scrollbar-thumb-color: #a5a5a5;
+  --scrollbar-thumb-color--hover: #bcbcbc;
+  --scrollbar-border-color: #dcdcdc;
+  --color-hover-title: #5e5d5d;
+  --pagination-background-color:#f4f3f0;
+  --font-family-titles: "Lexend", sans-serif;
+  --font-family-main: "Manrope", sans-serif;
+  --font-weight-titles: 600;
+  --full-width-post-font-size: 16px;
+  --full-width-post-line-height: 120%;
+  --full-width-post-letter-spacing: -0.04em;
+  --h1-font-size: 40px;
+  --h1-line-height: 120%;
+  --h1-letter-spacing: -0.04em;
+  --h2-font-size: 32px;
+  --h2-line-height: 120%;
+  --h2-letter-spacing: -0.04em;
+  --h3-font-size: 24px;
+  --h3-line-height: 120%;
+  --h3-letter-spacing: -0.04em;
+  --h4-font-size: 20px;
+  --h4-line-height: 120%;
+  --h4-letter-spacing: -0.04em;
+}
+:root {
+  --primary-color: #1d1d1f;
+  --secondary-color: #f0e674;
+  --third-color: #f2de1f;
+  --text-color: #000;
+  --text-second-color: #fff;
+  --resume-btn-color: #f2de1f;
+  --project-btn-color: #f2de1f;
+  --sm-background-color: #1d1d1f;
+  --active-background-color: #f4f3f0;
+  --active-color: #1d1d1f;
+  --card-background-color: #0c0c0c;
+  --card-text-color: #fff;
+  --main-background-color: #242423ee;
+  --main-sec-background-color: #1e1a1a;
+  --main-third-background-color: #151513;
+  --pagination-background-color:#f4f3f0;
+  --color-gray: #696969;
+  --color-second-gray: #413f3f8a;
+  --scrollbar-thumb-color: #404040;
+  --scrollbar-thumb-color--hover: #5e5e5e;
+  --scrollbar-border-color: #404040;
+  --color-hover-title: #5e5d5d;
+  --font-family-titles: "Lexend", sans-serif;
+  --font-family-main: "Manrope", sans-serif;
+  --font-weight-titles: 600;
+  --full-width-post-font-size: 16px;
+  --full-width-post-line-height: 120%;
+  --full-width-post-letter-spacing: -0.04em;
+  --h1-font-size: 40px;
+  --h1-line-height: 120%;
+  --h1-letter-spacing: -0.04em;
+  --h2-font-size: 32px;
+  --h2-line-height: 120%;
+  --h2-letter-spacing: -0.04em;
+  --h3-font-size: 24px;
+  --h3-line-height: 120%;
+  --h3-letter-spacing: -0.04em;
+  --h4-font-size: 20px;
+  --h4-line-height: 120%;
+  --h4-letter-spacing: -0.04em;
+}
+
+/* 
+  --primary-color: #d6e0ef;
+  --secondary-color: #8090af;
+  --third-color: #1d296f;
+    --third-color: #6f1d2567;
+   */
+
+/* For Dark mode color purpose 
+     --primary-color: #d8d8d8b5;
+  --secondary-color: #7577765a;
+  --third-color: #000000;*/
+
+/*   --resume-btn-color: linear-gradient(to right, #d3c11b, #000);
+  --project-btn-color: linear-gradient(to left, #d3c11b, #000); */

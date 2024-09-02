@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import AppRoute from "./appRouting";
+import Loading from "./component/loading";
 
 function App() {
+  useEffect(() => {
+    const currentTheme: any = localStorage.getItem("theme-color");
+    if (!currentTheme) {
+      localStorage.setItem("theme-color", "dark");
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <Loading/> */}
+      <AppRoute />
     </div>
   );
 }
