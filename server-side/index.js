@@ -8,13 +8,16 @@ const ResumeRoute = require("./routes/resume.route.js");
 const UserRoute = require("./routes/user.route.js");
 const ContactRoute = require("./routes/contact.route.js");
 const BlogRoute = require("./routes/blog.route.js");
-const ImageRoute=require("./routes/imageFile.route.js");
+const ImageRoute = require("./routes/imageFile.route.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors()); // Allowing incoming request from any IP
-// configuration file
 dotenv.config();
+
+var whitelist = ["http://localhost:3000", "https://datawizdipsy.netlify.app/"];
+var corsOptions = { origin: whitelist, credentials: true };
+app.use(cors(corsOptions)); // Allowing incoming request from any IP
+// configuration file
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -28,9 +31,8 @@ app.use((req, res, next) => {
   );
   next();
 });
-
 // Middleware to serve static files
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 // Connection with Mongodb Database and run the server
 let PORT = process.env.PORT || 5000;
@@ -47,7 +49,7 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.send("Hello World from Node API");
+  res.send("The Server Side running Successfully");
 });
 
 // all the end points / routes of backend
@@ -56,4 +58,4 @@ app.use("/api/resume", ResumeRoute);
 app.use("/api/user", UserRoute);
 app.use("/api/contact", ContactRoute);
 app.use("/api/blog/", BlogRoute);
-app.use("/api/imageRoute",ImageRoute);
+app.use("/api/imageRoute", ImageRoute);
