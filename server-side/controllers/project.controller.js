@@ -1,5 +1,6 @@
 const Project = require("../models/project.model.js");
 const multer = require("multer");
+const { decode } = require("html-entities");
 
 const GetAllProject = async (req, res) => {
   try {
@@ -31,7 +32,7 @@ const GetProjectById = async (req, res) => {
         id: values._id,
         projectNumber: values.projectNumber,
         projectTitle: values.projectTitle,
-        // projectDescription: values.projectDescription,
+        projectDescription: values.projectDescription,
         sourceCodeLink: values.sourceCodeLink,
         otherLink: values.otherLink,
       };
@@ -44,12 +45,17 @@ const GetProjectById = async (req, res) => {
 
 const CreateProject = async (req, res) => {
   try {
+    const { originalname, mimetype, buffer } = req.file;
     const total = await Project.find();
     const addProject = {
       projectNumber: total.length + 1,
       projectTitle: req.body.projectTitle,
       projectDescription: req.body.projectDescription,
-      projectImage: req.file.filename,
+      projectImage: {
+        filename: originalname,
+        data: buffer,
+        contentType: mimetype,
+      },
       sourceCodeLink: req.body.sourceCodeLink,
       otherLink: req.body.otherLink,
     };
@@ -76,10 +82,15 @@ const UpdateProject = async (req, res) => {
           otherLink: req.body.otherLink,
         });
       } else {
+        const { originalname, mimetype, buffer } = req.file;
         response = await Project.findByIdAndUpdate(id, {
           projectTitle: req.body.projectTitle,
           projectDescription: req.body.projectDescription,
-          projectImage: req.file.filename,
+          projectImage: {
+            filename: originalname,
+            data: buffer,
+            contentType: mimetype,
+          },
           sourceCodeLink: req.body.sourceCodeLink,
           otherLink: req.body.otherLink,
         });

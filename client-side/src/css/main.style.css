@@ -799,3 +799,20 @@ html {
   );
   color: #000;
 }
+
+
+/* for Image File */
+.imageFile-container{
+  color: var(--text-second-color);
+  margin: 50px;
+}
+
+.image-card{
+  color: var(--text-second-color);
+}
+
+.imageFile-container h1{
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: 'Times New Roman', Times, serif;
+}

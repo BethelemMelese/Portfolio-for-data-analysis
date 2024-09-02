@@ -1,5 +1,5 @@
 import { Card, Upload, Button as ButtonAnt } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Notification from "../../../../commonComponent/notification";
 import Controls from "../../../../commonComponent/Controls";
 import { useFormik } from "formik";
@@ -10,6 +10,9 @@ import axios from "axios";
 import { Button, Grid } from "@mui/material";
 import { UploadOutlined } from "@ant-design/icons";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+// import QuillEditor from "../../../../commonComponent/QuillEditor";
+import "quill/dist/quill.snow.css"; // import Quill styles
+import Quill from "quill";
 
 interface BlogState {
   blogTitle: string;
@@ -34,6 +37,8 @@ const AddBlog = ({ ...props }) => {
   const [fileList, setFileList] = useState<any>([]);
   const [validFileFormat, setValidFileFormat] = useState(false);
   const [fileRequired, setFileRequired] = useState(false);
+  const [content, setContent] = useState<string>("");
+  const quillRef = useRef<any>(null);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -58,7 +63,7 @@ const AddBlog = ({ ...props }) => {
     });
     setTimeout(() => {
       setIsSubmitting(false);
-      window.location.reload();
+      // window.location.reload();
     }, 2000);
   };
 
@@ -76,7 +81,7 @@ const AddBlog = ({ ...props }) => {
   const validationSchema = Yup.object().shape({
     blogTitle: Yup.string().required("Article Title is required"),
     author: Yup.string().required("Author Name is required"),
-    mainContent: Yup.string().required("Content is required"),
+    // mainContent: Yup.string().required("Content is required"),
   });
 
   const formik = useFormik({
@@ -84,6 +89,8 @@ const AddBlog = ({ ...props }) => {
     onSubmit: (values) => {
       setIsSubmitting(true);
       values.blogCategoryId = selectedCategory.id;
+      values.mainContent = content;
+      console.log("values.mainContent...",values.mainContent);
       const formData = new FormData();
       formData.append("file", fileList);
       formData.append("blogTitle", values.blogTitle);
@@ -125,6 +132,18 @@ const AddBlog = ({ ...props }) => {
     }
   };
 
+  useEffect(() => {
+    const quill = new Quill(quillRef.current, {
+      theme: "snow",
+      modules: {
+        toolbar: true,
+      },
+    });
+    quill.on("text-change", () => {
+      setContent(quill.root.innerHTML);
+    });
+  }, []);
+
   return (
     <div className="create-blog-container">
       <Card
@@ -149,7 +168,7 @@ const AddBlog = ({ ...props }) => {
             <Grid item xs={12}>
               <Card
                 title="Fill the following input field to publish your article"
-                className="create-card"
+                // className="create-card"
               >
                 <Controls.Input
                   required
@@ -174,7 +193,7 @@ const AddBlog = ({ ...props }) => {
                       : ""
                   }
                 />
-                <Controls.Input
+                {/* <Controls.Input
                   required
                   id="mainContent"
                   label="Main Content"
@@ -186,7 +205,16 @@ const AddBlog = ({ ...props }) => {
                       ? formik.errors.mainContent
                       : ""
                   }
-                />
+                /> */}
+                {/* <label>
+                  Content:
+                  <QuillEditor value={content} onChange={setContent} />
+                </label> */}
+              </Card>
+            </Grid>
+            <Grid item xs={12}>
+              <Card title="The Article Content">
+                <div ref={quillRef}></div>
               </Card>
             </Grid>
             <Grid item xs={12}>

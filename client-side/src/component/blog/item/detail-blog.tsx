@@ -70,7 +70,7 @@ const DetailBlog = ({ ...props }) => {
               width="40%"
               height="40%"
             />
-            <p>{selectedBlog.mainContent}</p>
+            <div dangerouslySetInnerHTML={{ __html: selectedBlog.mainContent }} />
           </div>
         </section>
         <section className="detail-blog-contact">

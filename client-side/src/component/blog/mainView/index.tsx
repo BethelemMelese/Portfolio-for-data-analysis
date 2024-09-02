@@ -243,9 +243,13 @@ const ViewBlog = () => {
                                   />
                                 </Grid>
                                 <Grid item xs={8}>
-                                  <h5 className="maincontent">
-                                    {item.mainContent.slice(0, 290) + "..."}
-                                  </h5>
+                                  <div
+                                    className="maincontent"
+                                    dangerouslySetInnerHTML={{
+                                      __html:
+                                        item.mainContent.slice(0, 290) + "...",
+                                    }}
+                                  />
                                 </Grid>
                               </Grid>
                             </Grid>

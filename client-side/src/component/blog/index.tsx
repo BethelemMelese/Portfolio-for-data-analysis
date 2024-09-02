@@ -130,7 +130,15 @@ const Blog = ({ ...props }) => {
                                   {item.blogTitle}
                                 </a>
                               </h3>
-                              <p>{item.mainContent.slice(0, 290) + "..."}</p>
+                              <p>
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html:
+                                      item.mainContent.slice(0, 290) + "...",
+                                  }}
+                                />
+                              </p>
+
                               <div className="blog-au-info">
                                 <p>
                                   {item.publishedDate}, by {item.author}

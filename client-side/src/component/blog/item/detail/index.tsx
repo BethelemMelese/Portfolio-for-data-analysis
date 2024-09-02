@@ -38,7 +38,7 @@ const DetailBlog = ({ ...props }) => {
             width="40%"
             height="30%"
           />
-          <p>{selectedBlog.mainContent}</p>
+          <div dangerouslySetInnerHTML={{ __html: selectedBlog.mainContent }} />
         </div>
       </Card>
     </div>

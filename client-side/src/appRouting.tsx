@@ -15,6 +15,7 @@ import ViewResume from "./component/resume/view";
 import ChangePassword from "./component/changePassword";
 import Profile from "./component/profile";
 import ViewContact from "./component/contactMe/view";
+import ImageFile from "./component/ImageFile";
 import NavMenu from "./menu/nav";
 import "./css/style.css";
 import "./css/responsive.css";
@@ -31,6 +32,7 @@ function AppRoute() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/project" element={<Project />} />
           <Route path="/contactMe" element={<ContactMe />} />
+          <Route path="/ImageFile" element={<ImageFile />} />
         </Route>
 
         <Route path="mainPage">

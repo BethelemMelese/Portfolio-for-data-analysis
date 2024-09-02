@@ -2,6 +2,7 @@ const User = require("../models/user.model.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const { decode } = require("html-entities");
 
 // configuration file
 dotenv.config();
@@ -183,7 +184,7 @@ const UpdateUserInfo = async (req, res) => {
         profession: req.body.profession,
       }
     );
-     res.status(200).json(user);
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -229,7 +230,11 @@ const UpdateProfileImg = async (req, res) => {
     }
 
     const updateUserProfile = await User.findByIdAndUpdate(id, {
-      profileImage: req.file.filename,
+      profileImage: {
+        filename: originalname,
+        data: buffer,
+        contentType: mimetype,
+      },
     });
 
     res.status(200).json({

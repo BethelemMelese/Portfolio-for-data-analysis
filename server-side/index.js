@@ -8,6 +8,7 @@ const ResumeRoute = require("./routes/resume.route.js");
 const UserRoute = require("./routes/user.route.js");
 const ContactRoute = require("./routes/contact.route.js");
 const BlogRoute = require("./routes/blog.route.js");
+const ImageRoute=require("./routes/imageFile.route.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,6 +28,9 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+// Middleware to serve static files
+app.use(express.static('public'));
 
 // Connection with Mongodb Database and run the server
 let PORT = process.env.PORT || 5000;
@@ -52,3 +56,4 @@ app.use("/api/resume", ResumeRoute);
 app.use("/api/user", UserRoute);
 app.use("/api/contact", ContactRoute);
 app.use("/api/blog/", BlogRoute);
+app.use("/api/imageRoute",ImageRoute);

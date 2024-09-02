@@ -1,6 +1,7 @@
 const Blog = require("../models/blogItem.model.js");
 const BlogCategory = require("../models/blogCategory.model.js");
 const { format } = require("date-fns");
+const { decode } = require("html-entities");
 
 const GetCategoryOnly = async (req, res) => {
   try {
@@ -74,10 +75,15 @@ const GetLatestBlog = async (req, res) => {
 
 const AddCategoryOnly = async (req, res) => {
   try {
+    const { originalname, mimetype, buffer } = req.file;
     const category = await BlogCategory.create({
       categoryName: req.body.categoryName,
       categoryDescription: req.body.categoryDescription,
-      categoryImage: req.file.filename,
+      categoryImage: {
+        filename: originalname,
+        data: buffer,
+        contentType: mimetype,
+      },
     });
     res.status(200).json(category);
   } catch (error) {
@@ -87,13 +93,20 @@ const AddCategoryOnly = async (req, res) => {
 
 const AddBlogOnly = async (req, res) => {
   try {
+    // Decode the HTML entities if needed
+    const decodedContent = decode(req.body.mainContent);
+    const { originalname, mimetype, buffer } = req.file;
     const blog = await Blog.create({
       blogTitle: req.body.blogTitle,
       author: req.body.author,
       publishedDate: new Date(),
-      mainContent: req.body.mainContent,
+      mainContent: decodedContent,
       blogCategoryId: req.body.blogCategoryId,
-      blogImage: req.file.filename,
+      blogImage: {
+        filename: originalname,
+        data: buffer,
+        contentType: mimetype,
+      },
     });
     res.status(200).json(blog);
   } catch (error) {
@@ -104,17 +117,21 @@ const AddBlogOnly = async (req, res) => {
 const EditBlogOnly = async (req, res) => {
   try {
     const { blogId } = req.params;
-    const { file } = req.file == undefined ? "" : req.file;
     let blog;
 
-    if (file != "") {
+    if (req.file != undefined) {
+      const { originalname, mimetype, buffer } = req.file;
       blog = await Blog.findByIdAndUpdate(
         { _id: blogId },
         {
           blogTitle: req.body.blogTitle,
           author: req.body.author,
           mainContent: req.body.mainContent,
-          blogImage: req.file.filename,
+          blogImage: {
+            filename: originalname,
+            data: buffer,
+            contentType: mimetype,
+          },
         }
       );
     } else {
@@ -139,12 +156,17 @@ const EditCategoryOnly = async (req, res) => {
     const { categoryId } = req.params;
     let category;
     if (req.file != undefined) {
+      const { originalname, mimetype, buffer } = req.file;
       category = await BlogCategory.findByIdAndUpdate(
         { _id: categoryId },
         {
           categoryName: req.body.categoryName,
           categoryDescription: req.body.categoryDescription,
-          categoryImage: req.file.filename,
+          categoryImage: {
+            filename: originalname,
+            data: buffer,
+            contentType: mimetype,
+          },
         }
       );
     } else {

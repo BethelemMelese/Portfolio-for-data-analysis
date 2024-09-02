@@ -19,8 +19,9 @@ const blogItemSchema = mongoose.Schema(
       required: true,
     },
     blogImage: {
-      type: String,
-      required: [true, "please insert image path"],
+      data: Buffer,
+      contentType: String,
+      filename: String,
     },
     blogCategoryId: {
       type: mongoose.Schema.Types.ObjectId,
