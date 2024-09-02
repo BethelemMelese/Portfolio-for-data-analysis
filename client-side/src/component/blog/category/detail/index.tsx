@@ -1,15 +1,7 @@
-import {
-  Button,
-  Grid,
-  IconButton,
-  MenuItem,
-  Menu,
-  Avatar,
-} from "@mui/material";
+import { Button, Grid, IconButton, Avatar } from "@mui/material";
 import { Card, Tooltip, Modal } from "antd";
 import { useEffect, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import BlogImage from "../../../../images/login_header_image.jpg";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -17,6 +9,7 @@ import { appUrl, token } from "../../../../appurl";
 import axios from "axios";
 import AddBlog from "../../item/create";
 import DetailBlog from "../../item/detail";
+import { Buffer } from "buffer";
 
 const { confirm } = Modal;
 
@@ -45,13 +38,6 @@ const DetailCategory = ({ ...props }) => {
     message: "",
     type: "",
   });
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const onDeleteSuccess = (response: any) => {
     setNotify({
@@ -128,6 +114,16 @@ const DetailCategory = ({ ...props }) => {
     onFetchBlog();
   }, []);
 
+  const convertBufferToBase64 = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${dataSource[0].blogImage.contentType};base64,${base64String}`;
+  };
+
+  const convertBufferToBase64ForCategory = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${selectedCategory.categoryImage.contentType};base64,${base64String}`;
+  };
+
   return (
     <div className="category-detail-container">
       {viewMode == "view" && (
@@ -147,9 +143,9 @@ const DetailCategory = ({ ...props }) => {
                       maxWidth: 400,
                     }}
                     alt="Blog Image"
-                    src={
-                      appUrl + `blog/uploads/${selectedCategory.categoryImage}`
-                    }
+                    src={convertBufferToBase64ForCategory(
+                      selectedCategory.categoryImage.data
+                    )}
                   />
                   <h2>{selectedCategory.categoryName}</h2>
                   <p>{selectedCategory.categoryDescription}</p>
@@ -254,10 +250,9 @@ const DetailCategory = ({ ...props }) => {
                                 <Grid container spacing={0}>
                                   <Grid item xs={4}>
                                     <img
-                                      src={
-                                        appUrl +
-                                        `project/uploads/${item.blogImage}`
-                                      }
+                                      src={convertBufferToBase64(
+                                        item.blogImage.data
+                                      )}
                                       width={100}
                                       height={100}
                                       style={{

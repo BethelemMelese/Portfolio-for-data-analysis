@@ -134,6 +134,11 @@ const ViewProject = () => {
     onFetchProject();
   }, []);
 
+  const convertBufferToBase64 = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${dataSource[0].projectImage.contentType};base64,${base64String}`;
+  };
+
   return (
     <div className="project-container">
       <Grid container spacing={1}>
@@ -181,7 +186,7 @@ const ViewProject = () => {
                       <img
                         width={200}
                         alt="Project Image"
-                        src={appUrl + `blog/uploads/${item.projectImage}`}
+                        src={convertBufferToBase64(item.projectImage.data)}
                       />
                     }
                   >

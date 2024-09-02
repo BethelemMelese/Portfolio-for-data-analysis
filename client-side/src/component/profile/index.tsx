@@ -10,7 +10,7 @@ import Notification from "../../commonComponent/notification";
 import { Form } from "../../commonComponent/Form";
 import Controls from "../../commonComponent/Controls";
 import EditProfile from "./edit";
-import { UploadOutlined } from "@ant-design/icons";
+import { Buffer } from "buffer";
 
 const Profile = ({ ...props }) => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -107,6 +107,11 @@ const Profile = ({ ...props }) => {
       .catch((error: any) => onFetchError(error));
   }, []);
 
+  const convertBufferToBase64 = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${response.profileImage.contentType};base64,${base64String}`;
+  };
+
   return (
     <div className="profile-container">
       <Grid container spacing={2}>
@@ -124,7 +129,7 @@ const Profile = ({ ...props }) => {
                     <Avatar
                       sx={{ width: 100, height: 100 }}
                       className="profile-image"
-                      src={appUrl + `user/uploads/${response.profileImage}`}
+                      src={convertBufferToBase64(response.profileImage.data)}
                     ></Avatar>
                   </Tooltip>
                 )}

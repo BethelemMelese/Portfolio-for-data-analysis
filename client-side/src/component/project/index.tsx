@@ -1,12 +1,13 @@
 import { Grid, Button } from "@mui/material";
 import { Card, Spin } from "antd";
 import { Carousel } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { appUrl } from "../../appurl";
 import axios from "axios";
+import { Buffer } from "buffer";
 
 const Project = () => {
-  const [projectResponse, setProjectResponse] = useState([]);
+  const [projectResponse, setProjectResponse] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -40,6 +41,11 @@ const Project = () => {
       });
   }, []);
 
+  const convertBufferToBase64 = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${projectResponse[0].projectImage.contentType};base64,${base64String}`;
+  };
+
   return (
     <div className="proj-container">
       <Card className="proj-container">
@@ -71,7 +77,7 @@ const Project = () => {
                   size="large"
                   tip="Loading..."
                 >
-                  <Carousel autoplay arrows infinite={true}>
+                  <Carousel arrows infinite={true}>
                     {projectResponse.map((item: any) => {
                       return (
                         <Card
@@ -92,13 +98,12 @@ const Project = () => {
                           <div className="project-layout">
                             <div className="project-image">
                               <img
-                                src={
-                                  appUrl +
-                                  `project/uploads/${item.projectImage}`
-                                }
-                                width="80%"
-                                style={{ maxHeight: "80%", maxWidth: "80%" }}
-                                height="90%"
+                                src={convertBufferToBase64(
+                                  item.projectImage.data
+                                )}
+                                width="40%"
+                                style={{ maxHeight: "50%", maxWidth: "50%" }}
+                                height="40%"
                               />
                             </div>
                             <div className="project-dec">

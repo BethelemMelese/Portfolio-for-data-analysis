@@ -8,9 +8,9 @@ import FooterBlog from "../../menu/footer";
 import Notification from "../../commonComponent/notification";
 import axios from "axios";
 import { appUrl } from "../../appurl";
+import { Buffer } from "buffer";
 
 const Blog = ({ ...props }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
   const [viewMode, setViewMode] = useState("main");
   const [loading, setLoading] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState();
@@ -22,7 +22,7 @@ const Blog = ({ ...props }) => {
     type: "",
   });
 
-  //   Notification for Success and error actions
+  //Notification for Success and error actions
   const onViewError = (response: any) => {
     setNotify({
       isOpen: true,
@@ -47,7 +47,7 @@ const Blog = ({ ...props }) => {
         setLoading(false);
         onViewError(error.response.data.error);
       });
-  });
+  }, []);
 
   useEffect(() => {
     axios
@@ -65,7 +65,17 @@ const Blog = ({ ...props }) => {
         setLoading(false);
         onViewError(error.response.data.error);
       });
-  });
+  }, []);
+
+  const convertBufferToBase64ForCategory = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${categoryDate[0].categoryImage.contentType};base64,${base64String}`;
+  };
+
+  const convertBufferToBase64ForBlog = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${blogDate[0].blogImage.contentType};base64,${base64String}`;
+  };
 
   return (
     <div className="blog-main-container">
@@ -107,9 +117,9 @@ const Blog = ({ ...props }) => {
                                 }}
                               >
                                 <img
-                                  src={
-                                    appUrl + `blog/uploads/${item.blogImage}`
-                                  }
+                                  src={convertBufferToBase64ForBlog(
+                                    item.blogImage.data
+                                  )}
                                   width={200}
                                   height={200}
                                   style={{
@@ -167,10 +177,9 @@ const Blog = ({ ...props }) => {
                             avatar={
                               <Avatar
                                 variant="rounded"
-                                src={
-                                  appUrl +
-                                  `project/uploads/${item.categoryImage}`
-                                }
+                                src={convertBufferToBase64ForCategory(
+                                  item.categoryImage.data
+                                )}
                               />
                             }
                             title={

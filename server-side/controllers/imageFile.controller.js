@@ -19,13 +19,6 @@ const UploadImageFile = async (req, res) => {
 
 const RetrieveImageFile = async (req, res) => {
   try {
-    // const file = await ImageFile.findById(req.params.id);
-    // if (file) {
-    //   res.set("Content-Type", file.contentType);
-    //   res.send(file.data);
-    // } else {
-    //   res.status(404).send("File not found");
-    // }
     const files = await ImageFiles.find({});
     const response=files.map((item)=>{
         return{

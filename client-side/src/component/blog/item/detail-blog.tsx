@@ -8,6 +8,7 @@ import FooterBlog from "../../../menu/footer";
 import { appUrl } from "../../../appurl";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
+import { Buffer } from "buffer";
 
 const DetailBlog = ({ ...props }) => {
   const [viewMode, setViewMode] = useState(props.viewMode);
@@ -46,6 +47,16 @@ const DetailBlog = ({ ...props }) => {
       });
   }, []);
 
+  const convertBufferToBase64 = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${selectedBlog.blogImage.contentType};base64,${base64String}`;
+  };
+
+  const convertBufferToBase64ForProfole = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${response.profileImage.contentType};base64,${base64String}`;
+  };
+
   return (
     <div>
       <div className="back-btn">
@@ -66,17 +77,22 @@ const DetailBlog = ({ ...props }) => {
           <div className="detail-blog-content">
             <h1>{selectedBlog.blogTitle}</h1>
             <img
-              src={appUrl + `blog/uploads/${selectedBlog.blogImage}`}
+              src={convertBufferToBase64(selectedBlog.blogImage.data)}
               width="40%"
               height="40%"
             />
-            <div dangerouslySetInnerHTML={{ __html: selectedBlog.mainContent }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: selectedBlog.mainContent }}
+            />
           </div>
         </section>
         <section className="detail-blog-contact">
           {response != undefined && (
             <div className="Pp-blog">
-              <Avatar className="ava-owner-img" src={appUrl + `user/uploads/${response.profileImage}`} />
+              <Avatar
+                className="ava-owner-img"
+                src={convertBufferToBase64ForProfole(response.profileImage.data)}
+              />
               <p>
                 {selectedBlog.author}, {selectedBlog.publishedDate}
               </p>
