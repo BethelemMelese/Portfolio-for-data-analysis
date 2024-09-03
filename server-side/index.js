@@ -27,7 +27,7 @@ var corsOptions = {
 
 app.use(
   cors({
-    origin: "https://datawizdipsy.netlify.app/", // Replace with your domain or use '*' to allow all origins
+    origin: "*", // Replace with your domain or use '*' to allow all origins
     methods: ["GET", "POST", "PUT", "DELETE"], // Specify the methods you want to allow
     allowedHeaders: ["Content-Type", "Authorization"], // Specify the headers you want to allow
     credentials: true, // If you need to allow cookies or other credentials
@@ -38,7 +38,7 @@ app.use(
 app.options('*', cors(corsOptions)); // Handle preflight requests
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://datawizdipsy.netlify.app/");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header(
     "Access-Control-Allow-Headers",
