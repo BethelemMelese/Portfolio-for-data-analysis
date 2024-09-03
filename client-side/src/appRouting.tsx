@@ -17,6 +17,7 @@ import Profile from "./component/profile";
 import ViewContact from "./component/contactMe/view";
 import ImageFile from "./component/ImageFile";
 import NavMenu from "./menu/nav";
+
 import "./css/style.css";
 import "./css/responsive.css";
 import "./css/main.style.css";

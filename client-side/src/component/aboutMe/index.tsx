@@ -70,7 +70,6 @@ const AboutMe = () => {
     return `data:${response.profileImage.contentType};base64,${base64String}`;
   };
 
-
   return (
     <div className="about-me-container">
       {response != undefined && (
@@ -84,7 +83,7 @@ const AboutMe = () => {
                       <Avatar
                         className="pic-photo"
                         alt="Profile Picture"
-                        sx={{ width: 200, height: 200 }}
+                        style={{ width: 200, height: 200 }}
                         src={convertBufferToBase64(response.profileImage.data)}
                       />
                     </div>
@@ -192,9 +191,7 @@ const AboutMe = () => {
           <Grid item xs={12}>
             <footer className="aboutme-footer">
               <div className="created-by">
-                <p>
-                  Copyright &copy; 2024 by @Bethisa.m, all rights reserved.
-                </p>
+                <p>Copyright &copy; 2024 by @Bethisa.m, all rights reserved.</p>
               </div>
 
               <div className="address">

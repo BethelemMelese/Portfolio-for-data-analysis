@@ -22,7 +22,7 @@ const FooterBlog = () => {
       .then((res) => {
         setCategoryData(res.data);
       });
-  });
+  },[]);
 
   return (
     <div>

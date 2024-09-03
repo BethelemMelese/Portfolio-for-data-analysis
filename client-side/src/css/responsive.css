@@ -1,41 +1,20 @@
-@media only screen and (min-width: 1366) {
+@media only screen and (min-width: 834px) and (max-width: 1194px) and (orientation: portrait){
   .nav-log {
-    margin-left: -10%;
     margin-top: 10px;
     width: 50%;
     height: 50%;
   }
 
   .nav-item-menu {
-    position: absolute;
-    left: -100%;
-    top: 7rem;
-    flex-direction: column;
-    background-color: var(--text-color);
     width: 100%;
     height: 35%;
-    border-radius: 5px;
     margin: 0px auto;
-    transition: 0.3s;
-    box-shadow: 10 17px 27px rgba(0, 0, 0, 0.05);
+    margin-right: 2%;
+    margin-left: -20%; 
   }
 
-  .nav-item-menu.open {
-    display: flex;
-    left: 0;
-    border-bottom: none;
-    margin: 0px auto;
-    margin-top: 20px;
-  }
-
-  .nav-item-menu li {
-    margin-top: 20px;
-  }
-
-  .hamburger {
-    display: block;
-    cursor: pointer;
-    margin-top: 10px;
+  .container-switch{
+    margin-right: 50%;
   }
 
   /* for about me page responsive style */
@@ -54,6 +33,26 @@
   }
 }
 
+@media only screen and (min-width: 800px) and (max-width: 1280px) and (orientation: landscape){
+  .nav-log {
+    margin-top: 10px;
+    width: 50%;
+    height: 50%;
+  }
+
+  .nav-item-menu {
+    width: 100%;
+    height: 35%;
+    margin: 0px auto;
+    margin-right: 2%;
+    margin-left: -20%; 
+  }
+
+  .container-switch{
+    margin-right: 50%;
+  }
+}
+
 @media screen and (max-width: 768px) {
   /* for the navbar responsive */
 
@@ -65,7 +64,6 @@
   }
 
   .container-switch {
-    margin-top: -60px;
     margin-right: -20px;
   }
 
@@ -146,6 +144,12 @@
 }
 
 @media screen and (max-width: 980px) {
+  .loading-grid{
+    width: 50%;
+    height: 50%;
+    margin: 0px auto;
+    margin-left: 25%;
+  }
   .nav-item-menu {
     position: absolute;
     left: -100%;
@@ -191,8 +195,8 @@
   }
 
   .pic-photo {
-    width: 50px;
-    height: 50px;
+    width: 20%;
+    height: 20%;
   }
 
   .bio {
@@ -233,8 +237,9 @@
   }
 
   .address {
-    margin: 0px auto;
+    display: block;
     margin-top: 20px;
+    margin-right: 20%;
   }
 
   /* for blog page responsive style  */
@@ -500,6 +505,7 @@
 
   .created-by {
     margin: 0px auto;
+    width: 80%;
   }
 }
 
@@ -516,3 +522,5 @@
     width: 100%;
   }
 }
+
+

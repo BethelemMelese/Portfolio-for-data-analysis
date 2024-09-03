@@ -5,20 +5,15 @@ import { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, NavLink } from "react-router-dom";
-import Whitelogo from "../images/WHite Logo.png";
-import Blacklogo from "../images/Black  Logo.png";
-import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import { Space, Switch } from "antd";
-import { CSSTransition } from "react-transition-group";
+import Whitelogo from "../images/White Abstract for Logo1.png";
+import Blacklogo from "../images/Black Abstract for Logo1.png";
 
 type Theme = "dark" | "light";
 
 const NavMenu = () => {
   const [theme, setTheme] = useState<Theme>("dark");
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
-  const [click, setClick] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen((prevState) => !prevState);
@@ -45,38 +40,6 @@ const NavMenu = () => {
 
   return (
     <nav className="nav-menu">
-      <div className="nav-log">
-        {/* <h2>
-          <b>Ablene Melese</b> / DATA SCIENTISTS
-        </h2> */}
-        {theme == "light" ? (
-          <img src={Whitelogo} width={160} />
-        ) : (
-          <img src={Blacklogo} width={160} />
-        )}
-      </div>
-      <ul className={`nav-item-menu ${isOpen ? "open" : ""}`}>
-        <li>
-          <NavLink to="/" className="nav-item">
-            ABOUT ME
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="blog" className="nav-item">
-            BLOG
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="project" className="nav-item">
-            PROJECT
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="contactMe" className="nav-item">
-            CONTACT
-          </NavLink>
-        </li>
-      </ul>
       <div className="hamburger">
         <IconButton id="check" onClick={toggleMenu}>
           {isOpen ? (
@@ -86,6 +49,36 @@ const NavMenu = () => {
           )}
         </IconButton>
       </div>
+      <div className="nav-log">
+        {theme == "light" ? (
+          <img src={Whitelogo} width={100}  height={100}/>
+        ) : (
+          <img src={Blacklogo} width={100} height={100}/>
+        )}
+      </div>
+      <ul className={`nav-item-menu ${isOpen ? "open" : ""}`}>
+        <li>
+          <NavLink to="/" className="nav-item" onClick={toggleMenu}>
+            ABOUT ME
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="blog" className="nav-item" onClick={toggleMenu}>
+            BLOG
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="project" className="nav-item" onClick={toggleMenu}>
+            PROJECT
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="contactMe" className="nav-item" onClick={toggleMenu}>
+            CONTACT
+          </NavLink>
+        </li>
+      </ul>
+
       <div>
         <div className="container-switch">
           <Tooltip
