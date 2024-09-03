@@ -27,7 +27,7 @@ var corsOptions = {
 
 app.use(
   cors({
-    origin: "*", // Replace with your domain or use '*' to allow all origins
+    origin: "https://datawizdipsy.netlify.app/", // Replace with your domain or use '*' to allow all origins
     methods: ["GET", "POST", "PUT", "DELETE"], // Specify the methods you want to allow
     allowedHeaders: ["Content-Type", "Authorization"], // Specify the headers you want to allow
     credentials: true, // If you need to allow cookies or other credentials
@@ -38,22 +38,12 @@ app.use(
 app.options('*', cors(corsOptions)); // Handle preflight requests
 
 app.use((req, res, next) => {
-  console.log("res...",res);
   res.header("Access-Control-Allow-Origin", "https://datawizdipsy.netlify.app/");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header(
     "Access-Control-Allow-Headers",
     "Content-Type, Accept, Authorization,Origin, X-Requested-With"
   );
-  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  // res.header(
-  //   "Access-Control-Allow-Headers",
-  //   "Origin, X-Requested-With, Content-Type, Accept, Authorization, 'Content-Type' : 'multipart/form-data' ,* "
-  // );
-  // res.header(
-  //   "Access-Control-Allow-Methods",
-  //   "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-  // );
   next();
 });
 // Middleware to serve static files
