@@ -9,17 +9,31 @@
     width: 100%;
     height: 35%;
     margin: 0px auto;
-    margin-right: 2%;
-    margin-left: -20%; 
+    margin-right: 10%;
   }
 
   .container-switch{
-    margin-right: 50%;
+    margin-right: 100%;
   }
+
 
   /* for about me page responsive style */
   .sm-link {
-    width: 10%;
+    width: 119%;
+  }
+
+  .pic-item-card{
+    width: 100%;
+    margin-left: 50px;
+  }
+
+  .bio-detail h1{
+    font-size: 42px;
+  }
+
+  .bio-detail p{
+    font-size: 22px;
+    width: 100%;
   }
 
   /* for project page responsive style*/
@@ -31,6 +45,8 @@
   .back-card {
     margin-top: -1000%;
   }
+
+
 }
 
 @media only screen and (min-width: 800px) and (max-width: 1280px) and (orientation: landscape){
@@ -44,12 +60,20 @@
     width: 100%;
     height: 35%;
     margin: 0px auto;
-    margin-right: 2%;
-    margin-left: -20%; 
+    margin-right: 10%;
   }
 
   .container-switch{
-    margin-right: 50%;
+    margin-right: 100%;
+  }
+
+  .pic-item-card{
+    width: 100%;
+    margin-left: 50px;
+  }
+
+  .aboutme-footer{
+    width: 98%;
   }
 }
 
@@ -98,6 +122,10 @@
     display: block;
     cursor: pointer;
     margin-top: 10px;
+  }
+
+  .pic-card{
+    width: 10%;
   }
 
   /* for project page responsive style*/
@@ -186,10 +214,11 @@
   /* for about me page responsive style */
   .pic-card {
     height: 40%;
-    width: 400%;
+    width: 364%;
   }
 
   .pic-item-card {
+    width: 100%;
     height: 10%;
     margin: 0px auto;
   }
@@ -237,6 +266,9 @@
     font-size: 14px;
   }
 
+  .sm-link{
+    width: 115%;
+  }
   .address {
     display: block;
     margin-top: 20px;
