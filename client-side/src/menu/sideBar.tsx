@@ -5,10 +5,10 @@ import ArticleIcon from "@mui/icons-material/Article";
 import SummarizeIcon from "@mui/icons-material/Summarize";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import { useEffect, useState } from "react";
-import { Divider, IconButton, Tooltip } from "@mui/material";
+import { Divider, Tooltip } from "@mui/material";
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
-import Whitelogo from "../images/WHite Logo 2.png";
-import Blacklogo from "../images/Black  Logo 2.png";
+import Whitelogo from "../images/LigthLog.png";
+import Blacklogo from "../images/DarkLog.png";
 
 type Theme = "dark" | "light";
 
@@ -36,9 +36,6 @@ const SideBar = ({ ...props }) => {
   return (
     <>
       <div className="sidebar-menu">
-        {/* <h2>
-          <b>Ablene Melese</b> / DATA SCIENTISTS
-        </h2> */}
         {theme == "light" ? (
           <img src={Whitelogo} width={100} />
         ) : (
@@ -109,7 +106,7 @@ const SideBar = ({ ...props }) => {
         </ul>
 
         <div className="theme-setting">
-          {/* <Tooltip
+          <Tooltip
             title={`Switch to ${theme == "light" ? "Dark" : "Light"} Mode`}
             placement="bottom"
             color="light"
@@ -131,7 +128,7 @@ const SideBar = ({ ...props }) => {
                 )}
               </a>
             </div>
-          </Tooltip> */}
+          </Tooltip>
         </div>
       </div>
     </>

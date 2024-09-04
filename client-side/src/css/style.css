@@ -465,11 +465,15 @@ nav {
   background-color: var(--third-color);
   width: 80%;
   margin: 0px auto;
+  padding-bottom: 20px;
   border-radius: 50px;
 }
 
 .blog-hero-image img {
-  margin-bottom: -4px;
+  width: 150%;
+  height: 108%;
+  max-width: 150%;
+  max-width: 108%;
 }
 
 .blog-qute {

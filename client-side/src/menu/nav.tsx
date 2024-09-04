@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, NavLink } from "react-router-dom";
-import Whitelogo from "../images/White Abstract for Logo1.png";
-import Blacklogo from "../images/Black Abstract for Logo1.png";
+import Whitelogo from "../images/LigthLog.png";
+import Blacklogo from "../images/DarkLog.png";
 
 type Theme = "dark" | "light";
 

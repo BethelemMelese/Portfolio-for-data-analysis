@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Form } from "../../commonComponent/Form";
 import Controls from "../../commonComponent/Controls";
-import logo from "../../images/WHite Logo.png";
+import logo from "../../images/LigthLog.png";
 import axios from "axios";
 import { appUrl } from "../../appurl";
 import Notification from "../../commonComponent/notification";
@@ -102,13 +102,13 @@ const Login = () => {
                     src={logo}
                     className="log-img"
                     alt="Profile Picture"
-                    style={{ width: 160 }}
+                     width="100"
+                    height="100"
                   />
                   <h2>
                     <b>Ablene Melese</b> / DATA SCIENTISTS
                   </h2>
                   <p>Dynamic Personal Portfolio</p>
-                  <h4>Sign In</h4>
                 </Grid>
                 <Grid item xs={12}>
                   <Grid container spacing={2}>
@@ -143,11 +143,11 @@ const Login = () => {
                         onKeyPress={(event: any) => handleKeyPress(event)}
                       />
                     </Grid>
-                    <Grid item xs={6} className="shot-link">
+                    {/* <Grid item xs={6} className="shot-link">
                       <a onClick={() => navigate("/register")}>
                         <u>Forget Password?</u>
                       </a>
-                    </Grid>
+                    </Grid> */}
 
                     <Grid item xs={12} className="shot-link">
                       <a onClick={() => navigate("/")}>

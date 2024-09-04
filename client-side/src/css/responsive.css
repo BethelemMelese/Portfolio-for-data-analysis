@@ -234,6 +234,7 @@
 
   .created-by {
     text-align: center;
+    font-size: 14px;
   }
 
   .address {
@@ -506,6 +507,7 @@
   .created-by {
     margin: 0px auto;
     width: 80%;
+    font-size: 14px;
   }
 }
 

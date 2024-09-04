@@ -1,5 +1,4 @@
 import { Avatar, Grid } from "@mui/material";
-import BioImage from "../../images/profile-photo.jpg";
 import { Card, List } from "antd";
 import { useEffect, useState } from "react";
 import DetailBlog from "./item/detail-blog";
@@ -15,6 +14,7 @@ const Blog = ({ ...props }) => {
   const [loading, setLoading] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState();
   const [categoryDate, setCategoryData] = useState<any>([]);
+  const [response, setResponse] = useState<any>();
   const [blogDate, setBlogData] = useState<any>([]);
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -67,6 +67,27 @@ const Blog = ({ ...props }) => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .create({
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .get(appUrl + `user`)
+      .then((response: any) => {
+        setResponse(response.data[0]);
+      })
+      .catch((error: any) => {
+        onViewError(error.response.data.error);
+      });
+  }, []);
+
+  const convertBufferToBase64 = (buffer: Buffer): string => {
+    const base64String = Buffer.from(buffer).toString("base64");
+    return `data:${response.profileImage.contentType};base64,${base64String}`;
+  };
+
   const convertBufferToBase64ForCategory = (buffer: Buffer): string => {
     const base64String = Buffer.from(buffer).toString("base64");
     return `data:${categoryDate[0].categoryImage.contentType};base64,${base64String}`;
@@ -83,7 +104,9 @@ const Blog = ({ ...props }) => {
         <>
           <div className="blog-hero">
             <div className="blog-hero-image">
-              <img src={BioImage} />
+              {response != undefined && (
+                <img src={convertBufferToBase64(response.profileImage.data)} />
+              )}
             </div>
             <div className="blog-qute">
               <h1>

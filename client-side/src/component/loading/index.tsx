@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { CircularProgress, Grid } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Grid } from "@mui/material";
 import ReactLoading from "react-loading";
-import Blacklogo from "../../images/Black  Logo.png";
+import Blacklogo from "../../images/DarkLog.png";
 
 const Loading = (): any => {
   const [loading, setLoading] = useState(false);
