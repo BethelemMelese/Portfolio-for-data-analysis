@@ -1,4 +1,4 @@
-@media only screen and (min-width: 834px) and (max-width: 1194px) and (orientation: portrait){
+@media only screen and (min-width: 834px) and (max-width: 1194px) and (orientation: portrait) {
   .nav-log {
     margin-top: 10px;
     width: 50%;
@@ -12,26 +12,25 @@
     margin-right: 10%;
   }
 
-  .container-switch{
+  .container-switch {
     margin-right: 100%;
   }
-
 
   /* for about me page responsive style */
   .sm-link {
     width: 119%;
   }
 
-  .pic-item-card{
+  .pic-item-card {
     width: 100%;
     margin-left: 50px;
   }
 
-  .bio-detail h1{
+  .bio-detail h1 {
     font-size: 42px;
   }
 
-  .bio-detail p{
+  .bio-detail p {
     font-size: 22px;
     width: 100%;
   }
@@ -43,13 +42,36 @@
 
   /* for contact me responsive style */
   .back-card {
-    margin-top: -1000%;
+    width: 100%;
+    height: 100%;
   }
 
+  .contact-info-card {
+    margin-left: -40%;
+    width: 100%;
+    height: 50%;
+  }
 
+  .contact-message h2 {
+    margin-left: -60px;
+  }
+
+  .contact-message p {
+    margin-left: -60px;
+  }
+
+  .contact-fields {
+    margin: 0px auto;
+    margin-left: -40%;
+    width: 50%;
+  }
+
+  .contact-btn {
+    margin-left: -20px;
+  }
 }
 
-@media only screen and (min-width: 800px) and (max-width: 1280px) and (orientation: landscape){
+@media only screen and (min-width: 800px) and (max-width: 1280px) and (orientation: landscape) {
   .nav-log {
     margin-top: 10px;
     width: 50%;
@@ -63,16 +85,16 @@
     margin-right: 10%;
   }
 
-  .container-switch{
+  .container-switch {
     margin-right: 100%;
   }
 
-  .pic-item-card{
+  .pic-item-card {
     width: 100%;
     margin-left: 50px;
   }
 
-  .aboutme-footer{
+  .aboutme-footer {
     width: 98%;
   }
 }
@@ -124,7 +146,7 @@
     margin-top: 10px;
   }
 
-  .pic-card{
+  .pic-card {
     width: 10%;
   }
 
@@ -166,13 +188,13 @@
   }
 
   /* for contact me responsive style */
-  .back-card {
+  /* .back-card {
     margin-top: 100%;
-  }
+  } */
 }
 
 @media screen and (max-width: 980px) {
-  .loading-grid{
+  .loading-grid {
     width: 50%;
     height: 50%;
     margin: 0px auto;
@@ -266,7 +288,7 @@
     font-size: 14px;
   }
 
-  .sm-link{
+  .sm-link {
     width: 115%;
   }
   .address {
@@ -556,5 +578,3 @@
     width: 100%;
   }
 }
-
-
