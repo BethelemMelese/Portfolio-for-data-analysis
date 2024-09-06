@@ -8,9 +8,8 @@ const fileSchema = mongoose.Schema(
       require: true,
     },
     imageFile: {
-      data: Buffer,
-      contentType: String,
-      filename: String,
+      type: String,
+      require: true,
     },
   },
   { timestamp: true }

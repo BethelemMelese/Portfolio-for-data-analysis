@@ -81,9 +81,11 @@ const DetailBlog = ({ ...props }) => {
               width="40%"
               height="40%"
             />
-            <div
-              dangerouslySetInnerHTML={{ __html: selectedBlog.mainContent }}
-            />
+            <p>
+              <div
+                dangerouslySetInnerHTML={{ __html: selectedBlog.mainContent }}
+              />
+            </p>
           </div>
         </section>
         <section className="detail-blog-contact">
@@ -91,7 +93,9 @@ const DetailBlog = ({ ...props }) => {
             <div className="Pp-blog">
               <Avatar
                 className="ava-owner-img"
-                src={convertBufferToBase64ForProfole(response.profileImage.data)}
+                src={convertBufferToBase64ForProfole(
+                  response.profileImage.data
+                )}
               />
               <p>
                 {selectedBlog.author}, {selectedBlog.publishedDate}

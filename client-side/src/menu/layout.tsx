@@ -5,7 +5,7 @@ import Loading from "../component/loading";
 const Layout = ({ ...props }) => {
   return (
     <>
-      {/* <Loading /> */}
+      <Loading />
       <div className="sec-container">
         <NavMenu />
         <Outlet />

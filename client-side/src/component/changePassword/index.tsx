@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
 import { appUrl } from "../../appurl";
-import logo from "../../images/WHite Logo.png";
 import Notification from "../../commonComponent/notification";
 import { Form } from "../../commonComponent/Form";
 import Controls from "../../commonComponent/Controls";
@@ -96,15 +95,10 @@ const ChangePassword = () => {
         <Form autoComplete="off" noValidate onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <img
-                src={logo}
-                className="log-img"
-                alt="Profile Picture"
-                style={{ width: 200, height: 100, borderRadius: 10 }}
-              />
               <h2>
-                <b>Ablene Melese</b> / DATA SCIENTISTS
+                <b>Ablene Melese</b> / DATA ANALYSTS
               </h2>
+              <h3>Change Your Password</h3>
             </Grid>
             <Grid item xs={12}>
               <Grid container spacing={2}>
@@ -140,6 +134,7 @@ const ChangePassword = () => {
 
                 <Grid item xs={12}>
                   <Controls.Password
+                    className="inputField"
                     required
                     id="confirmPassword"
                     label="Confirm Password"
@@ -164,7 +159,7 @@ const ChangePassword = () => {
                       type="submit"
                       disabled={isSubmitting}
                     >
-                      Change Password
+                      Save Change
                     </Button>
                   )}
                 </Grid>

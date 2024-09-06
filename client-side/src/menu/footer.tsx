@@ -22,7 +22,7 @@ const FooterBlog = () => {
       .then((res) => {
         setCategoryData(res.data);
       });
-  });
+  },[]);
 
   return (
     <div>
@@ -31,7 +31,7 @@ const FooterBlog = () => {
           <div className="bef-footer-container">
             <div className="footer-quote">
               <h4>
-                <b>Ablena Melese/ DATA SCIENTISTS</b>
+                <b>Ablena Melese/ DATA ANALYSTS</b>
               </h4>
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting

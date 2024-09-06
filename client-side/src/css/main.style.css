@@ -8,7 +8,7 @@ html {
 /* for theme setting in the sidebar part */
 .theme-setting {
   position: fixed;
-  margin-top: 14%;
+  margin-top: 16%;
   width: 14%;
 }
 
@@ -25,7 +25,7 @@ html {
 
 /* for Side bar style */
 .sidebar-menu {
-  background-color: var(--main-third-background-color);
+  background-color: var(--primary-color);
   width: 14%;
   height: 100%;
   padding-bottom: 27%;
@@ -33,10 +33,6 @@ html {
   position: fixed;
 }
 
-/* .sidebar-menu h2 {
-  text-align: center;
-  color: var(--text-second-color);
-} */
 
 .sidebar-menu img {
   margin-left: 50px;
@@ -107,7 +103,8 @@ html {
   margin-bottom: 2px;
   background-color: var(--main-background-color);
   color: var(--text-second-color);
-  /* position: fixed; */
+  position: fixed;
+  z-index: 1;
   margin-left: 14%;
 }
 
@@ -132,10 +129,6 @@ html {
 /* for login page style */
 .login-container {
   height: 100vh;
-  background-color: #fff;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   width: 100%;
 }
 
@@ -149,6 +142,8 @@ html {
 
 .login-card {
   background-color: #f4f3f0;
+  box-shadow: 10px 0 10px 0 rgba(164, 162, 162, 0.19),
+  10px 10px 10px 0 rgba(164, 162, 162, 0.19);
 }
 
 .loginForm h2,
@@ -200,25 +195,22 @@ html {
 
 .register-container {
   height: 100vh;
-  background-color: #fff;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   width: 100%;
-  /* position: fixed; */
 }
 
 .registerForm {
   height: 100vh;
   width: 60%;
   margin: 0px auto;
-  padding-top: 50px;
+  padding-top: 40px;
   padding-bottom: 50px;
   text-align: center;
 }
 
 .register-card {
   background-color: #f4f3f0;
+  box-shadow: 10px 0 10px 0 rgba(164, 162, 162, 0.19),
+  10px 10px 10px 0 rgba(164, 162, 162, 0.19);
 }
 
 /* for scrollable style */
@@ -383,6 +375,15 @@ html {
     color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
+/* for dashboard page style */
+
+.home-container{
+  margin-top: 8%;
+  margin-left: 16%;
+  width: 80%;
+  background-color: var(--main-sec-background-color);
+  color: var(--text-second-color);
+}
 /* for the main content or for props.child content */
 
 .main-content {
@@ -390,7 +391,7 @@ html {
 }
 
 .project-container {
-  margin-top: 5%;
+  margin-top: 8%;
   margin-left: 15%;
   width: 84%;
 }
@@ -505,7 +506,7 @@ html {
 }
 
 .blog-container {
-  margin-top: 80px;
+  margin-top: 8%;
   margin-left: 15%;
   margin-bottom: -10px;
   width: 84%;
@@ -518,7 +519,7 @@ html {
   border: none;
 }
 
-.blog-list {
+.main-blog-list {
   background-color: var(--main-sec-background-color);
   color: var(--text-second-color);
 }
@@ -604,6 +605,10 @@ html {
   font-size: 12px;
 }
 
+.blog-content{
+  color: var(--text-second-color) !important;
+}
+
 .blog-links {
   display: flex;
   justify-content: space-around;
@@ -643,7 +648,7 @@ html {
 /* for resume page style */
 
 .resume-container {
-  margin-top: 10%;
+  margin-top: 8%;
   margin-left: 15%;
   margin-bottom: 27%;
   width: 84%;
@@ -693,16 +698,18 @@ html {
   margin-left: 30%;
   margin-bottom: 5%;
   width: 50%;
+  
 }
 
 .change-password-form {
   margin: 0px auto;
   text-align: center;
+  height: 80%;
 }
 
 /* for contact page style */
 .contacts-main-container {
-  margin-top: 6%;
+  margin-top: 8%;
   margin-left: 17%;
   width: 80%;
 }

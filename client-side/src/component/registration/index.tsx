@@ -8,7 +8,7 @@ import { Form } from "../../commonComponent/Form";
 import Controls from "../../commonComponent/Controls";
 import axios from "axios";
 import { appUrl } from "../../appurl";
-import logo from "../../images/WHite Logo.png";
+import logo from "../../images/LigthLog.png";
 import Notification from "../../commonComponent/notification";
 
 interface RegistrationState {
@@ -115,13 +115,13 @@ const Registration = () => {
                     src={logo}
                     className="log-img"
                     alt="Profile Picture"
-                    style={{ width: 160}}
+                    width="100"
+                    height="100"
                   />
                   <h2>
-                    <b>Ablene Melese</b> / DATA SCIENTISTS
+                    <b>Ablene Melese</b> / DATA ANALYSTS
                   </h2>
                   <p>Dynamic Personal Portfolio</p>
-                  <h4>Sign Up</h4>
                 </Grid>
                 <Grid item xs={12}>
                   <Grid container spacing={1}>
@@ -265,7 +265,7 @@ const Registration = () => {
                           type="submit"
                           disabled={isSubmitting}
                         >
-                          Sign In
+                          Sign UP
                         </Button>
                       )}
                     </Grid>

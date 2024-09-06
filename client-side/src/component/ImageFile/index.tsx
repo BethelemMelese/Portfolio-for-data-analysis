@@ -213,7 +213,7 @@ const ImageFile = () => {
                   style={{ margin: "10px", textAlign: "center" }}
                 >
                   <img
-                    src={convertBufferToBase64(image.imageFile.data)}
+                    src={image.imageFile}
                     alt={image.fileName}
                     style={{ maxWidth: "200px", maxHeight: "200px" }}
                   />

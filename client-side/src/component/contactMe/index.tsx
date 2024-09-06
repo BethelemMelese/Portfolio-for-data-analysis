@@ -1,4 +1,4 @@
-import { Button, Grid, Tooltip } from "@mui/material";
+import { Grid, Tooltip } from "@mui/material";
 import { Card } from "antd";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -35,22 +35,13 @@ const mapContainerStyle = {
 };
 
 const center = {
-  lat: -3.745, // Default coordinates
-  lng: -73.589,
+  lat: -8.9787366, // Default coordinates
+  lng: -38.6923761,
 };
 
 const ContactMe = () => {
-  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setmessage] = useState("");
-  const [currentLocation, setCurrentLocation] = useState(center);
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const apiKey:any = process.env.REACT_APP_API_KEY;
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -96,22 +87,6 @@ const ContactMe = () => {
     },
     validationSchema: validationSchema,
   });
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setCurrentLocation({ lat: latitude, lng: longitude });
-        },
-        (error) => {
-          console.error("Error getting location: ", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
-  }, []);
 
   return (
     <div className="contact-container">
@@ -195,15 +170,15 @@ const ContactMe = () => {
               <div className="google-map-location">
                 <h2>Where To Find Me</h2>
                 <div className="map-location">
-                  <LoadScript googleMapsApiKey="AIzaSyCYuI2C4_88HVPTBZxqYntZECDV6PKdLY4">
+                  <LoadScript googleMapsApiKey={apiKey}>
                     <GoogleMap
-                      mapContainerStyle={mapContainerStyle}
-                      center={currentLocation}
-                      zoom={15}
+                        mapContainerStyle={mapContainerStyle}
+                        center={center}
+                        zoom={15}
                     >
-                      <Marker position={currentLocation} />
+                        <Marker position={center} />
                     </GoogleMap>
-                  </LoadScript>
+                </LoadScript>
                 </div>
               </div>
 
