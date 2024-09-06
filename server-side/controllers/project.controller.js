@@ -45,17 +45,12 @@ const GetProjectById = async (req, res) => {
 
 const CreateProject = async (req, res) => {
   try {
-    const { originalname, mimetype, buffer } = req.file;
     const total = await Project.find();
     const addProject = {
       projectNumber: total.length + 1,
       projectTitle: req.body.projectTitle,
       projectDescription: req.body.projectDescription,
-      projectImage: {
-        filename: originalname,
-        data: buffer,
-        contentType: mimetype,
-      },
+      projectImage: req.file.path,
       sourceCodeLink: req.body.sourceCodeLink,
       otherLink: req.body.otherLink,
     };
@@ -82,15 +77,10 @@ const UpdateProject = async (req, res) => {
           otherLink: req.body.otherLink,
         });
       } else {
-        const { originalname, mimetype, buffer } = req.file;
         response = await Project.findByIdAndUpdate(id, {
           projectTitle: req.body.projectTitle,
           projectDescription: req.body.projectDescription,
-          projectImage: {
-            filename: originalname,
-            data: buffer,
-            contentType: mimetype,
-          },
+          projectImage: req.file.path,
           sourceCodeLink: req.body.sourceCodeLink,
           otherLink: req.body.otherLink,
         });
