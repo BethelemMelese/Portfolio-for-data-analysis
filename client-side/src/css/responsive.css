@@ -506,28 +506,34 @@
   }
 
   .category-blog-content p {
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     width: 100%;
     letter-spacing: 0.2px;
   }
-
-  .category-blog-img {
-    display: block;
-  }
+  
 
   .blog-item {
     width: 100%;
     margin-top: 20px;
   }
 
-  .blog-item .blog-item-content p {
-    width: 80%;
+  .blog-item .blog-item-content .blog-category {
+    width: 100%;
   }
 
   .blog-item .blog-item-content h6{
     width: 100%;
   }
+
+  .main-category-detail-container{
+    margin-top: 20px;
+  }
+
+  .category-blog-img {
+    display: block;
+  }
+
   /* for blog footer part */
 
   .before-footer {
