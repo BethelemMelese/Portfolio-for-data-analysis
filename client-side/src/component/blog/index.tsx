@@ -107,11 +107,6 @@ const Blog = ({ ...props }) => {
       });
   }, []);
 
-  const convertBufferToBase64 = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${response.profileImage.contentType};base64,${base64String}`;
-  };
-
   const convertBufferToBase64ForCategory = (buffer: Buffer): string => {
     const base64String = Buffer.from(buffer).toString("base64");
     return `data:${categoryDate[0].categoryImage.contentType};base64,${base64String}`;

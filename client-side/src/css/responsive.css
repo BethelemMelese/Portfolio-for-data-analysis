@@ -179,7 +179,6 @@
   .pic-card {
     width: 10%;
   }
-
   /* for blog page responsive style  */
   .blog-main-container {
     width: 100%;
@@ -191,7 +190,7 @@
   }
 
   .blog-quote h1 {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .blog-quote p {
@@ -205,13 +204,51 @@
 
   .blog-grid-container {
     grid-template-columns: 1fr;
-    width: 110%;
-    margin-left: -10px;
   }
 
   .blog-grid-category,
   .blog-grid-item {
     grid-column: span 1; /* Both divs take full width on smaller screens */
+  }
+
+  .category-list {
+    display: block;
+    width: 100%;
+  }
+
+  .category-image img {
+    margin-left: 10%;
+    width: 200px;
+    height: 200px;
+  }
+
+  .category-item {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  /* for blog body part */
+  .blog-item-fis {
+    display: block;
+  }
+
+  .blog-item-img img {
+    width: 90%;
+  }
+
+  .blog-item-msg h3 {
+    width: 80%;
+    font-size: 16px;
+  }
+
+  .blog-item-msg p {
+    width: 98%;
+    margin-top: -20px;
+  }
+
+  .blog-au-info {
+    margin-top: 40px;
   }
 
   /* for blog detail part */
@@ -244,6 +281,52 @@
     text-align: justify;
     font-size: 14px;
     margin-left: -10px;
+  }
+
+  .Pp-blog {
+    margin-top: -10px;
+  }
+
+  .ava-owner-img {
+    margin-left: 25%;
+  }
+
+  .detail-sm-link {
+    margin-top: 12px;
+  }
+
+  /* for blog category detail part */
+
+  .category-blog-content h1 {
+    font-size: 28px;
+  }
+
+  .category-blog-content p {
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 0.2px;
+  }
+
+  .blog-item {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .blog-item .blog-item-content .blog-category {
+    width: 100%;
+  }
+
+  .blog-item .blog-item-content h6 {
+    width: 100%;
+  }
+
+  .main-category-detail-container {
+    margin-top: 20px;
+  }
+
+  .category-blog-img {
+    display: block;
   }
 
   /* for project page responsive style*/
@@ -404,7 +487,7 @@
   }
 
   .blog-quote h1 {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .blog-quote p {
@@ -447,7 +530,7 @@
     display: block;
   }
 
-  .blog-item-img img{
+  .blog-item-img img {
     width: 90%;
   }
 
@@ -461,7 +544,7 @@
     margin-top: -20px;
   }
 
-  .blog-au-info{
+  .blog-au-info {
     margin-top: 40px;
   }
 
@@ -521,7 +604,6 @@
     width: 100%;
     letter-spacing: 0.2px;
   }
-  
 
   .blog-item {
     width: 100%;
@@ -532,11 +614,11 @@
     width: 100%;
   }
 
-  .blog-item .blog-item-content h6{
+  .blog-item .blog-item-content h6 {
     width: 100%;
   }
 
-  .main-category-detail-container{
+  .main-category-detail-container {
     margin-top: 20px;
   }
 
