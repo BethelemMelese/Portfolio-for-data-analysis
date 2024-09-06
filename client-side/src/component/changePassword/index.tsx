@@ -96,7 +96,7 @@ const ChangePassword = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <h2>
-                <b>Ablene Melese</b> / DATA SCIENTISTS
+                <b>Ablene Melese</b> / DATA ANALYSTS
               </h2>
               <h3>Change Your Password</h3>
             </Grid>

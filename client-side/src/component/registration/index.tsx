@@ -119,7 +119,7 @@ const Registration = () => {
                     height="100"
                   />
                   <h2>
-                    <b>Ablene Melese</b> / DATA SCIENTISTS
+                    <b>Ablene Melese</b> / DATA ANALYSTS
                   </h2>
                   <p>Dynamic Personal Portfolio</p>
                 </Grid>

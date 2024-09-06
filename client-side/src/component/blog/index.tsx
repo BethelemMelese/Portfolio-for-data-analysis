@@ -124,7 +124,7 @@ const Blog = ({ ...props }) => {
           <div className="blog-hero">
             <div className="blog-quote">
               <h1>
-                <b>Ablena Melese/ DATA SCIENTISTS</b>
+                <b>Ablena Melese/ DATA ANALYSTS</b>
               </h1>
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
