@@ -469,46 +469,57 @@ nav {
   border-radius: 50px;
 }
 
-.blog-hero-image img {
-  width: 150%;
-  height: 108%;
-  max-width: 150%;
-  max-width: 108%;
+.blog-quote {
+  margin: 0px auto;
+  margin-top: 40px;
 }
 
-.blog-qute {
-  margin-top: 80px;
-}
-
-.blog-qute h1,
-.blog-qute p {
+.blog-quote h1,
+.blog-quote p {
   text-align: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", Arial, sans-serif;
 }
 
-.blog-qute p {
+.blog-quote p {
   width: 80%;
-  margin-left: 10%;
+  text-align: center;
+  margin: 0px auto;
 }
 
-.anc-more-btn {
-  margin-top: 30px;
-}
-
-.blog-qute a {
+.blog-quote a {
   background-color: #000;
   color: #fff;
   border: none;
   text-decoration: none;
   padding: 10px;
-  border-radius: 10px;
-  margin-left: 40%;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.anc-more-btn {
+  margin-top: 40px;
+  margin-left: 45%;
 }
 
 .blog-content {
   margin: 50px;
   border: none;
   margin-top: -20px;
+}
+
+.blog-grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* Creates 12 equal columns */
+  gap: 10px; /* Gap between columns */
+  margin-top: 20px;
+}
+
+.blog-grid-category {
+  grid-column: span 4;
+}
+
+.blog-grid-item {
+  grid-column: span 8;
 }
 
 .blog-category {
@@ -577,18 +588,34 @@ nav {
 }
 
 .category-list {
+  display: flex;
+  align-self: center;
   background-color: var(--main-third-background-color);
   color: var(--text-second-color);
   border: none;
+}
+
+.category-item {
+  margin-left: 20px;
   margin-top: -20px;
 }
 
-.category-item-title a {
+.category-image img {
+  border-radius: 5px;
+}
+
+.category-item h4 a {
   color: var(--text-second-color);
 }
 
-.category-item-title a:hover {
-  color: var(--third-color);
+.category-item p {
+  color: var(--text-second-color);
+  text-align: justify;
+}
+
+.category-item h4:hover {
+  color: var(--color-gray);
+  border-bottom: 1px solid var(--color-gray);
 }
 
 :where(.css-dev-only-do-not-override-p8b6i).ant-pagination {
@@ -703,7 +730,9 @@ nav {
 }
 
 .detail-blog-content p {
-  margin: 50px;
+  width: 90%;
+  margin: 0px auto;
+  margin-bottom: 10px;
   text-align: justify;
   font-size: var(--full-width-post-font-size);
   font-family: var(--font-family-main);

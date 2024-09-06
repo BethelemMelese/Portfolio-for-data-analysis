@@ -225,7 +225,7 @@ const DetailCategory = ({ ...props }) => {
                                 <Tooltip title="To edit the blog">
                                   <IconButton
                                     onClick={() => {
-                                      // setViewMode("edit");
+                                      setViewMode("edit");
                                     }}
                                   >
                                     <ModeEditIcon color="warning" />
@@ -263,7 +263,14 @@ const DetailCategory = ({ ...props }) => {
                                   </Grid>
                                   <Grid item xs={8}>
                                     <h5 className="maincontent">
-                                      {item.mainContent.slice(0, 290) + "..."}
+                                      <div
+                                        className="maincontent"
+                                        dangerouslySetInnerHTML={{
+                                          __html:
+                                            item.mainContent.slice(0, 290) +
+                                            "...",
+                                        }}
+                                      />
                                     </h5>
                                   </Grid>
                                 </Grid>

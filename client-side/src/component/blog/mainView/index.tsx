@@ -235,7 +235,7 @@ const ViewBlog = () => {
                             </>
                           }
                           style={{ marginTop: "20px" }}
-                          className="blog-list"
+                          className="main-blog-list"
                         >
                           <Grid container spacing={0}>
                             <Grid item xs={12} style={{ marginTop: "-15px" }}>

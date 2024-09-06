@@ -519,7 +519,7 @@ html {
   border: none;
 }
 
-.blog-list {
+.main-blog-list {
   background-color: var(--main-sec-background-color);
   color: var(--text-second-color);
 }

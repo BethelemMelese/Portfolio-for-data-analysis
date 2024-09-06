@@ -5,9 +5,33 @@ import DetailBlog from "./item/detail-blog";
 import CategoryDetailBlog from "./category/category-detail-blog";
 import FooterBlog from "../../menu/footer";
 import Notification from "../../commonComponent/notification";
+import CategoryImage from "../../images/IMG_0087.jpg";
 import axios from "axios";
 import { appUrl } from "../../appurl";
 import { Buffer } from "buffer";
+
+const CategoryMoke = [
+  {
+    id: 1,
+    categoryName: "The First Category",
+    categoryDescription: "The First Category Description",
+  },
+  {
+    id: 2,
+    categoryName: "The First Category",
+    categoryDescription: "The First Category Description",
+  },
+  {
+    id: 3,
+    categoryName: "The First Category",
+    categoryDescription: "The First Category Description",
+  },
+  {
+    id: 4,
+    categoryName: "The First Category",
+    categoryDescription: "The First Category Description",
+  },
+];
 
 const Blog = ({ ...props }) => {
   const [viewMode, setViewMode] = useState("main");
@@ -103,12 +127,7 @@ const Blog = ({ ...props }) => {
       {viewMode == "main" && (
         <>
           <div className="blog-hero">
-            <div className="blog-hero-image">
-              {response != undefined && (
-                <img src={convertBufferToBase64(response.profileImage.data)} />
-              )}
-            </div>
-            <div className="blog-qute">
+            <div className="blog-quote">
               <h1>
                 <b>Ablena Melese/ DATA SCIENTISTS</b>
               </h1>
@@ -124,8 +143,48 @@ const Blog = ({ ...props }) => {
             </div>
           </div>
           <section id="contact" className="blog-content">
-            <Grid container spacing={2}>
-              <Grid item xs={8}>
+            <div className="blog-grid-container">
+              <div className="blog-grid-category">
+                <Card title="Blog Category" className="blog-category"  style={{
+                  height: "580px",
+                  overflowX: "hidden",
+                  overflowY: "auto",
+                }}>
+                  {categoryDate.length != 0 &&
+                    categoryDate.map((item: any) => {
+                      return (
+                        <div className="category-list">
+                          <div className="category-image">
+                            <img
+                              alt="Category Image"
+                              src={convertBufferToBase64ForCategory(
+                                item.categoryImage.data
+                              )}
+                              width={80}
+                              height={80}
+                            />
+                          </div>
+                          <div className="category-item">
+                            <h4 className="category-item-title">
+                              <a
+                                onClick={() => {
+                                  setViewMode("category");
+                                  setSelectedBlog(item);
+                                }}
+                              >
+                                {item.categoryName}
+                              </a>
+                            </h4>
+                            <p>
+                              {item.categoryDescription.slice(0, 290) + "..."}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </Card>
+              </div>
+              <div className="blog-grid-item">
                 <div className="blog-list">
                   {blogDate.length != 0 &&
                     blogDate.map((item: any) => {
@@ -183,49 +242,8 @@ const Blog = ({ ...props }) => {
                       );
                     })}
                 </div>
-              </Grid>
-              <Grid item xs={4}>
-                <Card title="Blog Category" className="blog-category">
-                  {categoryDate.length != 0 && (
-                    <List
-                      className="category-list"
-                      itemLayout="horizontal"
-                      dataSource={categoryDate}
-                      pagination={{
-                        pageSize: 4,
-                      }}
-                      renderItem={(item: any, index) => (
-                        <List.Item>
-                          <List.Item.Meta
-                            avatar={
-                              <Avatar
-                                variant="rounded"
-                                src={convertBufferToBase64ForCategory(
-                                  item.categoryImage.data
-                                )}
-                              />
-                            }
-                            title={
-                              <h4 className="category-item-title">
-                                <a
-                                  onClick={() => {
-                                    setViewMode("category");
-                                    setSelectedBlog(item);
-                                  }}
-                                >
-                                  {item.categoryName}
-                                </a>
-                              </h4>
-                            }
-                            description={item.categoryDescription}
-                          />
-                        </List.Item>
-                      )}
-                    />
-                  )}
-                </Card>
-              </Grid>
-            </Grid>
+              </div>
+            </div>
           </section>
           <FooterBlog />
           <Notification notify={notify} setNotify={setNotify} />
