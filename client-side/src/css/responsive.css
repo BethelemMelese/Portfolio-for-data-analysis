@@ -205,6 +205,8 @@
 
   .blog-grid-container {
     grid-template-columns: 1fr;
+    width: 110%;
+    margin-left: -10px;
   }
 
   .blog-grid-category,
@@ -445,14 +447,22 @@
     display: block;
   }
 
+  .blog-item-img img{
+    width: 90%;
+  }
+
   .blog-item-msg h3 {
-    width: 110%;
-    font-size: 18px;
+    width: 80%;
+    font-size: 16px;
   }
 
   .blog-item-msg p {
     width: 98%;
     margin-top: -20px;
+  }
+
+  .blog-au-info{
+    margin-top: 40px;
   }
 
   /* for blog detail part */
