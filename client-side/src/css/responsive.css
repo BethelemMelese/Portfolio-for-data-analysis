@@ -374,10 +374,9 @@
 
 @media screen and (max-width: 980px) {
   .loading-grid {
-    width: 50%;
-    height: 50%;
+    width: 100%;
     margin: 0px auto;
-    margin-left: 25%;
+    /* margin-left: 25%; */
   }
   .nav-item-menu {
     position: absolute;

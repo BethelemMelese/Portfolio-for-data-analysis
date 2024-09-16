@@ -10,8 +10,10 @@ import axios from "axios";
 import { Button, Grid } from "@mui/material";
 import { UploadOutlined } from "@ant-design/icons";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import "quill/dist/quill.snow.css"; // import Quill styles
-import Quill from "quill";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // import styles
+// import "quill/dist/quill.snow.css"; // import Quill styles
+// import Quill from "quill";
 
 interface BlogState {
   blogTitle: string;
@@ -135,17 +137,21 @@ const AddBlog = ({ ...props }) => {
     }
   };
 
-  useEffect(() => {
-    const quill = new Quill(quillRef.current, {
-      theme: "snow",
-      modules: {
-        toolbar: true,
-      },
-    });
-    quill.on("text-change", () => {
-      setContent(quill.root.innerHTML);
-    });
-  }, []);
+  const handleEditorChange = (value: string) => {
+    setContent(value); // Set the content from editor
+  };
+
+  // useEffect(() => {
+  //   const quill = new Quill(quillRef.current, {
+  //     theme: "snow",
+  //     modules: {
+  //       toolbar: true,
+  //     },
+  //   });
+  //   quill.on("text-change", () => {
+  //     setContent(quill.root.innerHTML);
+  //   });
+  // }, []);
 
   return (
     <div className="create-blog-container">
@@ -204,7 +210,8 @@ const AddBlog = ({ ...props }) => {
                   Content:
                   <QuillEditor value={content} onChange={setContent} />
                 </label> */}
-                <div ref={quillRef}></div>
+                {/* <div ref={quillRef}></div> */}
+                <ReactQuill value={content} onChange={handleEditorChange} />
                 <br />
                 {isContent ? (
                   <span className="text-danger">

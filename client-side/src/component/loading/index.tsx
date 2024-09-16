@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import ReactLoading from "react-loading";
-import Blacklogo from "../../images/DarkLog.png";
+import Blacklogo from "../../images/result (7).png";
 
 const Loading = (): any => {
   const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ const Loading = (): any => {
         <div className="loading-icon">
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              <img src={Blacklogo} width={250} className="loading-grid" />
+              <img src={Blacklogo} className="loading-grid" />
               <ReactLoading
                 type="cylon"
                 color="#f2de1f"
