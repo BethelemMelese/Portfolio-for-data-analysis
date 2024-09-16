@@ -22,12 +22,14 @@ import "./css/style.css";
 import "./css/responsive.css";
 import "./css/main.style.css";
 import "./App.css";
+import Loading from "./component/loading";
 
 function AppRoute() {
   return (
     <div className="App">
       <Routes>
         <Route path="/navMenu" element={<NavMenu />} />
+        <Route path="/Loading" element={<Loading />} />
         <Route element={<Layout />}>
           <Route path="/" element={<AboutMe />} />
           <Route path="/blog" element={<Blog />} />

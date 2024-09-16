@@ -186,7 +186,7 @@ const ViewProject = () => {
                       <img
                         width={200}
                         alt="Project Image"
-                        src={convertBufferToBase64(item.projectImage.data)}
+                        src={item.projectImage}
                       />
                     }
                   >

@@ -175,7 +175,7 @@ const ViewBlog = () => {
     const base64String = Buffer.from(buffer).toString("base64");
     return `data:${blogDate[0].blogImage.contentType};base64,${base64String}`;
   };
-  
+
   return (
     <div className="blog-container">
       {viewCategory == "view" && (
@@ -369,15 +369,6 @@ const ViewBlog = () => {
                             <DeleteForeverIcon color="error" />
                           </IconButton>
                         </Tooltip>,
-                        <a
-                          key="list-loadmore-edit"
-                          onClick={() => {
-                            setViewCategory("detail");
-                            setSelectedCategory(item);
-                          }}
-                        >
-                          View
-                        </a>,
                       ]}
                     >
                       <List.Item.Meta
@@ -389,7 +380,16 @@ const ViewBlog = () => {
                             )}
                           />
                         }
-                        title={item.categoryName}
+                        title={
+                          <a
+                            onClick={() => {
+                              setViewCategory("detail");
+                              setSelectedCategory(item);
+                            }}
+                          >
+                            {item.categoryName}
+                          </a>
+                        }
                         description={item.categoryDescription}
                       />
                     </List.Item>

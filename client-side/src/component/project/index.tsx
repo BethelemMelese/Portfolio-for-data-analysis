@@ -77,7 +77,7 @@ const Project = () => {
                   size="large"
                   tip="Loading..."
                 >
-                  <Carousel arrows infinite={true}>
+                  <Carousel autoplay arrows infinite={true}>
                     {projectResponse.map((item: any) => {
                       return (
                         <Card
@@ -98,9 +98,7 @@ const Project = () => {
                           <div className="project-layout">
                             <div className="project-image">
                               <img
-                                src={convertBufferToBase64(
-                                  item.projectImage.data
-                                )}
+                                src={item.projectImage}
                                 width="40%"
                                 style={{ maxHeight: "50%", maxWidth: "50%" }}
                                 height="40%"
@@ -110,7 +108,7 @@ const Project = () => {
                               <Grid container spacing={4}>
                                 <Grid item xs={12}>
                                   <p>
-                                    {item.projectDescription.slice(0, 400) +
+                                    {item.projectDescription.slice(0, 300) +
                                       "..."}
                                   </p>
                                 </Grid>
