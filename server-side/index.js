@@ -15,8 +15,8 @@ app.use(express.urlencoded({ extended: false }));
 dotenv.config();
 
 var whitelist = ["http://localhost:3000", "https://datawizdipsy.netlify.app/"];
-// const allowedOrigins = ["https://datawizdipsy.netlify.app/"];
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = ["https://datawizdipsy.netlify.app/"];
+// const allowedOrigins = ["http://localhost:3000"];
 
 var corsOptions = {
   origin: allowedOrigins,
