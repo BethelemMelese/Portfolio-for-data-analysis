@@ -96,6 +96,7 @@ const AddBlogOnly = async (req, res) => {
     // Decode the HTML entities if needed
     const decodedContent = decode(req.body.mainContent);
     const { originalname, mimetype, buffer } = req.file;
+    console.log("req.body...",req.body);
     const blog = await Blog.create({
       blogTitle: req.body.blogTitle,
       author: req.body.author,
@@ -108,6 +109,7 @@ const AddBlogOnly = async (req, res) => {
         contentType: mimetype,
       },
     });
+    console.log("blog...",blog);
     res.status(200).json(blog);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -208,6 +210,23 @@ const DeleteCategory = async (req, res) => {
   }
 };
 
+const UploadImage = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    // Construct the file URL (assuming the server serves static files)
+    const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
+      req.file.filename
+    }`;
+
+    res.status(200).json({ url: imageUrl });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const DownloadImage = async (req, res) => {
   try {
     const { filePath } = req.params;
@@ -229,5 +248,6 @@ module.exports = {
   EditCategoryOnly,
   DeleteBlog,
   DeleteCategory,
+  UploadImage,
   DownloadImage,
 };

@@ -11,8 +11,6 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ onChange, value }) => {
   const editorRef = useRef<HTMLDivElement | null>(null);
   const quillRef = useRef<Quill | null>(null);
 
-  console.log("value...",value);
-  
   useEffect(() => {
     if (editorRef.current && !quillRef.current) {
       quillRef.current = new Quill(editorRef.current, {
@@ -27,6 +25,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ onChange, value }) => {
             [{ script: 'sub' }, { script: 'super' }],
             [{ color: [] }, { background: [] }],
             [{ align: [] }],
+            ["link", "image"],
             ['clean'] // remove formatting button
           ]
         }
@@ -51,7 +50,6 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ onChange, value }) => {
   }, [onChange, value]);
 
   useEffect(() => {
-    console.log("quillRef.current...",quillRef.current);
     if (quillRef.current) {
       // Update content if prop value changes
       quillRef.current.root.innerHTML = value;

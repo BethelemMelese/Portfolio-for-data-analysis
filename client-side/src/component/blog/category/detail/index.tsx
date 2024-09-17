@@ -98,7 +98,7 @@ const DetailCategory = ({ ...props }) => {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           })
-          .delete(appUrl + `blog/${value}`)
+          .delete(appUrl + `blog/deleteBlog/${value}`)
           .then((response) => {
             onDeleteSuccess(response.data);
           })
