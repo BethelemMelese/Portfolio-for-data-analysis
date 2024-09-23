@@ -75,15 +75,10 @@ const GetLatestBlog = async (req, res) => {
 
 const AddCategoryOnly = async (req, res) => {
   try {
-    const { originalname, mimetype, buffer } = req.file;
     const category = await BlogCategory.create({
       categoryName: req.body.categoryName,
       categoryDescription: req.body.categoryDescription,
-      categoryImage: {
-        filename: originalname,
-        data: buffer,
-        contentType: mimetype,
-      },
+      categoryImage: req.file.path,
     });
     res.status(200).json(category);
   } catch (error) {
@@ -93,23 +88,15 @@ const AddCategoryOnly = async (req, res) => {
 
 const AddBlogOnly = async (req, res) => {
   try {
-    // Decode the HTML entities if needed
     const decodedContent = decode(req.body.mainContent);
-    const { originalname, mimetype, buffer } = req.file;
-    console.log("req.body...",req.body);
     const blog = await Blog.create({
       blogTitle: req.body.blogTitle,
       author: req.body.author,
       publishedDate: new Date(),
       mainContent: decodedContent,
       blogCategoryId: req.body.blogCategoryId,
-      blogImage: {
-        filename: originalname,
-        data: buffer,
-        contentType: mimetype,
-      },
+      blogImage: req.file.path,
     });
-    console.log("blog...",blog);
     res.status(200).json(blog);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -120,20 +107,15 @@ const EditBlogOnly = async (req, res) => {
   try {
     const { blogId } = req.params;
     let blog;
-
+    const decodedContent = decode(req.body.mainContent);
     if (req.file != undefined) {
-      const { originalname, mimetype, buffer } = req.file;
       blog = await Blog.findByIdAndUpdate(
         { _id: blogId },
         {
           blogTitle: req.body.blogTitle,
           author: req.body.author,
-          mainContent: req.body.mainContent,
-          blogImage: {
-            filename: originalname,
-            data: buffer,
-            contentType: mimetype,
-          },
+          mainContent: decodedContent,
+          blogImage: req.file.path,
         }
       );
     } else {
@@ -142,7 +124,7 @@ const EditBlogOnly = async (req, res) => {
         {
           blogTitle: req.body.blogTitle,
           author: req.body.author,
-          mainContent: req.body.mainContent,
+          mainContent: decodedContent,
         }
       );
     }
@@ -158,17 +140,12 @@ const EditCategoryOnly = async (req, res) => {
     const { categoryId } = req.params;
     let category;
     if (req.file != undefined) {
-      const { originalname, mimetype, buffer } = req.file;
       category = await BlogCategory.findByIdAndUpdate(
         { _id: categoryId },
         {
           categoryName: req.body.categoryName,
           categoryDescription: req.body.categoryDescription,
-          categoryImage: {
-            filename: originalname,
-            data: buffer,
-            contentType: mimetype,
-          },
+          categoryImage: req.file.path,
         }
       );
     } else {
@@ -215,12 +192,7 @@ const UploadImage = async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: "No file uploaded" });
     }
-
-    // Construct the file URL (assuming the server serves static files)
-    const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
-      req.file.filename
-    }`;
-
+    const imageUrl = req.file.path;
     res.status(200).json({ url: imageUrl });
   } catch (error) {
     res.status(500).json({ message: error.message });

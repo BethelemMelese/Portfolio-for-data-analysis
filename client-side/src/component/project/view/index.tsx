@@ -19,7 +19,7 @@ interface ProjectState {
   projectDescription: string;
   projectImage: string;
   sourceCodeLink: string;
-  otherLink: string;
+  youtubeLink: string;
 }
 
 const initialState: ProjectState = {
@@ -27,7 +27,7 @@ const initialState: ProjectState = {
   projectDescription: "",
   projectImage: "",
   sourceCodeLink: "",
-  otherLink: "",
+  youtubeLink: "",
 };
 
 const ViewProject = () => {

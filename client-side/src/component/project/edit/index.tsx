@@ -19,7 +19,7 @@ interface ProjectState {
   projectDescription: string;
   projectImage: string;
   sourceCodeLink: string;
-  otherLink: string;
+  youtubeLink: string;
 }
 
 const initialState: ProjectState = {
@@ -27,7 +27,7 @@ const initialState: ProjectState = {
   projectDescription: "",
   projectImage: "",
   sourceCodeLink: "",
-  otherLink: "",
+  youtubeLink: "",
 };
 const EditProject = ({ ...props }) => {
   const [viewMode, setViewMode] = useState(props.viewMode);
@@ -87,7 +87,7 @@ const EditProject = ({ ...props }) => {
   const validationSchema = Yup.object().shape({
     projectTitle: Yup.string().required("Project is required"),
     sourceCodeLink: Yup.string().required("Source Code Link is required"),
-    otherLink: Yup.string().required("Other Link is required"),
+    youtubeLink: Yup.string().required("Other Link is required"),
     projectDescription: Yup.string().required(
       "Project Description is required"
     ),
@@ -102,7 +102,7 @@ const EditProject = ({ ...props }) => {
       formData.append("projectTitle", values.projectTitle);
       formData.append("projectDescription", values.projectDescription);
       formData.append("sourceCodeLink", values.sourceCodeLink);
-      formData.append("otherLink", values.otherLink);
+      formData.append("youtubeLink", values.youtubeLink);
       axios
         .create({
           headers: {
@@ -176,12 +176,12 @@ const EditProject = ({ ...props }) => {
 
               <Controls.Input
                 required
-                id="otherLink"
+                id="youtubeLink"
                 label="Other Link"
-                {...formik.getFieldProps("otherLink")}
+                {...formik.getFieldProps("youtubeLink")}
                 error={
-                  formik.touched.otherLink && formik.errors.otherLink
-                    ? formik.errors.otherLink
+                  formik.touched.youtubeLink && formik.errors.youtubeLink
+                    ? formik.errors.youtubeLink
                     : ""
                 }
               />

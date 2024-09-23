@@ -27,7 +27,6 @@ const initialState: BlogState = {
   blogCategoryId: "",
 };
 
-// Step 1: Add custom fonts and register them with Quill
 const Font = Quill.import('formats/font');
 Font.whitelist = ['Arial', 'Georgia', 'Tahoma', 'Times-New-Roman', 'Verdana']; // Add more fonts if needed
 Quill.register(Font, true);
@@ -84,7 +83,7 @@ const AddBlog = ({ ...props }) => {
     });
     setTimeout(() => {
       setIsSubmitting(false);
-      // window.location.reload();
+      window.location.reload();
     }, 2000);
   };
 
