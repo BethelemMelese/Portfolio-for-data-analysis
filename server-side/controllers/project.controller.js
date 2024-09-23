@@ -13,7 +13,7 @@ const GetAllProject = async (req, res) => {
         projectDescription: values.projectDescription,
         projectImage: values.projectImage,
         sourceCodeLink: values.sourceCodeLink,
-        otherLink: values.otherLink,
+        youtubeLink: values.youtubeLink,
       };
     });
 
@@ -34,7 +34,7 @@ const GetProjectById = async (req, res) => {
         projectTitle: values.projectTitle,
         projectDescription: values.projectDescription,
         sourceCodeLink: values.sourceCodeLink,
-        otherLink: values.otherLink,
+        youtubeLink: values.youtubeLink,
       };
     });
     res.status(200).json(response);
@@ -45,14 +45,15 @@ const GetProjectById = async (req, res) => {
 
 const CreateProject = async (req, res) => {
   try {
+    const decodedContent = decode(req.body.projectDescription);
     const total = await Project.find();
     const addProject = {
       projectNumber: total.length + 1,
       projectTitle: req.body.projectTitle,
-      projectDescription: req.body.projectDescription,
+      projectDescription: decodedContent,
       projectImage: req.file.path,
       sourceCodeLink: req.body.sourceCodeLink,
-      otherLink: req.body.otherLink,
+      youtubeLink: req.body.youtubeLink,
     };
 
     const response = await Project.create(addProject);
@@ -65,6 +66,7 @@ const CreateProject = async (req, res) => {
 const UpdateProject = async (req, res) => {
   try {
     const { id } = req.params;
+    const decodedContent = decode(req.body.projectDescription);
     let response;
     const project = await Project.findById({ _id: id });
 
@@ -72,9 +74,9 @@ const UpdateProject = async (req, res) => {
       if (req.file == undefined) {
         response = await Project.findByIdAndUpdate(id, {
           projectTitle: req.body.projectTitle,
-          projectDescription: req.body.projectDescription,
+          projectDescription: decodedContent,
           sourceCodeLink: req.body.sourceCodeLink,
-          otherLink: req.body.otherLink,
+          youtubeLink: req.body.youtubeLink,
         });
       } else {
         response = await Project.findByIdAndUpdate(id, {
@@ -82,7 +84,7 @@ const UpdateProject = async (req, res) => {
           projectDescription: req.body.projectDescription,
           projectImage: req.file.path,
           sourceCodeLink: req.body.sourceCodeLink,
-          otherLink: req.body.otherLink,
+          youtubeLink: req.body.youtubeLink,
         });
       }
     }
@@ -99,6 +101,18 @@ const DeleteProject = async (req, res) => {
     res.json(200).status(project);
   } catch (error) {
     res.json({ message: error.message });
+  }
+};
+
+const UploadImage = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+    const imageUrl = req.file.path;
+    res.status(200).json({ url: imageUrl });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -119,5 +133,6 @@ module.exports = {
   CreateProject,
   UpdateProject,
   DeleteProject,
+  UploadImage,
   DownloadPhoto,
 };

@@ -12,6 +12,23 @@ body {
   background-color: var(--primary-color);
 }
 
+.ql-editor img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.blog-content-container {
+  margin-top: 20px;
+}
+.blog-content-container img {
+  text-align: center;
+  margin-top: 10px;
+  width: 60%;
+  height: 50%;
+  object-fit: cover;
+}
+
 @keyframes slideIn {
   0% {
     opacity: 0;
@@ -868,6 +885,21 @@ nav {
   white-space: nowrap;
   text-overflow: ellipsis;
   color: var(--text-second-color);
+}
+
+:where(.css-p8b6i).ant-card .ant-card-head {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 56px;
+  margin-bottom: -1px;
+  padding: 0 24px;
+  color: var(--text-second-color);
+  font-weight: 600;
+  font-size: 16px;
+  background: transparent;
+  border-bottom: 1px solid #f0f0f0;
+  border-radius: 8px 8px 0 0;
 }
 
 :where(.css-dev-only-do-not-override-p8b6i).ant-list

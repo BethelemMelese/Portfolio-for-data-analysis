@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const path = require('path');
+
 const app = express();
 const ProjectRoute = require("./routes/project.route.js");
 const ResumeRoute = require("./routes/resume.route.js");
@@ -47,6 +49,9 @@ app.use((req, res, next) => {
 });
 // Middleware to serve static files
 app.use(express.static("public"));
+
+// Serve static files from the 'uploads' folder
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connection with Mongodb Database and run the server
 let PORT = process.env.PORT || 5000;

@@ -1,5 +1,5 @@
 import { Card, Upload, Button as ButtonAnt } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Notification from "../../../../commonComponent/notification";
 import Controls from "../../../../commonComponent/Controls";
 import { useFormik } from "formik";
@@ -10,10 +10,8 @@ import axios from "axios";
 import { Button, Grid } from "@mui/material";
 import { UploadOutlined } from "@ant-design/icons";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // import styles
-// import "quill/dist/quill.snow.css"; // import Quill styles
-// import Quill from "quill";
+import ReactQuill, { Quill } from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 interface BlogState {
   blogTitle: string;
@@ -28,6 +26,26 @@ const initialState: BlogState = {
   mainContent: "",
   blogCategoryId: "",
 };
+
+const Font = Quill.import('formats/font');
+Font.whitelist = ['Arial', 'Georgia', 'Tahoma', 'Times-New-Roman', 'Verdana']; // Add more fonts if needed
+Quill.register(Font, true);
+
+// Define custom toolbar options
+const modules = {
+  toolbar: {
+    container: [
+      [{ font: [] }, { header: [1, 2, 3, 4, 5, false] }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["bold", "italic", "underline"],
+      [{ script: "sub" }, { script: "super" }],
+      [{ align: [] }],
+      ["link", "image"],
+      ["clean"],
+    ],
+  },
+};
+
 const AddBlog = ({ ...props }) => {
   const [vewMode, setViewMode] = useState(props.viewMode);
   const [selectedBlog, setSelectedBlog] = useState(props.selectedBlog);
@@ -40,7 +58,7 @@ const AddBlog = ({ ...props }) => {
   const [fileRequired, setFileRequired] = useState(false);
   const [content, setContent] = useState<string>("");
   const [isContent, setIsContent] = useState(false);
-  const quillRef = useRef<any>(null);
+  const quillRef = useRef<ReactQuill | null>(null);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -93,8 +111,10 @@ const AddBlog = ({ ...props }) => {
       } else {
         setIsContent(false);
         setIsSubmitting(true);
+        const quill = quillRef.current?.getEditor();
+        const contentToSave = quill?.root.innerHTML || ""; // Get Quill content as HTML
         values.blogCategoryId = selectedCategory.id;
-        values.mainContent = content;
+        values.mainContent = contentToSave;
         const formData = new FormData();
         formData.append("file", fileList);
         formData.append("blogTitle", values.blogTitle);
@@ -137,21 +157,63 @@ const AddBlog = ({ ...props }) => {
     }
   };
 
-  const handleEditorChange = (value: string) => {
-    setContent(value); // Set the content from editor
+  // Image handler for file upload
+  const imageHandler = useCallback(() => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files ? input.files[0] : null;
+      if (file) {
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+          // Upload the image to the backend (update URL as per your backend)
+          const res = await axios.post<{ url: string }>(
+            appUrl + "blog/upload-image",
+            formData
+          );
+          const imageUrl = res.data.url;
+
+          const quill = quillRef.current?.getEditor();
+          const range = quill?.getSelection(true); // Get current selection in Quill
+
+          if (range) {
+            // Insert the image with custom inline styles
+            //@ts-ignore
+            quill.clipboard.dangerouslyPasteHTML(
+              range.index,
+              `<img src="${imageUrl}" style="width:300px;height:200px;object-fit:cover;" />`
+            );
+          }
+        } catch (error) {
+          console.error("Error uploading image", error);
+        }
+      }
+    };
+  }, []);
+
+  // Custom modules with image handler
+  const customModules = {
+    ...modules,
+    toolbar: {
+      ...modules.toolbar,
+      handlers: {
+        image: imageHandler, // Attach image handler to toolbar
+      },
+    },
   };
 
-  // useEffect(() => {
-  //   const quill = new Quill(quillRef.current, {
-  //     theme: "snow",
-  //     modules: {
-  //       toolbar: true,
-  //     },
-  //   });
-  //   quill.on("text-change", () => {
-  //     setContent(quill.root.innerHTML);
-  //   });
-  // }, []);
+  const customFormats = [
+    'font', 'size', 'header', 'list', 'bold', 'italic', 'underline', 'link', 'image', 'align', 'clean'
+  ];
+
+  const handleEditorChange = (value: string) => {
+    setContent(value); // Update content state
+  };
 
   return (
     <div className="create-blog-container">
@@ -206,12 +268,14 @@ const AddBlog = ({ ...props }) => {
             </Grid>
             <Grid item xs={12}>
               <Card title="The Article Content">
-                {/* <label>
-                  Content:
-                  <QuillEditor value={content} onChange={setContent} />
-                </label> */}
-                {/* <div ref={quillRef}></div> */}
-                <ReactQuill value={content} onChange={handleEditorChange} />
+                <ReactQuill
+                  ref={quillRef}
+                  value={content}
+                  onChange={handleEditorChange}
+                  modules={customModules}
+                  formats={customFormats}
+                  theme="snow" // Snow theme for Quill editor
+                />
                 <br />
                 {isContent ? (
                   <span className="text-danger">

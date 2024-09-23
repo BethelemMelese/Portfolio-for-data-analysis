@@ -14,6 +14,7 @@ import DetailBlog from "../item/detail";
 import EditBlogCategory from "../category/edit";
 import EditBlog from "../item/edit";
 import { Buffer } from "buffer";
+import { Alert, Flex, Spin } from "antd";
 
 const { confirm } = Modal;
 
@@ -31,6 +32,7 @@ const ViewBlog = () => {
   const [viewMode, setViewMode] = useState("view");
   const [viewCategory, setViewCategory] = useState("view");
   const [loading, setLoading] = useState(false);
+  const [blogLoading,setBlogLoading]=useState(false)
   const [selectedBlog, setSelectedBlog] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
   const [blogDate, setBlogData] = useState<any>([]);
@@ -79,11 +81,11 @@ const ViewBlog = () => {
       })
       .get(appUrl + `blog/latestBlog/`)
       .then((res) => {
-        setLoading(false);
+        setBlogLoading(false);
         setBlogData(res.data);
       })
       .catch((error: any) => {
-        setLoading(false);
+        setBlogLoading(false);
         onViewError(error.response.data.error);
       });
   };
@@ -158,11 +160,12 @@ const ViewBlog = () => {
 
   //   to fetch data using useEffect, when every time this page is loaded
   useEffect(() => {
-    setLoading(true);
+    setBlogLoading(true);
     onFetchBlog();
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     onFetchCategory();
   }, []);
 
@@ -182,118 +185,127 @@ const ViewBlog = () => {
         <Grid container spacing={2}>
           <Grid item xs={7}>
             {viewMode == "view" && (
-              <div
+              <Card
                 style={{
                   height: "660px",
                   overflowX: "hidden",
                   overflowY: "auto",
                 }}
               >
-                {blogDate.length != 0 &&
-                  blogDate.map((item: any) => {
-                    return (
-                      <>
-                        <Card
-                          title={
-                            <Grid container>
-                              <Grid item xs={12}>
-                                <h3>{item.blogTitle}</h3>
+                <Spin
+                  tip="Loading"
+                  spinning={blogLoading}
+                  delay={500}
+                  size="large"
+                  className="loading-sty"
+                >
+                  {blogDate.length != 0 &&
+                    blogDate.map((item: any) => {
+                      return (
+                        <>
+                          <Card
+                            title={
+                              <Grid container>
+                                <Grid item xs={12}>
+                                  <h3>{item.blogTitle}</h3>
+                                  <h5
+                                    style={{
+                                      fontSize: "10px",
+                                      marginTop: "-10px",
+                                      color: "#5f5e53fe",
+                                    }}
+                                  >
+                                    Author: {item.author}
+                                  </h5>
+                                </Grid>
+                              </Grid>
+                            }
+                            extra={
+                              <>
+                                <Tooltip title="To edit the blog">
+                                  <IconButton
+                                    onClick={() => {
+                                      setViewMode("edit");
+                                      setSelectedBlog(item);
+                                    }}
+                                  >
+                                    <ModeEditIcon color="warning" />
+                                  </IconButton>
+                                </Tooltip>
+                                |
+                                <Tooltip title="To delete the blog">
+                                  <IconButton
+                                    onClick={() => {
+                                      showConfirm(item.id);
+                                    }}
+                                  >
+                                    <DeleteForeverIcon color="error" />
+                                  </IconButton>
+                                </Tooltip>
+                              </>
+                            }
+                            style={{ marginTop: "20px" }}
+                            className="main-blog-list"
+                          >
+                            <Grid container spacing={0}>
+                              <Grid item xs={12} style={{ marginTop: "-15px" }}>
+                                <Grid container spacing={0}>
+                                  <Grid item xs={4}>
+                                    <img
+                                      src={convertBufferToBase64ForBlog(
+                                        item.blogImage.data
+                                      )}
+                                      width={150}
+                                      height={110}
+                                      style={{
+                                        margin: "20px",
+                                        borderRadius: "5px",
+                                      }}
+                                    />
+                                  </Grid>
+                                  <Grid item xs={8}>
+                                    <div
+                                      className="maincontent"
+                                      dangerouslySetInnerHTML={{
+                                        __html:
+                                          item.mainContent.slice(0, 290) +
+                                          "...",
+                                      }}
+                                    />
+                                  </Grid>
+                                </Grid>
+                              </Grid>
+                              <Grid item xs={10}>
                                 <h5
                                   style={{
-                                    fontSize: "10px",
-                                    marginTop: "-10px",
+                                    marginTop: "-20px",
                                     color: "#5f5e53fe",
+                                    marginLeft: "20px",
                                   }}
                                 >
-                                  Author: {item.author}
+                                  Published Date: {item.publishedDate}
                                 </h5>
                               </Grid>
-                            </Grid>
-                          }
-                          extra={
-                            <>
-                              <Tooltip title="To edit the blog">
-                                <IconButton
+                              <Grid item xs={2} className="more-btn">
+                                <Button
+                                  variant="text"
+                                  size="small"
+                                  color="warning"
                                   onClick={() => {
-                                    setViewMode("edit");
+                                    setViewCategory("detailBlog");
                                     setSelectedBlog(item);
                                   }}
                                 >
-                                  <ModeEditIcon color="warning" />
-                                </IconButton>
-                              </Tooltip>
-                              |
-                              <Tooltip title="To delete the blog">
-                                <IconButton
-                                  onClick={() => {
-                                    showConfirm(item.id);
-                                  }}
-                                >
-                                  <DeleteForeverIcon color="error" />
-                                </IconButton>
-                              </Tooltip>
-                            </>
-                          }
-                          style={{ marginTop: "20px" }}
-                          className="main-blog-list"
-                        >
-                          <Grid container spacing={0}>
-                            <Grid item xs={12} style={{ marginTop: "-15px" }}>
-                              <Grid container spacing={0}>
-                                <Grid item xs={4}>
-                                  <img
-                                    src={convertBufferToBase64ForBlog(
-                                      item.blogImage.data
-                                    )}
-                                    width={150}
-                                    height={110}
-                                    style={{
-                                      margin: "20px",
-                                      borderRadius: "5px",
-                                    }}
-                                  />
-                                </Grid>
-                                <Grid item xs={8}>
-                                  <div
-                                    className="maincontent"
-                                    dangerouslySetInnerHTML={{
-                                      __html:
-                                        item.mainContent.slice(0, 290) + "...",
-                                    }}
-                                  />
-                                </Grid>
+                                  More
+                                </Button>
                               </Grid>
                             </Grid>
-                            <Grid item xs={10}>
-                              <h5
-                                style={{
-                                  marginTop: "-20px",
-                                  color: "#5f5e53fe",
-                                  marginLeft: "20px",
-                                }}
-                              >
-                                Published Date: {item.publishedDate}
-                              </h5>
-                            </Grid>
-                            <Grid item xs={2} className="more-btn">
-                              <Button
-                                variant="text"
-                                size="small"
-                                color="warning"
-                                onClick={() => {
-                                  setViewCategory("detailBlog");
-                                  setSelectedBlog(item);
-                                }}
-                              >
-                                More
-                              </Button>
-                            </Grid>
-                          </Grid>
-                        </Card>
-                      </>
-                    );
-                  })}
-              </div>
+                          </Card>
+                        </>
+                      );
+                    })}
+                </Spin>
+              </Card>
             )}
             {viewMode == "new" && (
               <AddCategory
@@ -340,62 +352,70 @@ const ViewBlog = () => {
                 </Tooltip>
               }
             >
-              {categoryDate.length != 0 && (
-                <List
-                  itemLayout="horizontal"
-                  dataSource={categoryDate}
-                  pagination={{
-                    pageSize: 5,
-                  }}
-                  renderItem={(item: any) => (
-                    <List.Item
-                      actions={[
-                        <Tooltip title="To edit the category">
-                          <IconButton
-                            onClick={() => {
-                              setViewMode("editcategory");
-                              setSelectedCategory(item);
-                            }}
-                          >
-                            <ModeEditIcon color="warning" />
-                          </IconButton>
-                        </Tooltip>,
-                        <Tooltip title="To delete the category">
-                          <IconButton
-                            onClick={() => {
-                              showConfirmForCategory(item.id);
-                            }}
-                          >
-                            <DeleteForeverIcon color="error" />
-                          </IconButton>
-                        </Tooltip>,
-                      ]}
-                    >
-                      <List.Item.Meta
-                        avatar={
-                          <Avatar
-                            variant="rounded"
-                            src={convertBufferToBase64ForCategory(
-                              item.categoryImage.data
-                            )}
-                          />
-                        }
-                        title={
-                          <a
-                            onClick={() => {
-                              setViewCategory("detail");
-                              setSelectedCategory(item);
-                            }}
-                          >
-                            {item.categoryName}
-                          </a>
-                        }
-                        description={item.categoryDescription}
-                      />
-                    </List.Item>
-                  )}
-                />
-              )}
+              <Spin
+                tip="Loading"
+                spinning={loading}
+                delay={500}
+                size="large"
+                className="loading-sty"
+              >
+                {categoryDate.length != 0 && (
+                  <List
+                    itemLayout="horizontal"
+                    dataSource={categoryDate}
+                    pagination={{
+                      pageSize: 5,
+                    }}
+                    renderItem={(item: any) => (
+                      <List.Item
+                        actions={[
+                          <Tooltip title="To edit the category">
+                            <IconButton
+                              onClick={() => {
+                                setViewMode("editcategory");
+                                setSelectedCategory(item);
+                              }}
+                            >
+                              <ModeEditIcon color="warning" />
+                            </IconButton>
+                          </Tooltip>,
+                          <Tooltip title="To delete the category">
+                            <IconButton
+                              onClick={() => {
+                                showConfirmForCategory(item.id);
+                              }}
+                            >
+                              <DeleteForeverIcon color="error" />
+                            </IconButton>
+                          </Tooltip>,
+                        ]}
+                      >
+                        <List.Item.Meta
+                          avatar={
+                            <Avatar
+                              variant="rounded"
+                              src={convertBufferToBase64ForCategory(
+                                item.categoryImage.data
+                              )}
+                            />
+                          }
+                          title={
+                            <a
+                              onClick={() => {
+                                setViewCategory("detail");
+                                setSelectedCategory(item);
+                              }}
+                            >
+                              {item.categoryName}
+                            </a>
+                          }
+                          description={item.categoryDescription}
+                        />
+                      </List.Item>
+                    )}
+                  />
+                )}
+              </Spin>
             </Card>
           </Grid>
         </Grid>

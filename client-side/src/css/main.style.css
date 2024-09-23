@@ -33,7 +33,6 @@ html {
   position: fixed;
 }
 
-
 .sidebar-menu img {
   margin-left: 50px;
   margin-top: 30px;
@@ -143,7 +142,7 @@ html {
 .login-card {
   background-color: #f4f3f0;
   box-shadow: 10px 0 10px 0 rgba(164, 162, 162, 0.19),
-  10px 10px 10px 0 rgba(164, 162, 162, 0.19);
+    10px 10px 10px 0 rgba(164, 162, 162, 0.19);
 }
 
 .loginForm h2,
@@ -210,7 +209,7 @@ html {
 .register-card {
   background-color: #f4f3f0;
   box-shadow: 10px 0 10px 0 rgba(164, 162, 162, 0.19),
-  10px 10px 10px 0 rgba(164, 162, 162, 0.19);
+    10px 10px 10px 0 rgba(164, 162, 162, 0.19);
 }
 
 /* for scrollable style */
@@ -377,7 +376,7 @@ html {
 
 /* for dashboard page style */
 
-.home-container{
+.home-container {
   margin-top: 8%;
   margin-left: 16%;
   width: 80%;
@@ -505,6 +504,12 @@ html {
   text-decoration: none;
 }
 
+.maincontent img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
 .blog-container {
   margin-top: 8%;
   margin-left: 15%;
@@ -524,11 +529,11 @@ html {
   color: var(--text-second-color);
 }
 
-.blog-title-link a{
+.blog-title-link a {
   color: var(--text-second-color);
 }
 
-.blog-title-link a:hover{
+.blog-title-link a:hover {
   color: var(--color-gray);
   border-bottom: 1px solid var(--color-gray);
   border-radius: 5px;
@@ -605,7 +610,7 @@ html {
   font-size: 12px;
 }
 
-.blog-content{
+.blog-content {
   color: var(--text-second-color) !important;
 }
 
@@ -698,7 +703,6 @@ html {
   margin-left: 30%;
   margin-bottom: 5%;
   width: 50%;
-  
 }
 
 .change-password-form {
@@ -807,19 +811,22 @@ html {
   color: #000;
 }
 
-
 /* for Image File */
-.imageFile-container{
+.imageFile-container {
   color: var(--text-second-color);
   margin: 50px;
 }
 
-.image-card{
+.image-card {
   color: var(--text-second-color);
 }
 
-.imageFile-container h1{
+.imageFile-container h1 {
   text-align: center;
   margin-bottom: 40px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.loading-sty {
+  margin: 0px auto;
 }

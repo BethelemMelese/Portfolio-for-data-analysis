@@ -5,33 +5,10 @@ import DetailBlog from "./item/detail-blog";
 import CategoryDetailBlog from "./category/category-detail-blog";
 import FooterBlog from "../../menu/footer";
 import Notification from "../../commonComponent/notification";
-import CategoryImage from "../../images/IMG_0087.jpg";
 import axios from "axios";
 import { appUrl } from "../../appurl";
 import { Buffer } from "buffer";
 
-const CategoryMoke = [
-  {
-    id: 1,
-    categoryName: "The First Category",
-    categoryDescription: "The First Category Description",
-  },
-  {
-    id: 2,
-    categoryName: "The First Category",
-    categoryDescription: "The First Category Description",
-  },
-  {
-    id: 3,
-    categoryName: "The First Category",
-    categoryDescription: "The First Category Description",
-  },
-  {
-    id: 4,
-    categoryName: "The First Category",
-    categoryDescription: "The First Category Description",
-  },
-];
 
 const Blog = ({ ...props }) => {
   const [viewMode, setViewMode] = useState("main");

@@ -21,7 +21,7 @@ const projectSchema = mongoose.Schema(
       type: String,
       required: [true, "Please insert the Source Code Link"],
     },
-    otherLink: {
+    youtubeLink: {
       type: String,
     },
   },

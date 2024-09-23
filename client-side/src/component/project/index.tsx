@@ -89,7 +89,7 @@ const Project = () => {
                               size="small"
                               color="warning"
                               target="_blank"
-                              href={item.otherLink}
+                              href={item.youtubeLink}
                             >
                               See More
                             </Button>
