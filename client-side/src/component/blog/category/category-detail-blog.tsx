@@ -38,9 +38,9 @@ const CategoryDetailBlog = ({ ...props }) => {
         <>
           <div className="back-btn">
             <Button
-              variant="text"
+              variant="contained"
               size="small"
-              color="primary"
+              className="create-btn"
               startIcon={<ArrowBackIcon />}
               onClick={() => {
                 props.closeedit();

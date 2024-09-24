@@ -6,6 +6,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddProject from "../create";
 import EditProject from "../edit";
+import DetailProject from "../detail";
 import { appUrl, token } from "../../../appurl";
 import axios from "axios";
 import Notification from "../../../commonComponent/notification";
@@ -31,7 +32,7 @@ const initialState: ProjectState = {
 };
 
 const ViewProject = () => {
-  const [viewMode, setViewMode] = useState("new");
+  const [viewMode, setViewMode] = useState("view");
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState<any>([]);
   const [selectedProject, setSelectedProject] = useState();
@@ -111,112 +112,134 @@ const ViewProject = () => {
     });
   };
 
-  const onUpdateCall = (id: any) => {
-    axios
-      .create({
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .get(appUrl + `project/${id}`)
-      .then((res) => {
-        setSelectedProject(res.data);
-        setViewMode("edit");
-      })
-      .catch((error: any) => {
-        onViewError(error.response.data.error);
-      });
-  };
-
   //   to fetch data using useEffect, when every time this page is loaded
   useEffect(() => {
     setLoading(true);
     onFetchProject();
   }, []);
 
-  const convertBufferToBase64 = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${dataSource[0].projectImage.contentType};base64,${base64String}`;
-  };
-
   return (
     <div className="project-container">
       <Grid container spacing={1}>
-        <Grid item xs={8}>
-          <Card
-            style={{
-              marginTop: 10,
-            }}
-            className="project-list"
-          >
-            {dataSource != undefined && (
-              <List
-                itemLayout="horizontal"
-                size="large"
-                pagination={{
-                  pageSize: 5,
-                }}
-                dataSource={dataSource}
-                renderItem={(item: any) => (
-                  <List.Item
-                    key={item.projectNumber}
-                    actions={[
-                      <Tooltip title="To edit the project">
-                        <IconButton
-                          onClick={() => {
-                            // onUpdateCall(item.id);
-                            setSelectedProject(item);
-                            setViewMode("edit");
-                          }}
-                        >
-                          <ModeEditIcon color="warning" />
-                        </IconButton>
-                      </Tooltip>,
-                      <Tooltip title="To delete the project">
-                        <IconButton
-                          onClick={() => {
-                            showConfirm(item.id);
-                          }}
-                        >
-                          <DeleteForeverIcon color="error" />
-                        </IconButton>
-                      </Tooltip>,
-                    ]}
-                    extra={
-                      <img
-                        width={200}
-                        alt="Project Image"
-                        src={item.projectImage}
-                      />
-                    }
+        <Grid item xs={12}>
+          {viewMode == "view" && (
+            <Card
+              style={{
+                marginTop: 10,
+              }}
+              className="project-list"
+              extra={
+                <Tooltip title="To add new category">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    className="create-btn"
+                    onClick={() => {
+                      setViewMode("new");
+                    }}
                   >
-                    <List.Item.Meta
-                      title={item.projectTitle}
-                      description={item.projectDescription}
-                    />
-                  </List.Item>
-                )}
-              />
-            )}
-          </Card>
-        </Grid>
-        <Grid item xs={4}>
-          <Card className="new-project">
-            {viewMode == "new" ? (
-              <AddProject
-                //@ts-ignore
-                selectedProject={initialState}
-                viewMode={viewMode}
-              />
-            ) : (
-              <EditProject
-                //@ts-ignore
-                selectedProject={selectedProject}
-                viewMode={viewMode}
-                closeedit={() => setViewMode("new")}
-              />
-            )}
-          </Card>
+                    Add Project
+                  </Button>
+                </Tooltip>
+              }
+            >
+              {dataSource != undefined && (
+                <List
+                  loading={loading}
+                  itemLayout="horizontal"
+                  size="large"
+                  pagination={{
+                    pageSize: 5,
+                  }}
+                  dataSource={dataSource}
+                  renderItem={(item: any) => (
+                    <List.Item
+                      key={item.projectNumber}
+                      actions={[
+                        <Tooltip title="To edit the project">
+                          <IconButton
+                            onClick={() => {
+                              setSelectedProject(item);
+                              setViewMode("edit");
+                            }}
+                          >
+                            <ModeEditIcon color="warning" />
+                          </IconButton>
+                        </Tooltip>,
+                        <Tooltip title="To delete the project">
+                          <IconButton
+                            onClick={() => {
+                              showConfirm(item.id);
+                            }}
+                          >
+                            <DeleteForeverIcon color="error" />
+                          </IconButton>
+                        </Tooltip>,
+                      ]}
+                      extra={
+                        <a
+                          onClick={() => {
+                            setSelectedProject(item);
+                            setViewMode("detail");
+                          }}
+                        >
+                          <img
+                            width={200}
+                            alt="Project Image"
+                            src={item.projectImage}
+                          />
+                        </a>
+                      }
+                    >
+                      <List.Item.Meta
+                        title={
+                          <a
+                            onClick={() => {
+                              setSelectedProject(item);
+                              setViewMode("detail");
+                            }}
+                          >
+                            {item.projectTitle}
+                          </a>
+                        }
+                        description={
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                item.projectDescription.slice(0, 400) + "...",
+                            }}
+                          />
+                        }
+                      />
+                    </List.Item>
+                  )}
+                />
+              )}
+            </Card>
+          )}
+          {viewMode == "new" && (
+            <AddProject
+              //@ts-ignore
+              selectedProject={initialState}
+              viewMode={viewMode}
+              closeedit={() => setViewMode("view")}
+            />
+          )}
+          {viewMode == "edit" && (
+            <EditProject
+              //@ts-ignore
+              selectedProject={selectedProject}
+              viewMode={viewMode}
+              closeedit={() => setViewMode("view")}
+            />
+          )}
+          {viewMode == "detail" && (
+            <DetailProject //@ts-ignore
+              selectedProject={selectedProject}
+              viewMode={viewMode}
+              closeedit={() => setViewMode("view")}
+            />
+          )}
         </Grid>
       </Grid>
       <Notification notify={notify} setNotify={setNotify} />

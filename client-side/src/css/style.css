@@ -957,44 +957,32 @@ nav {
 }
 
 .project-slides {
-  width: 60%;
+  width: 70%;
   margin: 0px auto;
   box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.19),
     10px 10px 10px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
 }
 
-.project-image img {
-  border-radius: 30px;
-}
-
-.project-layout {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .sec-project-card {
+  display: flex;
+  align-self: center;
   background-color: var(--primary-color);
   color: var(--text-second-color);
-  border: none;
-  margin-top: -17px;
+  margin: 20px;
 }
 
 .project-dec {
-  margin-left: -40%;
+  top: 0;
+  bottom: 0;
+  margin-top: -200px;
+  margin-left: 30%;
+  margin-bottom: 50px;
 }
 
-.project-dec p {
+.project-dec-content p {
   text-align: justify;
-}
-
-.project-image {
-  margin-left: 20px;
-}
-
-.project-image img {
-  border-radius: 10px;
+  width: 80%;
 }
 
 :where(.css-dev-only-do-not-override-p8b6i).ant-carousel .slick-next {
@@ -1344,4 +1332,40 @@ nav {
   margin-right: -100%;
   margin-top: 5px;
   font-size: 12px;
+}
+
+.detail-project-container {
+  margin: 20px;
+  background-color: var(--primary-color);
+  color: var(--text-second-color);
+  border-radius: 10px;
+}
+
+.more-project {
+  background-color: var(--primary-color);
+  color: var(--text-second-color);
+  border: var(--primary-color);
+  border-radius: 10px;
+}
+
+.more-btn {
+  background-image: linear-gradient(to right, #000, #000);
+  color: #000;
+  width: 20%;
+}
+
+.more-btn:hover {
+  background-image: linear-gradient(
+    to right,
+    var(--third-color),
+    var(--third-color)
+  );
+  color: #000;
+}
+
+.project-image img{
+  margin: 20px;
+  border-radius: 5px;
+  width: 200px;
+  height: 200px;
 }

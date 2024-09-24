@@ -45,6 +45,7 @@ const DetailBlog = ({ ...props }) => {
           />
           <div className="blog-content">
             <div
+              className="blog-content-container"
               dangerouslySetInnerHTML={{ __html: selectedBlog.mainContent }}
             />
           </div>

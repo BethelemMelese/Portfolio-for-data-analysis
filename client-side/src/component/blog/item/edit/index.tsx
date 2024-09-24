@@ -101,7 +101,6 @@ const EditBlog = ({ ...props }) => {
   const validationSchema = Yup.object().shape({
     blogTitle: Yup.string().required("Article Title is required"),
     author: Yup.string().required("Author Name is required"),
-    mainContent: Yup.string().required("Content is required"),
   });
 
   const formik = useFormik({
@@ -162,7 +161,7 @@ const EditBlog = ({ ...props }) => {
       const file = input.files ? input.files[0] : null;
       if (file) {
         const formData = new FormData();
-        formData.append("image", file);
+        formData.append("file", file);
 
         try {
           // Upload the image to the backend (update URL as per your backend)

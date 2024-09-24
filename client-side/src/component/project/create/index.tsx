@@ -12,7 +12,7 @@ import type { UploadProps } from "antd";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { UploadOutlined } from "@ant-design/icons";
-const { Dragger } = Upload;
+import CloseIcon from "@mui/icons-material/Close";
 
 interface ProjectState {
   projectTitle: string;
@@ -102,9 +102,6 @@ const AddProject = ({ ...props }) => {
     projectTitle: Yup.string().required("Project is required"),
     sourceCodeLink: Yup.string().required("Source Code Link is required"),
     youtubeLink: Yup.string().required("YouTube Link is required"),
-    projectDescription: Yup.string().required(
-      "Project Description is required"
-    ),
   });
 
   const onValidFileRequired = () => {
@@ -112,6 +109,11 @@ const AddProject = ({ ...props }) => {
       setFileRequired(true);
     } else {
       setFileRequired(false);
+    }
+    if (content == "") {
+      setIsContent(true);
+    } else {
+      setIsContent(false);
     }
   };
 
@@ -122,34 +124,34 @@ const AddProject = ({ ...props }) => {
         setFileRequired(true);
       } else {
         setFileRequired(false);
-        setIsSubmitting(true);
-        const quill = quillRef.current?.getEditor();
-        const contentToSave = quill?.root.innerHTML || ""; // Get Quill content as HTML
-        values.projectDescription = contentToSave;
-        const formData = new FormData();
-        formData.append("file", fileList);
-        formData.append("projectTitle", values.projectTitle);
-        formData.append("projectDescription", values.projectDescription);
-        formData.append("sourceCodeLink", values.sourceCodeLink);
-        formData.append("youtubeLink", values.youtubeLink);
-        axios
-          .create({
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-          .post(appUrl + "project", formData)
-          .then(() => onCreateSuccess())
-          .catch((error) => onCreateError(error.response.data.message));
+        if (content == "") {
+          setIsContent(true);
+        } else {
+          setIsContent(false);
+          setIsSubmitting(true);
+          const quill = quillRef.current?.getEditor();
+          const contentToSave = quill?.root.innerHTML || ""; // Get Quill content as HTML
+          values.projectDescription = contentToSave;
+          const formData = new FormData();
+          formData.append("file", fileList);
+          formData.append("projectTitle", values.projectTitle);
+          formData.append("projectDescription", values.projectDescription);
+          formData.append("sourceCodeLink", values.sourceCodeLink);
+          formData.append("youtubeLink", values.youtubeLink);
+          axios
+            .create({
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            })
+            .post(appUrl + "project", formData)
+            .then(() => onCreateSuccess())
+            .catch((error) => onCreateError(error.response.data.message));
+        }
       }
     },
     validationSchema: validationSchema,
   });
-
-  const fileprops: UploadProps = {
-    name: "file",
-    onChange: (response: any) => beforeUpload(response.file),
-  };
 
   const beforeUpload = (file: any): any => {
     if (
@@ -176,7 +178,7 @@ const AddProject = ({ ...props }) => {
       const file = input.files ? input.files[0] : null;
       if (file) {
         const formData = new FormData();
-        formData.append("image", file);
+        formData.append("file", file);
 
         try {
           // Upload the image to the backend (update URL as per your backend)
@@ -231,6 +233,7 @@ const AddProject = ({ ...props }) => {
 
   const handleEditorChange = (value: string) => {
     setContent(value); // Update content state
+    setIsContent(false);
   };
 
   return (
@@ -238,6 +241,11 @@ const AddProject = ({ ...props }) => {
       <Card
         title={<h4>Add New Project to the Portfolio</h4>}
         className="create-card"
+        extra={
+          <a onClick={() => props.closeedit()}>
+            <CloseIcon fontSize="medium" className="close-btn" />
+          </a>
+        }
       >
         <Form autoComplete="off" noValidate onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>
@@ -254,7 +262,9 @@ const AddProject = ({ ...props }) => {
                     : ""
                 }
               />
+            </Grid>
 
+            <Grid item xs={6}>
               <Controls.Input
                 required
                 id="sourceCodeLink"
@@ -266,11 +276,12 @@ const AddProject = ({ ...props }) => {
                     : ""
                 }
               />
-
+            </Grid>
+            <Grid item xs={6}>
               <Controls.Input
                 required
                 id="youtubeLink"
-                label="YouTube Link"
+                label="YouTube Link (Video Id)"
                 {...formik.getFieldProps("youtubeLink")}
                 error={
                   formik.touched.youtubeLink && formik.errors.youtubeLink
@@ -281,7 +292,7 @@ const AddProject = ({ ...props }) => {
             </Grid>
 
             <Grid item xs={12}>
-              <Card title="The Project Description">
+              <Card title="Insert the project description Here">
                 <ReactQuill
                   ref={quillRef}
                   value={content}
@@ -300,7 +311,7 @@ const AddProject = ({ ...props }) => {
             </Grid>
 
             <Grid item xs={12}>
-              <Card title="Attach the article image here">
+              <Card title="Attach the project image here">
                 <Upload
                   listType="picture"
                   onChange={(response: any) => beforeUpload(response.file)}
@@ -317,13 +328,15 @@ const AddProject = ({ ...props }) => {
                     </span>
                   ) : null}
                   {fileRequired ? (
-                    <span className="text-danger">Project Image is required</span>
+                    <span className="text-danger">
+                      Project Image is required
+                    </span>
                   ) : null}
                 </Upload>
               </Card>
             </Grid>
 
-            <Grid item xs={12} style={{ position: "relative" }}>
+            <Grid item xs={2} style={{ position: "relative" }}>
               <div className="btn-form">
                 {isSubmitting ? (
                   <Button
