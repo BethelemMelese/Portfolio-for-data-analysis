@@ -859,10 +859,8 @@ html {
   /* object-fit: cover; */
 }
 
-.detail-proj-link {
-  text-decoration: none;
+.detail-proj-link h4 {
   text-align: center;
-  font-weight: normal;
   background-color: var(--color-second-gray);
   border-radius: 5px;
   width: 50%;
@@ -891,8 +889,17 @@ html {
 }
 
 .detail-proj-view iframe {
+  margin: 20px;
   margin-left: 25%;
   height: 50%;
   width: 50%;
   position: absolute;
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

@@ -12,23 +12,6 @@ body {
   background-color: var(--primary-color);
 }
 
-.ql-editor img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-}
-
-.blog-content-container {
-  margin-top: 20px;
-}
-.blog-content-container img {
-  text-align: center;
-  margin-top: 10px;
-  width: 60%;
-  height: 50%;
-  object-fit: cover;
-}
-
 @keyframes slideIn {
   0% {
     opacity: 0;
@@ -729,6 +712,31 @@ nav {
   color: var(--third-color);
 }
 
+.ql-editor img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.blog-content-container {
+  text-align: justify;
+  margin: 40px;
+}
+
+.blog-content-container img {
+  display: block;
+  margin: 0px auto;
+  width: 30%;
+  height: 20%;
+  object-fit: cover;
+}
+
+.blog-content-container{
+  line-height: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12px;
+}
+
 .detail-blog-container {
   margin: 40px;
   margin-top: -5%;
@@ -741,10 +749,6 @@ nav {
 
 .detail-blog-content h1 {
   text-align: center;
-}
-
-.detail-blog-content img {
-  margin-left: 30%;
 }
 
 .detail-blog-content p {
@@ -830,7 +834,7 @@ nav {
   margin-top: 20px;
   margin: 5px;
   float: left;
-  width: 30%;
+  width: 50%;
 }
 
 .hover-image {
@@ -839,7 +843,7 @@ nav {
 }
 
 .hover-image:hover {
-  transform: scale(1.1) rotate(2deg); /* Slight zoom and rotation */
+  transform: scale(1.1); /* Slight zoom and rotation */
   filter: brightness(1.2) saturate(1.5); /* Brighter and more saturated colors */
 }
 
@@ -860,11 +864,10 @@ nav {
 }
 
 .blog-item .blog-item-content h6 {
-  margin-top: -30px;
-  letter-spacing: -0.02em;
-  line-height: 200%;
+  margin-top: 10px;
+  line-height: 150%;
   font-size: 14px;
-  width: 100%;
+  width: 80%;
   text-align: justify;
 }
 
@@ -1313,6 +1316,22 @@ nav {
   margin-top: 30px;
 }
 
+.btn {
+  margin-left: 100px;
+  margin-top: 30px;
+  background-image: linear-gradient(to right, #000, #000);
+  color: #000;
+}
+
+.btn:hover {
+  background-image: linear-gradient(
+    to right,
+    var(--third-color),
+    var(--third-color)
+  );
+  color: #000;
+}
+
 .contact-btn {
   margin: 0px auto;
   margin-top: 10px;
@@ -1363,7 +1382,7 @@ nav {
   color: #000;
 }
 
-.project-image img{
+.project-image img {
   margin: 20px;
   border-radius: 5px;
   width: 200px;

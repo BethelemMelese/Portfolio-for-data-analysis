@@ -56,7 +56,7 @@ const EditBlog = ({ ...props }) => {
   const [fileList, setFileList] = useState<any>([]);
   const [validFileFormat, setValidFileFormat] = useState(false);
   const [fileRequired, setFileRequired] = useState(false);
-  const [content, setContent] = useState<string>("");
+  const [content, setContent] = useState<string>(selectedBlog.mainContent);
   const [isContent, setIsContent] = useState(false);
   const quillRef = useRef<ReactQuill | null>(null);
   const [notify, setNotify] = useState({
@@ -121,7 +121,7 @@ const EditBlog = ({ ...props }) => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         })
-        .put(appUrl + `blog/addBlog/${selectedBlog.id}`, formData)
+        .put(appUrl + `blog/editBlog/${selectedBlog.id}`, formData)
         .then(() => onUpdateSuccess())
         .catch((error) => onUpdateError(error.response.data.message));
     },
@@ -286,34 +286,35 @@ const EditBlog = ({ ...props }) => {
             </Grid>
             <Grid item xs={12}>
               <Card title="To modify the article image here">
-                <img
-                  src={appUrl + `blog/uploads/${selectedBlog.blogImage}`}
-                  width={150}
-                  height={110}
-                  style={{
-                    margin: "20px",
-                    borderRadius: "5px",
-                  }}
-                />
-                <Upload
-                  listType="picture"
-                  onChange={(response: any) => beforeUpload(response.file)}
-                  beforeUpload={() => false}
-                >
-                  <ButtonAnt icon={<UploadOutlined translate={undefined} />}>
-                    Blog Image
-                  </ButtonAnt>
-                  <br />
-                  {validFileFormat ? (
-                    <span className="text-danger">
-                      Invalid file format, Only jpg, jpeg and png files are
-                      allowed!
-                    </span>
-                  ) : null}
-                  {fileRequired ? (
-                    <span className="text-danger">Blog Image is required</span>
-                  ) : null}
-                </Upload>
+                <Grid container spacing={2}>
+                  <img src={selectedBlog.blogImage} width="20%" height="10%" />
+
+                  <Grid item xs={6}>
+                    <Upload
+                      listType="picture"
+                      onChange={(response: any) => beforeUpload(response.file)}
+                      beforeUpload={() => false}
+                    >
+                      <ButtonAnt
+                        icon={<UploadOutlined translate={undefined} />}
+                      >
+                       Update Blog Image
+                      </ButtonAnt>
+                      <br />
+                      {validFileFormat ? (
+                        <span className="text-danger">
+                          Invalid file format, Only jpg, jpeg and png files are
+                          allowed!
+                        </span>
+                      ) : null}
+                      {fileRequired ? (
+                        <span className="text-danger">
+                          Blog Image is required
+                        </span>
+                      ) : null}
+                    </Upload>
+                  </Grid>
+                </Grid>
               </Card>
             </Grid>
             <Grid item xs={12} style={{ position: "relative" }}>
@@ -333,7 +334,6 @@ const EditBlog = ({ ...props }) => {
                     type="submit"
                     size="small"
                     className="submit-btn"
-                    onClick={onValidFileRequired}
                   >
                     Save Change
                   </Button>

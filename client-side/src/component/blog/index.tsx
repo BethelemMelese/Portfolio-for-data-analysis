@@ -83,15 +83,6 @@ const Blog = ({ ...props }) => {
       });
   }, []);
 
-  const convertBufferToBase64ForCategory = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${categoryDate[0].categoryImage.contentType};base64,${base64String}`;
-  };
-
-  const convertBufferToBase64ForBlog = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${blogDate[0].blogImage.contentType};base64,${base64String}`;
-  };
 
   return (
     <div className="blog-main-container">
@@ -172,9 +163,7 @@ const Blog = ({ ...props }) => {
                                 }}
                               >
                                 <img
-                                  src={convertBufferToBase64ForBlog(
-                                    item.blogImage.data
-                                  )}
+                                  src={item.blogImage}
                                   width={200}
                                   height={200}
                                   style={{

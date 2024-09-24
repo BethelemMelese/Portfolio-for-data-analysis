@@ -12,7 +12,6 @@ const GetCategoryOnly = async (req, res) => {
         categoryName: item.categoryName,
         categoryDescription: item.categoryDescription,
         categoryImage: item.categoryImage,
-        blogItemId: item.blogItemId,
       };
     });
     res.status(200).json(response);
@@ -75,6 +74,7 @@ const GetLatestBlog = async (req, res) => {
 
 const AddCategoryOnly = async (req, res) => {
   try {
+    console.log("req.file.path...",req.file);
     const category = await BlogCategory.create({
       categoryName: req.body.categoryName,
       categoryDescription: req.body.categoryDescription,

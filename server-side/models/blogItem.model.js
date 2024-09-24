@@ -19,9 +19,8 @@ const blogItemSchema = mongoose.Schema(
       required: true,
     },
     blogImage: {
-      data: Buffer,
-      contentType: String,
-      filename: String,
+      type: String,
+      required: [true, "Please insert the blog Image"],
     },
     blogCategoryId: {
       type: mongoose.Schema.Types.ObjectId,
