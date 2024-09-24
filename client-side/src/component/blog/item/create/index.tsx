@@ -168,7 +168,7 @@ const AddBlog = ({ ...props }) => {
       const file = input.files ? input.files[0] : null;
       if (file) {
         const formData = new FormData();
-        formData.append("image", file);
+        formData.append("file", file);
 
         try {
           // Upload the image to the backend (update URL as per your backend)

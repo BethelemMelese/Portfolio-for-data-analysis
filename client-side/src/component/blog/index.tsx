@@ -9,7 +9,6 @@ import axios from "axios";
 import { appUrl } from "../../appurl";
 import { Buffer } from "buffer";
 
-
 const Blog = ({ ...props }) => {
   const [viewMode, setViewMode] = useState("main");
   const [loading, setLoading] = useState(false);
@@ -117,11 +116,15 @@ const Blog = ({ ...props }) => {
           <section id="contact" className="blog-content">
             <div className="blog-grid-container">
               <div className="blog-grid-category">
-                <Card title="Blog Category" className="blog-category"  style={{
-                  height: "580px",
-                  overflowX: "hidden",
-                  overflowY: "auto",
-                }}>
+                <Card
+                  title="Blog Category"
+                  className="blog-category"
+                  style={{
+                    height: "580px",
+                    overflowX: "hidden",
+                    overflowY: "auto",
+                  }}
+                >
                   {categoryDate.length != 0 &&
                     categoryDate.map((item: any) => {
                       return (
@@ -129,9 +132,7 @@ const Blog = ({ ...props }) => {
                           <div className="category-image">
                             <img
                               alt="Category Image"
-                              src={convertBufferToBase64ForCategory(
-                                item.categoryImage.data
-                              )}
+                              src={item.categoryImage}
                               width={80}
                               height={80}
                             />

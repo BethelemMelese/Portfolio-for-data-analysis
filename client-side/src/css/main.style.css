@@ -830,3 +830,69 @@ html {
 .loading-sty {
   margin: 0px auto;
 }
+
+/* the project detail style */
+
+.detail-proj {
+  margin: 40px;
+}
+
+.detail-proj img {
+  margin-left: 40%;
+  margin-top: -20px;
+}
+
+.detail-proj h1 {
+  text-align: center;
+}
+
+.detail-proj-des {
+  text-align: justify;
+  margin: 40px;
+}
+
+.detail-proj-des img {
+  display: block;
+  margin: 0px auto;
+  width: 30%;
+  height: 20%;
+  /* object-fit: cover; */
+}
+
+.detail-proj-link {
+  text-decoration: none;
+  text-align: center;
+  font-weight: normal;
+  background-color: var(--color-second-gray);
+  border-radius: 5px;
+  width: 50%;
+  margin: 0px auto;
+}
+
+.detail-proj-link a {
+  color: rgb(228, 136, 8);
+  border-bottom: 1px solid rgb(228, 136, 8);
+}
+
+.detail-proj-link a:hover {
+  color: var(--color-gray);
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.detail-proj-link a:active {
+  color: rgb(114, 61, 163);
+  border-bottom: 1px solid rgb(114, 61, 163);
+}
+
+.detail-proj-view {
+  padding-bottom: 50%;
+  position: relative;
+  height: 0;
+}
+
+.detail-proj-view iframe {
+  margin-left: 25%;
+  height: 50%;
+  width: 50%;
+  position: absolute;
+}
