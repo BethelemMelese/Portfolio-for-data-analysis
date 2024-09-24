@@ -31,7 +31,6 @@ const DetailCategory = ({ ...props }) => {
   const [viewCategory, setViewCategory] = useState("view");
   const [viewMode, setViewMode] = useState("view");
   const [dataSource, setDataSource] = useState<any>([]);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -114,16 +113,6 @@ const DetailCategory = ({ ...props }) => {
     onFetchBlog();
   }, []);
 
-  const convertBufferToBase64 = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${dataSource[0].blogImage.contentType};base64,${base64String}`;
-  };
-
-  const convertBufferToBase64ForCategory = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${selectedCategory.categoryImage.contentType};base64,${base64String}`;
-  };
-
   return (
     <div className="category-detail-container">
       {viewMode == "view" && (
@@ -143,9 +132,7 @@ const DetailCategory = ({ ...props }) => {
                       maxWidth: 400,
                     }}
                     alt="Blog Image"
-                    src={convertBufferToBase64ForCategory(
-                      selectedCategory.categoryImage.data
-                    )}
+                    src={selectedCategory.categoryImage}
                   />
                   <h2>{selectedCategory.categoryName}</h2>
                   <p>{selectedCategory.categoryDescription}</p>
@@ -250,9 +237,7 @@ const DetailCategory = ({ ...props }) => {
                                 <Grid container spacing={0}>
                                   <Grid item xs={4}>
                                     <img
-                                      src={convertBufferToBase64(
-                                        item.blogImage.data
-                                      )}
+                                      src={item.blogImage}
                                       width={100}
                                       height={100}
                                       style={{

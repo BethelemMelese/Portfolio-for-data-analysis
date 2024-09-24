@@ -27,8 +27,8 @@ const initialState: BlogState = {
   blogCategoryId: "",
 };
 
-const Font = Quill.import('formats/font');
-Font.whitelist = ['Arial', 'Georgia', 'Tahoma', 'Times-New-Roman', 'Verdana']; // Add more fonts if needed
+const Font = Quill.import("formats/font");
+Font.whitelist = ["Arial", "Georgia", "Tahoma", "Times-New-Roman", "Verdana"]; // Add more fonts if needed
 Quill.register(Font, true);
 
 // Define custom toolbar options
@@ -106,30 +106,35 @@ const AddBlog = ({ ...props }) => {
   const formik = useFormik({
     initialValues: initialState,
     onSubmit: (values) => {
-      if (content == "") {
-        setIsContent(true);
+      if (fileList.length == 0) {
+        setFileRequired(true);
       } else {
-        setIsContent(false);
-        setIsSubmitting(true);
-        const quill = quillRef.current?.getEditor();
-        const contentToSave = quill?.root.innerHTML || ""; // Get Quill content as HTML
-        values.blogCategoryId = selectedCategory.id;
-        values.mainContent = contentToSave;
-        const formData = new FormData();
-        formData.append("file", fileList);
-        formData.append("blogTitle", values.blogTitle);
-        formData.append("author", values.author);
-        formData.append(`mainContent`, values.mainContent);
-        formData.append(`blogCategoryId`, values.blogCategoryId);
-        axios
-          .create({
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-          .post(appUrl + "blog/addBlog/", formData)
-          .then(() => onCreateSuccess())
-          .catch((error) => onCreateError(error.response.data.message));
+        setFileRequired(false);
+        if (content == "") {
+          setIsContent(true);
+        } else {
+          setIsContent(false);
+          setIsSubmitting(true);
+          const quill = quillRef.current?.getEditor();
+          const contentToSave = quill?.root.innerHTML || ""; // Get Quill content as HTML
+          values.blogCategoryId = selectedCategory.id;
+          values.mainContent = contentToSave;
+          const formData = new FormData();
+          formData.append("file", fileList);
+          formData.append("blogTitle", values.blogTitle);
+          formData.append("author", values.author);
+          formData.append(`mainContent`, values.mainContent);
+          formData.append(`blogCategoryId`, values.blogCategoryId);
+          axios
+            .create({
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            })
+            .post(appUrl + "blog/addBlog/", formData)
+            .then(() => onCreateSuccess())
+            .catch((error) => onCreateError(error.response.data.message));
+        }
       }
     },
     validationSchema: validationSchema,
@@ -140,6 +145,11 @@ const AddBlog = ({ ...props }) => {
       setFileRequired(true);
     } else {
       setFileRequired(false);
+    }
+    if (content == "") {
+      setIsContent(true);
+    } else {
+      setIsContent(false);
     }
   };
 
@@ -208,7 +218,17 @@ const AddBlog = ({ ...props }) => {
   };
 
   const customFormats = [
-    'font', 'size', 'header', 'list', 'bold', 'italic', 'underline', 'link', 'image', 'align', 'clean'
+    "font",
+    "size",
+    "header",
+    "list",
+    "bold",
+    "italic",
+    "underline",
+    "link",
+    "image",
+    "align",
+    "clean",
   ];
 
   const handleEditorChange = (value: string) => {

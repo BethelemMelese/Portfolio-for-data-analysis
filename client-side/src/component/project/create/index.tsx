@@ -8,7 +8,6 @@ import { appUrl } from "../../../appurl";
 import axios from "axios";
 import { Grid, Button } from "@mui/material";
 import Notification from "../../../commonComponent/notification";
-import type { UploadProps } from "antd";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { UploadOutlined } from "@ant-design/icons";

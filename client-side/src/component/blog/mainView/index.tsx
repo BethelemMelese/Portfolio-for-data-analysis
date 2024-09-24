@@ -13,8 +13,7 @@ import DetailCategory from "../category/detail";
 import DetailBlog from "../item/detail";
 import EditBlogCategory from "../category/edit";
 import EditBlog from "../item/edit";
-import { Buffer } from "buffer";
-import { Alert, Flex, Spin } from "antd";
+import { Spin } from "antd";
 
 const { confirm } = Modal;
 
@@ -32,7 +31,7 @@ const ViewBlog = () => {
   const [viewMode, setViewMode] = useState("view");
   const [viewCategory, setViewCategory] = useState("view");
   const [loading, setLoading] = useState(false);
-  const [blogLoading,setBlogLoading]=useState(false)
+  const [blogLoading, setBlogLoading] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
   const [blogDate, setBlogData] = useState<any>([]);
@@ -169,16 +168,6 @@ const ViewBlog = () => {
     onFetchCategory();
   }, []);
 
-  const convertBufferToBase64ForCategory = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${categoryDate[0].categoryImage.contentType};base64,${base64String}`;
-  };
-
-  const convertBufferToBase64ForBlog = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${blogDate[0].blogImage.contentType};base64,${base64String}`;
-  };
-
   return (
     <div className="blog-container">
       {viewCategory == "view" && (
@@ -252,9 +241,7 @@ const ViewBlog = () => {
                                 <Grid container spacing={0}>
                                   <Grid item xs={4}>
                                     <img
-                                      src={convertBufferToBase64ForBlog(
-                                        item.blogImage.data
-                                      )}
+                                      src={item.blogImage}
                                       width={150}
                                       height={110}
                                       style={{
@@ -286,11 +273,11 @@ const ViewBlog = () => {
                                   Published Date: {item.publishedDate}
                                 </h5>
                               </Grid>
-                              <Grid item xs={2} className="more-btn">
+                              <Grid item xs={2}>
                                 <Button
-                                  variant="text"
+                                  variant="contained"
                                   size="small"
-                                  color="warning"
+                                  className="more-btn"
                                   onClick={() => {
                                     setViewCategory("detailBlog");
                                     setSelectedBlog(item);
@@ -394,9 +381,7 @@ const ViewBlog = () => {
                           avatar={
                             <Avatar
                               variant="rounded"
-                              src={convertBufferToBase64ForCategory(
-                                item.categoryImage.data
-                              )}
+                              src={item.categoryImage}
                             />
                           }
                           title={

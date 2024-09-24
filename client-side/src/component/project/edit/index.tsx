@@ -144,11 +144,6 @@ const EditProject = ({ ...props }) => {
     validationSchema: validationSchema,
   });
 
-  const fileprops: UploadProps = {
-    name: "file",
-    onChange: (response: any) => beforeUpload(response.file),
-  };
-
   const beforeUpload = (file: any): any => {
     if (
       file.type === "image/jpg" ||

@@ -52,7 +52,13 @@ const Detail = ({ ...props }) => {
             </h4>
           </div>
           <div className="detail-proj-view">
-            <ReactPlayer url={selectedProject.youtubeLink} />
+            <ReactPlayer
+              className="react-player"
+              width="100%"
+              height="100%"
+              controls={true}
+              url={selectedProject.youtubeLink}
+            />
           </div>
         </div>
       </Card>

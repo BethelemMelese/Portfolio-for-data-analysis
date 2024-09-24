@@ -9,11 +9,6 @@ const DetailBlog = ({ ...props }) => {
     props.selectedCategory
   );
   const [selectedBlog, setSelectedBlog] = useState(props.selectedBlog);
-
-  const convertBufferToBase64 = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${selectedBlog.blogImage.contentType};base64,${base64String}`;
-  };
   return (
     <div className="detailBlog-container">
       <Card
@@ -39,9 +34,15 @@ const DetailBlog = ({ ...props }) => {
             </p>
           </div>
           <img
-            src={convertBufferToBase64(selectedBlog.blogImage.data)}
-            width="40%"
-            height="30%"
+            src={selectedBlog.blogImage}
+            width={300}
+            height={300}
+            style={{
+              display: "block",
+              margin: "0px auto",
+              borderRadius: "5px",
+              objectFit: "cover",
+            }}
           />
           <div className="blog-content">
             <div

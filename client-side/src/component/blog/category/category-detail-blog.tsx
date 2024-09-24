@@ -27,11 +27,6 @@ const CategoryDetailBlog = ({ ...props }) => {
       });
   }, []);
 
-  const convertBufferToBase64 = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${dataSource[0].blogImage.contentType};base64,${base64String}`;
-  };
-
   return (
     <div>
       {viewMode == "category" && (
@@ -40,7 +35,7 @@ const CategoryDetailBlog = ({ ...props }) => {
             <Button
               variant="contained"
               size="small"
-              className="create-btn"
+              className="btn"
               startIcon={<ArrowBackIcon />}
               onClick={() => {
                 props.closeedit();
@@ -62,8 +57,8 @@ const CategoryDetailBlog = ({ ...props }) => {
                     return (
                       <div className="blog-item">
                         <img
-                          src={convertBufferToBase64(item.blogImage.data)}
-                          width="100%"
+                          src={item.blogImage}
+                          width="80%"
                           height="50%"
                           className="hover-image"
                           onClick={() => {

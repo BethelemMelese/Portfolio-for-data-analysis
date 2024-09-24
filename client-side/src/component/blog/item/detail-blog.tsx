@@ -47,23 +47,13 @@ const DetailBlog = ({ ...props }) => {
       });
   }, []);
 
-  const convertBufferToBase64 = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${selectedBlog.blogImage.contentType};base64,${base64String}`;
-  };
-
-  const convertBufferToBase64ForProfole = (buffer: Buffer): string => {
-    const base64String = Buffer.from(buffer).toString("base64");
-    return `data:${response.profileImage.contentType};base64,${base64String}`;
-  };
-
   return (
     <div>
       <div className="back-btn">
         <Button
           variant="contained"
           size="small"
-          className="create-btn"
+          className="btn"
           startIcon={<ArrowBackIcon />}
           onClick={() => {
             props.closeedit();
@@ -77,9 +67,15 @@ const DetailBlog = ({ ...props }) => {
           <div className="detail-blog-content">
             <h1>{selectedBlog.blogTitle}</h1>
             <img
-              src={convertBufferToBase64(selectedBlog.blogImage.data)}
-              width="40%"
-              height="40%"
+              src={selectedBlog.blogImage}
+              width={300}
+              height={300}
+              style={{
+                display: "block",
+                margin: "0px auto",
+                borderRadius: "5px",
+                objectFit: "cover",
+              }}
             />
             <p>
               <div
@@ -92,12 +88,7 @@ const DetailBlog = ({ ...props }) => {
         <section className="detail-blog-contact">
           {response != undefined && (
             <div className="Pp-blog">
-              <Avatar
-                className="ava-owner-img"
-                src={convertBufferToBase64ForProfole(
-                  response.profileImage.data
-                )}
-              />
+              <Avatar className="ava-owner-img" src={response.profileImage} />
               <p>
                 {selectedBlog.author}, {selectedBlog.publishedDate}
               </p>
