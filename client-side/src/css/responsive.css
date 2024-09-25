@@ -82,6 +82,83 @@
     width: 100%;
   }
 
+  /* for project detail */
+  .detail-project-container {
+    width: 100%;
+    margin: 0px auto;
+  }
+
+  .more-project {
+    width: 100%;
+    text-align: center;
+    margin-top: -20px;
+  }
+
+  .detail-proj img {
+    width: 200px;
+    height: 200px;
+    margin: 0px auto;
+  }
+
+  .detail-proj h1 {
+    text-align: center;
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .detail-proj-des p {
+    margin: 0px auto;
+    width: 100%;
+  }
+
+  .detail-proj-des p {
+    display: block;
+  }
+
+  .detail-proj-des img {
+    max-width: 100%; /* Images take full width of container */
+    margin-bottom: 20px;
+  }
+
+  .detail-proj-link {
+    width: 100%;
+    font-size: 12px;
+    margin: 0px auto;
+  }
+
+  .detail-proj-view iframe {
+    width: 100%;
+    height: 100%;
+    /* margin: 20px; */
+    margin-left: -40%;
+  }
+
+  /* for blog detail style */
+
+  .detail-blog-content img {
+    width: 40%;
+    height: 40%;
+    margin: 0px auto;
+  }
+
+  .detail-blog-content p {
+    width: 110%;
+    text-align: justify;
+    font-size: 14px;
+    margin: -40px;
+    margin-top: 20px;
+  }
+
+  .blog-content-container {
+    width: 60%;
+    margin: 0px auto;
+  }
+
+  .blog-content-container img {
+    width: 50%;
+    height: 50%;
+    margin-top: 20px;
+  }
   /* for contact me responsive style */
   .back-card {
     width: 100%;
@@ -185,6 +262,83 @@
 
   .more-btn {
     width: 100%;
+  }
+
+  /* for project detail */
+  .detail-project-container {
+    width: 100%;
+    margin: 0px auto;
+  }
+
+  .more-project {
+    width: 100%;
+    text-align: center;
+    margin-top: -20px;
+  }
+
+  .detail-proj img {
+    width: 200px;
+    height: 200px;
+    margin: 0px auto;
+  }
+
+  .detail-proj h1 {
+    text-align: center;
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .detail-proj-des p {
+    margin: 0px auto;
+    width: 50%;
+  }
+
+  .detail-proj-des p {
+    display: block;
+    margin-left: -50px;
+  }
+
+  .detail-proj-des img {
+    max-width: 100%; /* Images take full width of container */
+  }
+
+  .detail-proj-link {
+    width: 200%;
+    font-size: 12px;
+    margin: 0px auto;
+    margin-left: -100px;
+  }
+
+  .detail-proj-view iframe {
+    width: 60%;
+    height: 50%;
+    margin: 20px;
+    margin-left: -80%;
+  }
+
+  /* for blog detail style */
+
+  .detail-blog-content img {
+    width: 50%;
+    height: 50%;
+    margin: 0px auto;
+  }
+
+  .detail-blog-content p {
+    width: 110%;
+    text-align: justify;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  .blog-content-container {
+    width: 100%;
+    margin: 0px auto;
+  }
+
+  .blog-content-container  img{
+    width: 50%;
+    height: 50%;
   }
 
   /* for contact me responsive style */
@@ -370,7 +524,12 @@
     width: 110%;
     text-align: justify;
     font-size: 14px;
-    margin-left: -10px;
+    margin-top: 20px;
+  }
+
+  .blog-content-container {
+    width: 100%;
+    margin: 0px auto;
   }
 
   .Pp-blog {
@@ -481,6 +640,58 @@
 
   .more-btn {
     width: 100%;
+  }
+
+  /* for project detail */
+  .detail-project-container {
+    width: 100%;
+    margin: 0px auto;
+  }
+
+  .more-project {
+    width: 100%;
+    text-align: center;
+    margin-top: -20px;
+  }
+
+  .detail-proj img {
+    width: 200px;
+    height: 200px;
+    margin: 0px auto;
+  }
+
+  .detail-proj h1 {
+    text-align: center;
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .detail-proj-des p {
+    margin: 0px auto;
+    width: 200%;
+  }
+
+  .detail-proj-des p {
+    display: block;
+    margin-left: -50px;
+  }
+
+  .detail-proj-des img {
+    max-width: 100%; /* Images take full width of container */
+  }
+
+  .detail-proj-link {
+    width: 200%;
+    font-size: 12px;
+    margin: 0px auto;
+    margin-left: -100px;
+  }
+
+  .detail-proj-view iframe {
+    width: 60%;
+    height: 50%;
+    margin: 20px;
+    margin-left: -80%;
   }
 }
 
@@ -687,7 +898,12 @@
     width: 110%;
     text-align: justify;
     font-size: 14px;
-    margin-left: -10px;
+    margin-top: 20px;
+  }
+
+  .blog-content-container {
+    width: 100%;
+    margin: 0px auto;
   }
 
   .Pp-blog {
@@ -834,18 +1050,14 @@
 
   /* for project detail */
   .detail-project-container {
-    margin: 0px auto;
     width: 100%;
+    margin: 0px auto;
   }
 
   .more-project {
-    width: 80%;
-    margin: 0px auto;
-  }
-
-  .detail-proj {
-    width: 80%;
-    margin: 0px auto;
+    width: 100%;
+    text-align: center;
+    margin-top: -20px;
   }
 
   .detail-proj img {
@@ -857,36 +1069,37 @@
   .detail-proj h1 {
     text-align: center;
     font-size: 18px;
-    width: 110%;
+    width: 100%;
   }
 
   .detail-proj-des p {
-    width: 200%;
     margin: 0px auto;
-    margin-left: -60px;
-    text-align: justify;
+    width: 200%;
+  }
+
+  .detail-proj-des p {
+    display: block;
+    margin-left: -80px;
   }
 
   .detail-proj-des img {
-    width: 200%;
-    height: 200%;
+    max-width: 100%; /* Images take full width of container */
   }
 
   .detail-proj-link {
     width: 200%;
+    font-size: 12px;
+    margin: 0px auto;
     margin-left: -100px;
   }
 
-  .detail-proj-view {
-    margin: 0px auto;
+  .detail-proj-view iframe {
+    width: 70%;
+    height: 60%;
+    margin: 20px;
+    margin-left: -80%;
   }
 
-  .detail-proj-view {
-    /* margin-left: -50px; */
-    padding-top: 70%;
-    margin-top: -100px;
-    position: relative;
-  }
   /* for contact me */
   .contact-form {
     margin: 0px auto;

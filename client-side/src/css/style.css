@@ -1388,3 +1388,7 @@ nav {
   width: 200px;
   height: 200px;
 }
+
+.prog-back-btn .btn{
+  margin: 30px;
+}

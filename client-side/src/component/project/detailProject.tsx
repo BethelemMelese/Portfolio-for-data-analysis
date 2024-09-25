@@ -8,22 +8,20 @@ const Detail = ({ ...props }) => {
   const [selectedProject, setSelectedProject] = useState(props.selectedProject);
   return (
     <div className="detail-project-container">
-      <Card
-        className="more-project"
-        extra={
-          <Button
-            variant="contained"
-            size="small"
-            className="create-btn"
-            startIcon={<ArrowBackIcon />}
-            onClick={() => {
-              props.closeedit();
-            }}
-          >
-            Back
-          </Button>
-        }
-      >
+      <div className="prog-back-btn">
+        <Button
+          variant="contained"
+          size="small"
+          className="btn"
+          startIcon={<ArrowBackIcon />}
+          onClick={() => {
+            props.closeedit();
+          }}
+        >
+          Back
+        </Button>
+      </div>
+      <Card className="more-project">
         <div className="detail-proj">
           <img
             src={selectedProject.projectImage}
@@ -54,8 +52,6 @@ const Detail = ({ ...props }) => {
           <div className="detail-proj-view">
             <ReactPlayer
               className="react-player"
-              width="100%"
-              height="100%"
               controls={true}
               url={selectedProject.youtubeLink}
             />
