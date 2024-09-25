@@ -888,18 +888,11 @@ html {
   height: 0;
 }
 
-.detail-proj-view iframe {
+.detail-proj-view .react-player {
   margin: 20px;
   margin-left: 25%;
-  height: 50%;
-  width: 50%;
+  /* height: 50%;
+  width: 50%; */
   position: absolute;
 }
 
-.react-player {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
